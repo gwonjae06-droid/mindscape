@@ -41,6 +41,23 @@ h1,h2,h3{letter-spacing:-.055em}h1,.display-title,.chapter-main h2{font-family:G
 
 .hero-art{position:relative;height:490px;min-width:0;display:grid;place-items:center;isolation:isolate}.hero-art__rings{position:absolute;inset:8% 4%;border:1px solid #c6f4ec30;border-radius:50%;box-shadow:0 0 0 40px #b7deed06,0 0 0 90px #7bbada04;transform:rotate(-19deg)}.hero-art__rings:after{content:'';position:absolute;inset:18%;border:1px dashed #cee7ef33;border-radius:50%}.hero-art__pane{position:absolute;width:43%;aspect-ratio:.74;border:1px solid #ffffff80;border-radius:26px;background:linear-gradient(145deg,#b3dced38,#735e9e36);backdrop-filter:blur(13px);box-shadow:0 18px 55px #060e2b9a;transform:rotate(-12deg) translate(-31%,-1%)}.hero-art__pane--back{transform:rotate(15deg) translate(28%,-15%);background:linear-gradient(125deg,#91dfcc37,#263f7d50)}.hero-art__pane--front{background:linear-gradient(120deg,#e5eafb44,#ab8acb2a)}.hero-art__center{position:relative;z-index:2;display:grid;place-items:center;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,#d4fdf7a0,#cbeefd55 38%,#4d85bc33 70%,transparent 75%);box-shadow:0 0 85px #bfeef87f;animation:float 9s ease-in-out infinite alternate}.hero-art__annotation{position:absolute;bottom:5%;right:5%;font:11px ui-monospace,monospace;color:#d4eef3;background:#11233d9e;padding:9px 13px;border:1px solid #c2d7ed3c;border-radius:30px}.hero-facts{display:flex;gap:16px;flex-wrap:wrap;margin-top:36px;color:#b3cbd8;font-size:12px}.hero-facts>*{border-top:1px solid #c4e5e92f;padding-top:10px}.intro-footer{color:#9cb7d1;font-size:12px;margin-top:20px}.instruction-card{max-width:500px;min-height:250px;display:grid;align-content:center;justify-items:center}.instruction-card__word{font-size:clamp(46px,7vw,75px);font-weight:800;color:#94bdff}.instruction-card__arrow{font-size:30px;color:#a1d2df}.instruction-card__answer{font-size:16px;color:#b4f5dd}.instruction-card__top{color:#9fbed1;font:11px ui-monospace,monospace}.prepare-note{color:#9cb7d1;font-size:12px}.prepare-bottom{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:20px}.pause-overlay__dialog{max-width:480px;background:#14243d;padding:38px;border-radius:22px;text-align:center;border:1px solid #b5e4eb50;box-shadow:0 24px 90px #020617}.pause-overlay__dialog h3{font-size:26px;margin:10px 0}.pause-overlay__dialog p{color:#c7d6e5}.learn-end__buttons{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.learn-end{margin:30px 0}.swatch{display:inline-block;width:11px;height:11px;border-radius:50%;background:#94bdff}
 @media(max-width:850px){.hero-art{height:300px}.hero-art__pane{max-width:150px}.hero-art__center{width:110px;height:110px}}@media(max-width:610px){.hero-art{height:240px}.hero-art__pane{max-width:110px;border-radius:18px}.hero-art__center{width:90px;height:90px}.hero-art__annotation{display:none}}
+
+/* 2026 MINDSCAPE clarity refresh: fewer decorations, clearer learning steps */
+.landscape__orbit,.landscape__stars,.landscape__glass,.hero-art__rings,.hero-art__center,.hero-art__annotation,.hero-facts,.intro-footer,.stimulus-frame__corner{display:none!important}
+.landscape{background:radial-gradient(ellipse at 50% 8%,#40577599 0,transparent 48%),linear-gradient(150deg,#111b32,#101626 66%,#0a1020)}
+.landscape__aura{opacity:.25;filter:blur(100px);animation-duration:35s}
+.hero-art{height:min(420px,65vh)}
+.hero-art__pane{border-radius:14px;box-shadow:0 12px 46px #060e2b55;backdrop-filter:blur(8px)}
+.hero-copy h1{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:800;letter-spacing:-.06em}
+.button{border-radius:14px;box-shadow:none!important}
+.screen--intro,.screen--prepare,.screen--results,.screen--learn{background:transparent}
+.instruction-card,.chart-card,.result-stat,.stimulus-frame,.choice,.learning-card,.demo-card{box-shadow:none!important}
+.hero-actions{gap:10px}.hero-copy__accent{font-weight:700}
+body[data-phase=task][data-learning-step=color] .landscape{background:linear-gradient(145deg,#0e2734,#0b1a29)}
+body[data-phase=task][data-learning-step=conflict] .landscape{background:linear-gradient(145deg,#392c43,#13192c)}
+body[data-phase=task][data-learning-step=test] .landscape{background:linear-gradient(145deg,#1e2b47,#10172a)}
+.topbar__edition{font-size:11px;letter-spacing:.08em}
+@media(prefers-reduced-motion:reduce){.landscape__aura{animation:none!important}}
 </style>
   
 </head>
@@ -75,11 +92,11 @@ h1,h2,h3{letter-spacing:-.055em}h1,.display-title,.chapter-main h2{font-family:G
           <div class="hero-copy">
             <p class="eyebrow"><span class="eyebrow__dot"></span> INTERACTIVE LEARNING · EPISODE 01</p>
             <p class="eyebrow eyebrow--korean">마음을 이해하는 첫 번째 실험</p>
-            <h1 id="introTitle">당신의 마음은<br><em>생각만큼</em><br>단순하지 않습니다.</h1>
+            <h1 id="introTitle">당신은 지금<br><em>무엇을</em><br>보고 있나요?</h1>
             <p class="hero-copy__lede">똑같은 글자를 보고도, 우리의 뇌는 서로 다른 답을 떠올립니다. 때로는 너무 익숙한 생각이 오히려 방해가 되죠.</p>
             <p class="hero-copy__accent">이해하기 전에, 먼저 경험해 보세요.</p>
             <div class="hero-actions">
-              <button class="button button--primary" id="beginButton" type="button">첫 번째 실험 시작 <span aria-hidden="true">↗</span></button>
+              <button class="button button--primary" id="beginButton" type="button">체험 시작하기 <span aria-hidden="true">→</span></button>
               <button class="button button--quiet" id="learnDirectButton" type="button">설명부터 보기 <span aria-hidden="true">↘</span></button>
             </div>
             <div class="hero-facts" aria-label="실험 안내">
@@ -119,7 +136,7 @@ h1,h2,h3{letter-spacing:-.055em}h1,.display-title,.chapter-main h2{font-family:G
           </div>
         </div>
         <div class="prepare-bottom">
-          <div class="prepare-note"><span aria-hidden="true">ⓘ</span> 총 4문항 연습 뒤 24문항을 진행합니다. 숫자키 1~4로도 답할 수 있어요. 색 구분이 어려운 경우 <button type="button" id="prepareSkip">설명만 보기</button>를 선택하세요.</div>
+          <div class="prepare-note"><span aria-hidden="true">ⓘ</span> 먼저 색만 고르는 워밍업 4문항과 읽기 충돌 체험 4문항을 진행한 뒤 본 실험 24문항으로 이어집니다. 숫자키 1~4로도 답할 수 있어요. 색 구분이 어려운 경우 <button type="button" id="prepareSkip">설명만 보기</button>를 선택하세요.</div>
           <button id="startPractice" class="button button--primary" type="button">연습해 보기 <span aria-hidden="true">→</span></button>
         </div>
       </section>
@@ -202,9 +219,18 @@ const colors={red:{label:'빨강',ink:'#ff91a1'},blue:{label:'파랑',ink:'#94bd
 let mode='intro',index=0,trials=[],results=[],ready=false,paused=false,start=0,timer=null;
 function show(name){clearTimeout(timer);mode=name;ready=false;document.querySelectorAll('[data-screen]').forEach(s=>{let a=s.dataset.screen===name;s.hidden=!a;s.classList.toggle('is-active',a)});document.body.dataset.phase=name;document.body.dataset.condition='neutral';$('pauseOverlay').hidden=true;window.scrollTo({top:0,behavior:'instant'});}
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a}
-function trialsFor(practice){if(practice)return shuffle([{condition:'congruent',word:'빨강',ink:'red'},{condition:'incongruent',word:'초록',ink:'blue'},{condition:'neutral',word:'●●●',ink:'green'},{condition:'incongruent',word:'노랑',ink:'red'}]);let t=[];for(const ink of keys){t.push({condition:'congruent',ink,word:colors[ink].label});t.push({condition:'neutral',ink,word:'●●●'});let diff=keys.filter(k=>k!==ink);t.push({condition:'incongruent',ink,word:colors[diff[0]].label},{condition:'congruent',ink,word:colors[ink].label},{condition:'neutral',ink,word:'●●●'},{condition:'incongruent',ink,word:colors[diff[1]].label})}return shuffle(t)}
+function trialsFor(practice){if(practice)return [
+{condition:'neutral',word:'■■■',ink:'red'},
+{condition:'neutral',word:'■■■',ink:'blue'},
+{condition:'neutral',word:'■■■',ink:'green'},
+{condition:'neutral',word:'■■■',ink:'yellow'},
+{condition:'congruent',word:'빨강',ink:'red'},
+{condition:'incongruent',word:'초록',ink:'blue'},
+{condition:'incongruent',word:'노랑',ink:'red'},
+{condition:'incongruent',word:'파랑',ink:'green'}
+];let t=[];for(const ink of keys){t.push({condition:'congruent',ink,word:colors[ink].label});t.push({condition:'neutral',ink,word:'●●●'});let diff=keys.filter(k=>k!==ink);t.push({condition:'incongruent',ink,word:colors[diff[0]].label},{condition:'congruent',ink,word:colors[ink].label},{condition:'neutral',ink,word:'●●●'},{condition:'incongruent',ink,word:colors[diff[1]].label})}return shuffle(t)}
 function begin(practice){trials=trialsFor(practice);results=[];index=0;paused=false;mode=practice?'practice':'experiment';show('task');mode=practice?'practice':'experiment';draw();}
-function draw(){if(index>=trials.length){if(mode==='practice'){paused=true;$('pauseTitle').textContent='연습을 마쳤어요.';$('pauseDesc').textContent='이제 24문항의 본 실험이 시작됩니다. 뜻이 아닌 글자색을 선택하세요.';$('resumeButton').textContent='본 실험 시작 →';$('pauseOverlay').hidden=false;return;}finish();return}const t=trials[index];ready=false;document.body.dataset.condition=t.condition;$('taskMode').textContent=mode==='practice'?'PRACTICE / 연습':'EXPERIMENT / 본 실험';$('taskProgress').textContent=String(index+1).padStart(2,'0')+' / '+String(trials.length).padStart(2,'0');$('taskProgressbar').setAttribute('aria-valuemax',trials.length);$('taskProgressbar').setAttribute('aria-valuenow',index);$('progressFill').style.width=(index/trials.length*100)+'%';$('stimulus').textContent=t.word;$('stimulus').style.color=colors[t.ink].ink;$('taskFeedback').textContent=mode==='practice'?'정확한 글자색을 선택해 주세요.':'글자의 색을 선택하세요.';$('taskFooterMessage').textContent='빠르면서도 정확하게 선택해 보세요.';requestAnimationFrame(()=>{requestAnimationFrame(()=>{start=performance.now();ready=true;});});}
+function draw(){if(index>=trials.length){if(mode==='practice'){paused=true;$('pauseTitle').textContent='준비 체험을 마쳤어요.';$('pauseDesc').textContent='색 블록만 보는 단계와 뜻·색이 충돌하는 단계를 경험했습니다. 이제 본 실험 24문항을 시작합니다.';$('resumeButton').textContent='본 실험 시작 →';$('pauseOverlay').hidden=false;return;}finish();return}const t=trials[index];ready=false;document.body.dataset.condition=t.condition;document.body.dataset.learningStep=mode==='practice'?(index<4?'color':'conflict'):'test';$('taskMode').textContent=mode==='practice'?(index<4?'01 / 색만 보기':'02 / 읽기 충돌 체험'):'03 / 본 실험';$('taskProgress').textContent=String(index+1).padStart(2,'0')+' / '+String(trials.length).padStart(2,'0');$('taskProgressbar').setAttribute('aria-valuemax',trials.length);$('taskProgressbar').setAttribute('aria-valuenow',index);$('progressFill').style.width=(index/trials.length*100)+'%';$('stimulus').textContent=t.word;$('stimulus').style.color=colors[t.ink].ink;$('taskFeedback').textContent=mode==='practice'?(index<4?'색 블록의 색만 골라보세요.':'이제 글자를 읽는 습관이 방해하는지 느껴보세요.'):'빠르고 정확하게 실제 글자색을 선택하세요.';$('taskFooterMessage').textContent=mode==='practice'?(index<4?'첫 단계는 색만 고르는 워밍업입니다.':'두 번째 단계는 뜻과 색이 충돌하는 체험입니다.'):'정답률과 반응시간을 함께 측정합니다.';requestAnimationFrame(()=>{requestAnimationFrame(()=>{start=performance.now();ready=true;});});}
 function answer(key){if(!ready||paused||(mode!=='experiment'&&mode!=='practice'))return;ready=false;const t=trials[index],ms=performance.now()-start,correct=key===t.ink;if(mode==='experiment')results.push({condition:t.condition,ms,correct});else $('taskFeedback').textContent=correct?'정답이에요.':'정답은 '+colors[t.ink].label+'입니다.';index++;timer=setTimeout(draw,mode==='practice'?550:190);}
 function median(a){if(!a.length)return null;a=[...a].sort((x,y)=>x-y);return(a[Math.floor((a.length-1)/2)]+a[Math.floor(a.length/2)])/2}
 function finish(){show('results');const correct=results.filter(r=>r.correct),percent=Math.round(correct.length/results.length*100),overall=median(correct.map(r=>r.ms));$('accuracyValue').textContent=percent+'%';$('accuracySub').textContent=correct.length+' / '+results.length+' 정답';$('overallTimeValue').textContent=overall===null?'—':Math.round(overall)+' ms';const parts=['congruent','incongruent','neutral'].map(id=>({id,name:{congruent:'일치',incongruent:'불일치',neutral:'중립'}[id],ms:median(correct.filter(x=>x.condition===id).map(x=>x.ms))})),co=parts[0].ms,inc=parts[1].ms,diff=co!==null&&inc!==null?inc-co:null;$('interferenceValue').textContent=diff===null?'자료 부족':(diff>=0?'+':'')+Math.round(diff)+' ms';$('interferenceSub').textContent='불일치 − 일치 / 정답 반응시간';const max=Math.max(350,...parts.map(x=>x.ms||0));$('chartRows').replaceChildren();for(const x of parts){const row=document.createElement('div');row.className='chart-row';const title=document.createElement('span');title.textContent=x.name;const track=document.createElement('div'),bar=document.createElement('i');bar.style.width=(x.ms===null?0:Math.max(4,x.ms/max*100))+'%';track.append(bar);const n=document.createElement('b');n.textContent=x.ms===null?'자료 부족':Math.round(x.ms)+'ms';row.append(title,track,n);$('chartRows').append(row)}$('resultInsight').textContent=diff===null?'조건별 정답이 부족해 차이를 판단하기 어렵습니다.':diff>0?'불일치 문항에서 더 오래 걸렸습니다. 단어의 뜻이 색 판단을 방해했을 가능성이 있습니다.':'이번에는 불일치 문항이 더 느리지 않았습니다. 짧은 교육용 실험에서는 여러 요인 때문에 차이가 달라질 수 있습니다.';}
