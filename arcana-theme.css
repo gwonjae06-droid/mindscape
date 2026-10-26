@@ -1,0 +1,122 @@
+/* MINDSCAPE / ARCANA — CSS-only compositor-friendly motion, responsive from 320px */
+:root{
+ --bg:#0d0916;--surface:#181124;--panel:#21182f;
+ --line:rgba(223,187,119,.25);--ink:#f7efe5;
+ --muted:#d4c7bd;--dim:#b0a298;--mint:#eed2a0;
+ --cyan:#dfc58d;--gold:#e6bd7b;--violet:#9873c6;
+ --serif:"Cormorant Garamond","Noto Serif KR",Georgia,serif;
+ --sans:"Noto Sans KR",system-ui,sans-serif;
+}
+body{background:#0b0713;color:var(--ink);font-family:var(--sans)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse 40% 50% at 5% 26%,rgba(109,60,151,.17),transparent 90%),radial-gradient(ellipse 48% 48% at 94% 6%,rgba(151,94,95,.16),transparent 85%),radial-gradient(ellipse 55% 30% at 52% 99%,rgba(120,82,160,.09),transparent 85%)}
+#arcanaStars{position:fixed;inset:0;z-index:0;pointer-events:none;width:100%;height:100%}
+main,header,footer{position:relative;z-index:1}
+header{position:sticky;top:0;border-bottom:1px solid rgba(227,192,135,.16);background:rgba(12,8,20,.82);backdrop-filter:blur(18px);z-index:50}
+.brand{font-family:var(--serif);font-size:27px;letter-spacing:.06em;color:#fff1d5}
+.brand em{font-family:var(--sans);color:#ddc69e;font-size:10px;letter-spacing:.22em}
+.nav button,.nav a{color:#ded0ba}.top-progress span{color:var(--gold)}
+.progress-track{background:#352945}.progress-track b{background:linear-gradient(90deg,#d9ab6c,#fff0bd)}
+.wrap{width:min(1240px,calc(100% - 48px))}
+.hero{grid-template-columns:1.05fr .95fr;padding:100px 0 80px;min-height:82vh;border-bottom:1px solid var(--line);align-items:center;gap:28px}
+.overline,.mini-title,.card-top{font-size:11px;letter-spacing:.17em;color:var(--gold)}
+.hero h1{font-family:var(--serif);font-size:clamp(44px,5.5vw,79px);font-weight:500;line-height:1.19;letter-spacing:-.038em;margin:18px 0 28px;word-break:keep-all}
+.hero h1 em{color:#ffdfae;font-style:normal}
+.hero .intro{color:#decdbf;line-height:2.16;font-size:14px;max-width:590px}
+.button{border:1px solid rgba(227,194,135,.37);background:rgba(45,30,60,.5);color:#fff1dc;box-shadow:0 10px 25px rgba(0,0,0,.13);border-radius:999px;min-height:48px;padding:11px 20px;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.button:hover{border-color:#e7c88f;background:rgba(79,47,94,.73);transform:translateY(-2px)}
+.button.primary{background:linear-gradient(125deg,#eed5aa,#c79c65);border-color:#edd6aa;color:#241425;box-shadow:0 0 28px rgba(221,169,92,.16)}
+.button.primary:hover{background:linear-gradient(125deg,#fff1d6,#d8ac70)}
+.button.ghost{background:rgba(43,26,58,.5)}
+.hero-visual{min-height:470px;max-height:none;border:0;box-shadow:none;background:transparent;overflow:visible;isolation:isolate;display:grid;place-items:center}
+.arcana-sanctum{position:relative;width:min(440px,100%);height:460px;display:grid;place-items:center;isolation:isolate}
+.arcana-sanctum::before{content:"";position:absolute;width:min(370px,93%);aspect-ratio:1;border-radius:50%;border:1px solid rgba(228,192,126,.23);box-shadow:inset 0 0 45px rgba(178,129,212,.09),0 0 140px rgba(169,106,214,.10);animation:arcanaRotate 48s linear infinite}
+.arcana-sanctum::after{content:"";position:absolute;width:min(310px,77%);aspect-ratio:1;border-radius:50%;border:1px dashed rgba(234,205,154,.18);animation:arcanaRotate 34s linear infinite reverse}
+.arcana-orb{position:absolute;width:190px;height:190px;border-radius:50%;background:radial-gradient(circle at 32% 26%,rgba(255,255,255,.61),rgba(255,255,255,.19) 9%,rgba(182,132,210,.34) 27%,rgba(55,35,86,.70) 60%,rgba(12,8,29,.9));filter:drop-shadow(0 0 34px rgba(193,148,255,.24));box-shadow:inset -23px -21px 34px rgba(6,3,20,.57),0 0 80px rgba(196,148,241,.13);animation:arcanaHover 8s ease-in-out infinite}
+.arcana-orb::after{content:"✧";position:absolute;inset:0;display:grid;place-items:center;font:400 70px var(--serif);color:#f4ddb6;text-shadow:0 0 24px #fbe1ad88;animation:arcanaPulse 5s ease-in-out infinite}
+.arcana-ritual-card{position:absolute;width:min(210px,49%);aspect-ratio:3/4.8;left:50%;top:51%;border-radius:13px;background:linear-gradient(140deg,rgba(48,25,68,.9),rgba(21,13,35,.95));border:1px solid #d5b47b82;box-shadow:0 26px 60px #05020f99,0 0 30px #e3b97c1f;display:flex;flex-direction:column;justify-content:space-between;text-align:center;padding:18px 11px;transform-origin:50% 80%;animation:arcanaCardDance 9s ease-in-out infinite}
+.arcana-ritual-card::before{content:"";position:absolute;inset:8px;border:1px solid rgba(240,207,153,.27);border-radius:9px;pointer-events:none}
+.arcana-ritual-card:nth-child(3){transform:translate(-100%,-52%) rotate(-18deg);animation-delay:-3s}
+.arcana-ritual-card:nth-child(4){transform:translate(-6%,-52%) rotate(17deg);animation-delay:-6s}
+.arcana-ritual-card:nth-child(5){transform:translate(-51%,-55%) rotate(0deg);z-index:1}
+.arcana-ritual-card .top{font:400 15px var(--serif);color:#f3dba9;letter-spacing:.13em}
+.arcana-ritual-card .symbol{font:400 59px/1 var(--serif);color:#ffe7ba;text-shadow:0 0 30px rgba(238,206,154,.4)}
+.arcana-ritual-card .bottom{font:500 16px var(--serif);letter-spacing:.05em;color:#fce8c9}
+#library{padding:80px 0 45px}
+.section-head h2{font-family:var(--serif);font-size:clamp(36px,4vw,57px);font-weight:500;line-height:1.14;color:#fff0d6}
+.section-head p{color:var(--muted);font-size:13px}
+.arcana-deck{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin:29px 0}
+.arcana-deck button,.arcana-lesson-grid button{min-width:0}
+.arcana-card{position:relative;display:block;width:100%;text-align:center;border-radius:19px;padding:12px;background:linear-gradient(158deg,#452b58,#171024 77%);color:#f9eedb;border:1px solid rgba(225,193,133,.49);box-shadow:0 22px 60px rgba(0,0,0,.38),inset 0 0 0 1px rgba(255,255,255,.03);overflow:hidden;aspect-ratio:3/5.45;min-height:310px;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease,border-color .3s ease;animation:arcanaFloat 7s ease-in-out infinite;isolation:isolate}
+.arcana-card::before{content:"";position:absolute;inset:9px;border:1px solid rgba(232,198,130,.31);border-radius:12px;pointer-events:none}
+.arcana-card::after{content:"";position:absolute;inset:-50%;background:linear-gradient(115deg,transparent 38%,rgba(255,239,198,.09) 48%,transparent 56%);transform:translateX(-100%);animation:arcanaGleam 9s linear infinite;pointer-events:none}
+.arcana-card:hover,.arcana-card:focus-visible{border-color:#ffe2a5;box-shadow:0 29px 85px rgba(0,0,0,.48),0 0 40px rgba(222,178,101,.17);transform:perspective(800px) translateY(-14px) rotateY(-3deg)}
+.arcana-card__inside{position:relative;z-index:1;display:flex;height:100%;flex-direction:column;align-items:center;gap:10px;padding:12px 7px}
+.arcana-card__number{align-self:stretch;display:flex;justify-content:space-between;font:600 13px var(--serif);color:#eed7ab;letter-spacing:.05em}
+.arcana-card__glyph{margin:6px auto 0;width:92%;aspect-ratio:1;max-height:130px;display:grid;place-items:center;font:400 clamp(37px,4.6vw,62px)/1 var(--serif);text-shadow:0 0 26px #f8dbaa63;color:#f7e5bd;border:1px solid #ebc78e25;border-radius:50%;background:radial-gradient(circle,#d5a27718,transparent 70%)}
+.arcana-card__title{font:500 clamp(23px,2.3vw,34px)/1.12 var(--serif);color:#fff0d1;letter-spacing:-.02em;margin:0}
+.arcana-card__subtitle{font:600 9px var(--sans);color:#e1c497;letter-spacing:.14em;text-transform:uppercase}
+.arcana-card__question{flex:1;display:grid;place-items:center;font:500 12px/1.8 var(--sans);word-break:keep-all;color:#f5e8da;margin:0;max-width:18ch}
+.arcana-card__foot{font:500 10px var(--sans);color:#e0c18c;letter-spacing:.06em;border-top:1px solid rgba(231,198,136,.19);padding-top:13px;width:100%}
+.arcana-card[data-category="relations"]{background:linear-gradient(160deg,#59304e,#201424 74%)}
+.arcana-card[data-category="society"]{background:linear-gradient(160deg,#353353,#15152a 74%)}
+.arcana-card[data-category="groups"]{background:linear-gradient(160deg,#2c4a58,#14242f 74%)}
+.arcana-card[data-category="ethics"]{background:linear-gradient(160deg,#57402b,#251c15 74%)}
+.arcana-card[data-category="cognition"]{background:linear-gradient(160deg,#47325b,#1a142b 74%)}
+.arcana-world-intro{margin:0 0 22px;padding:23px 24px;border-radius:18px;border:1px solid rgba(224,189,125,.3);background:radial-gradient(circle at 89% 12%,rgba(226,178,92,.12),transparent 35%),linear-gradient(145deg,rgba(36,24,48,.82),rgba(22,16,32,.93))}
+.arcana-world-intro h3{font:500 32px var(--serif);color:#fff0d4;margin:4px 0}
+.arcana-world-intro p{color:var(--muted);font-size:13px;line-height:1.95;margin:6px 0 0}
+.arcana-world-intro small{color:#ecd0a0;letter-spacing:.18em}
+.arcana-lesson-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.arcana-lesson-grid .arcana-card{aspect-ratio:3/4.2;min-height:315px}
+.arcana-lesson-grid .arcana-card__glyph{max-height:88px;font-size:42px;width:88px}
+.arcana-lesson-grid .arcana-card__title{font-size:27px}
+.arcana-lesson-grid .arcana-card__question{max-width:25ch}
+.explore-toolbar{margin:26px 0 28px}
+.category-tabs{display:flex;gap:7px;flex-wrap:wrap}
+.category-tabs button{background:rgba(48,30,62,.7);border-color:rgba(224,188,123,.28);color:#e8d5b5}
+.category-tabs button[aria-pressed=true]{background:linear-gradient(120deg,#efd8b1,#c8a46e);border-color:#f8d9a5;color:#251625}
+.topic-search-line input{background:rgba(35,23,48,.9);border:1px solid rgba(225,189,131,.36);color:#fff5e9}
+#listSummary{color:#d5c1a1}.category-directory{display:grid;gap:35px}.category-heading h3{font-family:var(--serif);color:#ffe5bc;font-size:34px}.category-heading p{color:var(--muted)}.category-heading .category-progress{border-color:#dcc28b44;background:#2d2037;color:#e8d0a5}
+.empty-result{color:var(--muted)}
+.learning-pane{padding-top:60px}.crumbs button{color:#e9c68e}
+.topic-head{border-bottom-color:var(--line)}
+.topic-head .page-title{font-family:var(--serif);color:#fff0ce;font-size:clamp(37px,4vw,56px);line-height:1.3}
+.topic-head p,.lesson-box p,.info-card p,.taste-sub{color:#dfd2c3}
+.lesson-counter{border-color:var(--line);color:#e9c99b}
+.lesson-box,.demo-shell{background:rgba(27,18,39,.9);border-color:rgba(224,191,125,.25);box-shadow:0 20px 60px rgba(0,0,0,.23)}
+.lesson-box h3,.demo-heading h3,.quiz h3{font-family:var(--serif);font-size:28px;color:#fff0d1}
+.lesson-box p,.lesson-box ul,.demo-heading p{color:#e2d5c6}
+.explainer{background:linear-gradient(145deg,rgba(51,30,52,.91),rgba(33,23,47,.92))}
+.demo-content{background:radial-gradient(circle at 50% 50%,rgba(164,117,165,.08),transparent 70%);border-radius:18px;min-height:210px}
+.demo-status,.feedback{color:#f3d5a0}
+.stimulus{color:#fff6e7}.big-number{color:#ffebbc}
+.choice-row button,.scenario-choice,.quiz-options button{background:#30253f;border-color:#665078;color:#f2e7db}
+.choice-row button:hover,.scenario-choice:hover,.quiz-options button:hover{background:#4a3559}
+.quiz-options button[aria-pressed=true],.scenario-choice[aria-pressed=true]{border-color:#e8bf82;background:#5d465a}
+.not-diagnostic{border-color:var(--line);color:#cebca9}
+.sources{border-top-color:var(--line)}.sources a{color:#e6cc98}
+.about-band{border-color:var(--line)}.about-band h3{font-family:var(--serif);font-size:23px;color:#fff0cf}.about-band p{color:var(--muted)}
+footer{border-top:1px solid var(--line);color:#c9b59f}
+.arcana-portal{position:fixed;inset:0;z-index:110;display:grid;place-items:center;pointer-events:none;opacity:0;background:radial-gradient(circle at center,rgba(83,42,111,.32),rgba(7,3,14,.92));transition:opacity .35s ease}
+.arcana-portal.active{opacity:1}.arcana-portal__ring{width:min(55vw,430px);aspect-ratio:1;border:1px solid #f3d7a990;border-radius:50%;box-shadow:inset 0 0 65px rgba(242,207,145,.14),0 0 140px rgba(153,100,185,.28);animation:arcanaRotate 1.6s linear infinite;position:relative}
+.arcana-portal__ring::after{content:"";position:absolute;inset:15%;border-radius:50%;border:1px dashed #f6e4bd88}
+.arcana-portal__label{position:absolute;text-align:center;color:#fff1d1;font:500 clamp(26px,4vw,45px) var(--serif);text-shadow:0 0 24px #fddba988}
+@keyframes arcanaRotate{to{transform:rotate(360deg)}}
+@keyframes arcanaHover{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes arcanaCardDance{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes arcanaPulse{0%,100%{opacity:.65;transform:scale(.93)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes arcanaFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@keyframes arcanaGleam{0%{transform:translateX(-100%)}35%,100%{transform:translateX(105%)}}
+.arcana-deck button:nth-child(2n){animation-delay:-2s}.arcana-deck button:nth-child(3n){animation-delay:-4s}
+@media(max-width:1050px){.hero{grid-template-columns:1fr}.hero-visual{min-height:360px}.arcana-deck{grid-template-columns:repeat(3,1fr)}.arcana-card{aspect-ratio:3/4.8}.arcana-lesson-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.wrap{width:calc(100% - 32px)}.hero{padding:53px 0 30px;gap:5px}.hero h1{font-size:clamp(39px,10vw,53px)}.hero-visual{min-height:300px}.arcana-sanctum{height:300px}.arcana-orb{width:145px;height:145px}.arcana-ritual-card{width:145px}.arcana-deck,.arcana-lesson-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.arcana-card{min-height:278px;aspect-ratio:3/5.3;padding:7px}.arcana-card__inside{padding:10px 4px;gap:6px}.arcana-card__glyph{max-height:80px;font-size:43px}.arcana-card__title{font-size:25px}.arcana-card__question{font-size:11px;line-height:1.65}.arcana-card__subtitle{font-size:8px}.arcana-lesson-grid .arcana-card{min-height:300px}.arcana-lesson-grid .arcana-card__title{font-size:22px}.section-head h2{font-size:38px}.category-heading h3{font-size:30px}}
+@media(max-width:390px){.arcana-deck,.arcana-lesson-grid{grid-template-columns:1fr}.arcana-card{aspect-ratio:3/4.2;max-width:330px;margin:auto}.arcana-lesson-grid .arcana-card{aspect-ratio:3/4}.nav{gap:10px}}
+@media(prefers-reduced-motion:reduce){.arcana-card,.arcana-card::after,.arcana-sanctum::before,.arcana-sanctum::after,.arcana-orb,.arcana-orb::after,.arcana-ritual-card,.arcana-portal__ring{animation:none!important;transition:none!important}.arcana-card:hover{transform:none!important}}
+
+/* Three overlapping cards in the sanctuary: left / right / prominent center. */
+.arcana-ritual-card:nth-child(2){transform:translate(-108%,-52%) rotate(-16deg);z-index:1}
+.arcana-ritual-card:nth-child(3){transform:translate(9%,-52%) rotate(16deg);z-index:2}
+.arcana-ritual-card:nth-child(4){transform:translate(-50%,-57%) rotate(0deg);z-index:3}
+#library{scroll-margin-top:88px}
+#arcanaStudy{scroll-margin-top:90px}
+@media(prefers-reduced-motion:reduce){.arcana-ritual-card:nth-child(2),.arcana-ritual-card:nth-child(3),.arcana-ritual-card:nth-child(4){translate:none}}

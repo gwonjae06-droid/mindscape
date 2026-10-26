@@ -110,42 +110,52 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 .scenario-options button[aria-pressed="true"]{border-color:#b6e9d7;background:#2b514a;color:#fff}
 @media(max-width:700px){.category-directory .lesson-grid{grid-template-columns:1fr}.category-heading{display:block}.category-heading .category-progress{display:inline-block;margin-top:12px}.category-directory{gap:35px}.topic-search-line{align-items:start}.topic-search-line input{max-width:none;width:100%;flex-basis:100%}}
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./arcana-theme.css">
 </head>
 <body>
+<canvas id="arcanaStars" aria-hidden="true"></canvas>
+<div id="arcanaPortal" class="arcana-portal" aria-hidden="true"><div class="arcana-portal__ring"></div><div class="arcana-portal__label" id="arcanaPortalLabel">THE ARCANA OPENS</div></div>
 <a href="#main" class="skip">본문으로 이동</a>
 <header><div class="wrap topbar">
-<a class="brand" href="#home" id="brandHome">MINDSCAPE<em>PSYCHOLOGY, MADE UNDERSTANDABLE</em></a>
+<a class="brand" href="#home" id="brandHome">MINDSCAPE<em>ARCANA OF PSYCHOLOGY</em></a>
 <nav class="nav" aria-label="주요 메뉴">
-<button type="button" id="navLessons">학습 주제</button>
+<button type="button" id="navLessons">아르카나 덱</button>
 <a href="#study-guide" id="navGuide">학습 방법</a>
 <a href="https://gwonjae06-droid.github.io/portfolio/" rel="noopener noreferrer">포트폴리오 ↗</a>
 </nav>
-<div class="top-progress"><span id="doneCount">0 / 4</span><div class="progress-track"><b id="doneProgress"></b></div></div>
+<div class="top-progress"><span id="doneCount">0 / 14</span><div class="progress-track"><b id="doneProgress"></b></div></div>
 </div></header>
 <main id="main">
 <div id="homeView">
 <div class="wrap">
 <section class="hero" id="home">
 <div>
-<span class="overline">A LITTLE SCIENCE OF THE MIND</span>
-<h1>마음을 공부하는 일은<br>내 생각을 <em>다시 보는 일.</em></h1>
-<p class="intro">우리는 왜 사람을 오해하고, 주변 사람들의 의견을 따르며, 때로는 자신의 행동을 정당화할까요? 인간관계에서 시작해 사회·집단·윤리·인지까지, 일상의 질문을 심리학의 개념과 간단한 체험으로 배웁니다.</p>
-<div class="hero-actions"><button class="button primary" id="heroStart" type="button">인간관계부터 배우기 →</button><a class="button ghost" href="#library">14개 주제 둘러보기 ↓</a></div>
+<span class="overline">THE ARCANA OF CURIOSITY · 14 LESSONS</span>
+<h1>궁금증이 적힌 <em>아르카나 카드</em>를 뽑고,<br>그 마음의 세계로 들어가 보세요.</h1>
+<p class="intro">사람의 마음은 때때로 낯선 미지처럼 느껴집니다. 인간관계, 사회, 집단, 윤리, 인지의 다섯 세계 가운데 궁금한 질문이 적힌 카드를 뽑아 보세요. 카드 너머에서는 심리학의 개념과 짧은 체험이 기다립니다.</p>
+<div class="hero-actions"><button class="button primary" id="heroStart" type="button">첫 번째 아르카나 카드 뽑기 ✦</button><button class="button ghost" id="arcanaRandom" type="button">운명의 카드 뽑기 ↗</button></div>
 </div>
 <div class="hero-visual" aria-hidden="true">
-<small>01 · ATTENTION / 주의</small>
-<div class="visual-word">파랑</div>
-<div class="visual-choices"><span>빨강</span><span>파랑</span><span>초록</span><span>노랑</span></div>
-<div class="visual-caption">같은 단어, 다른 글자색 — 왜 헷갈릴까요?</div>
-</div>
+<div class="arcana-sanctum">
+<div class="arcana-orb"></div>
+<div class="arcana-ritual-card"><span class="top">I · THE SOUL</span><span class="symbol">☾</span><span class="bottom">RELATIONSHIPS</span></div>
+<div class="arcana-ritual-card"><span class="top">III · THE MANY</span><span class="symbol">✶</span><span class="bottom">GROUPS</span></div>
+<div class="arcana-ritual-card"><span class="top">V · THE MIND</span><span class="symbol">✧</span><span class="bottom">COGNITION</span></div>
+</div></div>
 </section>
 <section id="library">
-<div class="section-head"><div><span class="overline">FIVE CATEGORIES · FOURTEEN LESSONS</span><h2>관계에서 사회까지,<br>다섯 갈래로 배우는 심리학.</h2></div><p>관심 있는 카테고리를 고르거나 키워드를 검색해 보세요. 개념을 읽고, 상황을 경험한 뒤 이해를 확인합니다.</p></div>
+<div class="section-head"><div><span class="overline">THE FIVE MAJOR ARCANA</span><h2>어떤 질문의 세계로 들어갈까요?</h2></div><p>다섯 장의 카드 중 끌리는 질문을 골라 뽑으세요. 각 카드에는 더 작은 학습 카드가 담긴 세계가 펼쳐집니다.</p></div>
+<div id="arcanaDeck" class="arcana-deck" aria-label="다섯 가지 아르카나 세계의 카드"></div>
+<div class="hero-actions" style="margin:0 0 27px"><button type="button" id="arcanaAll" class="button ghost">모든 14개 주제 펼치기 ↓</button></div>
+<div id="arcanaStudy" hidden>
+<div id="arcanaWorld" class="arcana-world-intro" aria-live="polite"></div>
 <div class="explore-toolbar" aria-label="심리학 주제 찾아보기">
  <div id="categoryTabs" class="category-tabs" role="group" aria-label="카테고리 필터"></div>
  <div class="topic-search-line"><label for="topicSearch">주제 검색</label><input id="topicSearch" type="search" maxlength="70" placeholder="예: 후광효과, 친구, 동조" autocomplete="off"><span id="listSummary" role="status" aria-live="polite"></span></div>
 </div>
 <div id="lessonGrid" class="category-directory"></div>
+</div>
 </section>
 <div class="about-band" id="study-guide">
 <div><h3>시험보다 이해에 가까운 수업</h3><p>체험을 잘하거나 못하는 것이 목표가 아닙니다. 마음이 어떻게 작동할 수 있는지 이해하고, 일상에서 비슷한 장면을 찾아보세요.</p></div>
@@ -155,7 +165,7 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 </div>
 <div id="lessonView" hidden>
 <div class="wrap learning-pane">
-<div class="crumbs"><button type="button" id="backLessons">← 학습 주제로 돌아가기</button><span>/</span><span id="crumbTitle"></span></div>
+<div class="crumbs"><button type="button" id="backLessons">← 아르카나 세계로 돌아가기</button><span>/</span><span id="crumbTitle"></span></div>
 <div class="topic-head"><div><span class="overline" id="lessonOverline"></span><h1 class="page-title" id="lessonTitle"></h1><p id="lessonLead"></p></div><span class="lesson-counter" id="lessonCounter"></span></div>
 <div class="study-columns">
 <article class="lesson-box"><span class="mini-title">01 / 핵심 개념</span><h3 id="conceptTitle"></h3><p id="conceptBody"></p><ul id="conceptPoints"></ul></article>
@@ -170,7 +180,7 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 </section>
 <div class="sources"><h3>더 읽어보기 · 근거 자료</h3><p>학습 내용을 구성할 때 참고한 대학·학술·공공기관의 설명입니다.</p><ul id="sourceList"></ul></div>
 <div class="not-diagnostic">이 사이트의 미니 테스트는 개념 이해를 돕기 위한 예시입니다. 반응속도·기억 정답·선택 결과 하나만으로 주의력, 기억력, 성격이나 심리 상태를 평가할 수 없습니다.</div>
-<div class="study-footer"><button class="button ghost" type="button" id="footerBack">← 모든 주제 보기</button><button class="button primary" type="button" id="nextLesson">다음 주제 배우기 →</button></div>
+<div class="study-footer"><button class="button ghost" type="button" id="footerBack">← 카드 덱으로 돌아가기</button><button class="button primary" type="button" id="nextLesson">다음 주제 배우기 →</button></div>
 </div>
 </div>
 </main>
@@ -206,10 +216,71 @@ function completion(){
 }
 function saveCompletion(){
  try{localStorage.setItem(STORAGE_KEY,JSON.stringify([...completed]));}catch{}
- completion();drawCards();
+ completion();drawCards();renderArcanaDeck();
 }
 
 function orderedLessons(){return categories.flatMap(cat=>lessons.filter(l=>l.group===cat.id));}
+
+const arcanaArt={"relations":["I","☾","THE BOND","그 사람의 행동을, 나는 얼마나 이해하고 있을까?"],"society":["II","✧","THE CROWD","많은 사람 속에서, 나는 왜 다르게 행동할까?"],"groups":["III","✶","THE CHORUS","모두가 같은 말을 할 때, 나는 무엇을 믿을까?"],"ethics":["IV","⚖","THE SCALE","옳고 그름을 판단하는 나의 기준은 무엇일까?"],"cognition":["V","◇","THE MIND","내 생각은 어디까지 내 마음대로 움직일까?"]};
+let arcanaPortalTimer=null;
+function openPortal(label,callback){
+ if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){callback();return;}
+ clearTimeout(arcanaPortalTimer);
+ const overlay=$('arcanaPortal');putText('arcanaPortalLabel',label);
+ overlay.classList.add('active');
+ arcanaPortalTimer=setTimeout(()=>{
+  callback();
+  arcanaPortalTimer=setTimeout(()=>overlay.classList.remove('active'),250);
+ },430);
+}
+function makeArcana(data,onClick){
+ const b=make('button','arcana-card');
+ b.type='button';b.dataset.category=data.group;
+ b.setAttribute('aria-label',data.title+' — '+data.question+' 카드 뽑기');
+ const inside=make('span','arcana-card__inside'),number=make('span','arcana-card__number');
+ number.append(make('span','',data.no),make('span','',data.tag));
+ inside.append(number,make('span','arcana-card__glyph',data.glyph),
+  make('span','arcana-card__title',data.title),
+  make('span','arcana-card__subtitle',data.subtitle),
+  make('span','arcana-card__question','“'+data.question+'”'),
+  make('span','arcana-card__foot',data.footer));
+ b.append(inside);b.addEventListener('click',onClick);return b;
+}
+function renderArcanaDeck(){
+ const deck=$('arcanaDeck');deck.replaceChildren();
+ categories.forEach((cat,i)=>{
+  const a=arcanaArt[cat.id],all=lessons.filter(l=>l.group===cat.id);
+  const done=all.filter(l=>completed.has(l.id)).length;
+  const c=makeArcana({group:cat.id,no:a[0],glyph:a[1],tag:a[2],title:cat.title,
+   subtitle:cat.english,question:a[3],footer:done+' / '+all.length+' LEARNED · ENTER'},()=>openPortal(cat.title+' WORLD',()=>enterArcana(cat.id)));
+  c.style.animationDelay=-(i*1.3)+'s';deck.append(c);
+ });
+}
+function drawWorldIntro(){
+ const box=$('arcanaWorld');box.replaceChildren();
+ if(activeCategory==='all'){
+  box.append(make('small','','THE COMPLETE ARCANA'),make('h3','','마음의 모든 세계'),
+   make('p','','다섯 세계의 열네 가지 심리학 질문을 펼쳤습니다. 궁금한 카드를 선택해 더 깊이 들어가 보세요.'));
+  return;
+ }
+ const cat=categories.find(x=>x.id===activeCategory);
+ if(!cat)return;
+ const a=arcanaArt[cat.id];
+ box.append(make('small','',a[0]+' · '+cat.english+' / '+a[2]),make('h3','',cat.title+'의 세계'),
+  make('p','',a[3]+' '+cat.desc));
+}
+function enterArcana(id){
+ if(active)showHome();
+ activeCategory=id;searchTerm='';$('topicSearch').value='';
+ $('arcanaStudy').hidden=false;
+ drawWorldIntro();drawCategoryTabs();drawCards();
+ $('library').scrollIntoView({behavior:'instant',block:'start'});
+}
+function returnToArcana(){
+ const id=active?.group||activeCategory;
+ showHome();enterArcana(id);
+}
+
 function drawCategoryTabs(){
  const tabs=$('categoryTabs');tabs.replaceChildren();
  [{id:'all',title:'전체'},...categories].forEach(cat=>{
@@ -219,51 +290,37 @@ function drawCategoryTabs(){
   b.setAttribute('aria-pressed',String(activeCategory===cat.id));
   b.append(make('span','',String(count)));
   b.addEventListener('click',()=>{
-   activeCategory=cat.id;
-   drawCategoryTabs();drawCards();
+   enterArcana(cat.id);
   });
   tabs.append(b);
  });
 }
 function drawCards(){
  const root=$('lessonGrid');root.replaceChildren();
- const query=searchTerm.trim().normalize('NFKC').toLocaleLowerCase('ko-KR');
+ const q=searchTerm.trim().normalize('NFKC').toLocaleLowerCase('ko-KR');
  let shown=0;
- for(const category of categories){
-  if(activeCategory!=='all'&&activeCategory!==category.id)continue;
-  const groupLessons=lessons.filter(l=>l.group===category.id);
-  const filtered=groupLessons.filter(l=>{
-   if(!query)return true;
-   return [l.short,l.title,l.lead,l.cat,l.conceptBody,l.dailyBody,...l.points]
-    .some(text=>text.normalize('NFKC').toLocaleLowerCase('ko-KR').includes(query));
-  });
-  if(!filtered.length)continue;
-  shown+=filtered.length;
-  const section=make('section','category-section');
-  section.id='category-'+category.id;
-  const heading=make('div','category-heading'),left=make('div');
-  left.append(make('span','',category.english+' / '+String(groupLessons.length).padStart(2,'0')+' TOPICS'));
-  left.append(make('h3','',category.title));
-  left.append(make('p','',category.desc));
-  const done=groupLessons.filter(l=>completed.has(l.id)).length;
-  heading.append(left,make('span','category-progress','학습 완료 '+done+' / '+groupLessons.length));
-  section.append(heading);
-  const grid=make('div','lesson-grid');
-  filtered.forEach(l=>{
-   const card=make('article','lesson-card');
-   const top=make('div','card-top');
-   top.append(make('span','',l.no+' / '+category.english),make('span','complete',completed.has(l.id)?'✓ 학습 완료':'개념 · 체험'));
-   card.append(top,make('h3','',l.short),make('p','',l.lead));
-   const tail=make('div','card-tail');tail.append(make('span','','짧은 설명 · 상황 선택 · 확인'));
-   const action=make('button','',completed.has(l.id)?'복습하기 →':'학습하기 →');
-   action.type='button';action.setAttribute('aria-label',l.short+' '+(completed.has(l.id)?'복습하기':'학습하기'));
-   action.addEventListener('click',()=>showLesson(l.id));
-   tail.append(action);card.append(tail);grid.append(card);
+ for(const cat of categories){
+  if(activeCategory!=='all'&&activeCategory!==cat.id)continue;
+  const all=lessons.filter(l=>l.group===cat.id);
+  const visible=all.filter(l=>!q||[l.short,l.title,l.lead,l.cat,l.conceptBody,l.dailyBody,...l.points]
+    .some(s=>s.normalize('NFKC').toLocaleLowerCase('ko-KR').includes(q)));
+  if(!visible.length)continue;
+  shown+=visible.length;
+  const section=make('section','category-section');section.id='category-'+cat.id;
+  const head=make('div','category-heading'),left=make('div');
+  left.append(make('span','',cat.english+' / '+all.length+' ARCANA'),make('h3','',cat.title),make('p','',cat.desc));
+  head.append(left,make('span','category-progress','학습 완료 '+all.filter(l=>completed.has(l.id)).length+' / '+all.length));section.append(head);
+  const grid=make('div','arcana-lesson-grid'),a=arcanaArt[cat.id];
+  visible.forEach((l,i)=>{
+   const c=makeArcana({group:cat.id,no:l.no,tag:a[2],glyph:a[1],
+    title:l.short,subtitle:'PSYCHOLOGY LESSON',question:l.lead,
+    footer:completed.has(l.id)?'✓ LEARNED · REVISIT':'DRAW CARD · ENTER'},()=>openPortal(l.short,()=>showLesson(l.id)));
+   c.style.animationDelay=-(i*.9)+'s';grid.append(c);
   });
   section.append(grid);root.append(section);
  }
- putText('listSummary',shown+'개 주제 표시 · 총 '+lessons.length+'개');
- if(!shown)root.append(make('p','empty-result','일치하는 학습 주제가 없습니다. 검색어를 바꾸거나 전체 카테고리를 선택해 주세요.'));
+ putText('listSummary',shown+'개 아르카나 카드 · 총 '+lessons.length+'개 주제');
+ if(!shown)root.append(make('p','empty-result','일치하는 카드가 없습니다. 다른 단어를 검색해 보세요.'));
 }
 function setStatus(text){putText('demoStatus',text);}
 function button(label,onClick,primary=false){
@@ -298,7 +355,7 @@ function showHome(){
 }
 function showLesson(id){
  const l=lessons.find(x=>x.id===id);if(!l)return;
- resetModule();active=l;
+ resetModule();active=l;activeCategory=l.group;
  $('homeView').hidden=true;$('lessonView').hidden=false;
  document.title=l.short+' | MINDSCAPE';
  const setters=[['crumbTitle',l.short],['lessonOverline',l.no+' / '+l.cat],['lessonTitle',l.title],['lessonLead',l.lead],['lessonCounter',l.no+' / '+lessons.length],['conceptTitle',l.conceptTitle],['conceptBody',l.conceptBody],['dailyTitle',l.dailyTitle],['dailyBody',l.dailyBody],['takeaway',l.takeaway],['demoTitle',l.demoTitle],['demoLead',l.demoLead]];
@@ -473,15 +530,18 @@ function initFraming(){
 }
 $('navLessons').addEventListener('click',()=>{showHome();$('library').scrollIntoView({behavior:'instant',block:'start'});});
 $('navGuide').addEventListener('click',()=>{if(active)showHome();});
-$('heroStart').addEventListener('click',()=>showLesson('attribution'));
-$('backLessons').addEventListener('click',showHome);
-$('footerBack').addEventListener('click',showHome);
+$('heroStart').addEventListener('click',()=>openPortal('인간관계 WORLD',()=>enterArcana('relations')));
+$('arcanaRandom').addEventListener('click',()=>{const cat=categories[Math.floor(Math.random()*categories.length)];openPortal(cat.title+' WORLD',()=>enterArcana(cat.id));});
+$('arcanaAll').addEventListener('click',()=>enterArcana('all'));
+$('backLessons').addEventListener('click',returnToArcana);
+$('footerBack').addEventListener('click',returnToArcana);
 $('brandHome').addEventListener('click',e=>{e.preventDefault();showHome();});
 window.addEventListener('visibilitychange',()=>{if(document.hidden&&active?.id==='memory'){disposeDemo();if($('demoState').textContent==='기억하기'){putText('demoState','일시중지');setStatus('탭을 떠나 숫자를 보는 시간이 중단됐습니다. 다시 시작해 주세요.');setActions(button('다시 시작 →',()=>{if(active?.id==='memory')initMemory();},true));$('demoContent').replaceChildren(make('p','','시간이 중단되어 숫자를 다시 보여드립니다.'));}}});
 $('topicSearch').addEventListener('input',e=>{searchTerm=e.target.value;drawCards();});
 drawCategoryTabs();
-completion();drawCards();
+completion();renderArcanaDeck();drawCards();
 })();
 </script>
+<script defer src="./arcana-effects.js"></script>
 </body>
 </html>
