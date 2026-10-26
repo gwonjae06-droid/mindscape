@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<meta name="description" content="MINDSCAPE: 주의, 작업기억, 확증편향, 프레이밍 효과를 짧은 체험과 개념 학습으로 이해하는 인터랙티브 심리학 노트.">
+<meta name="description" content="MINDSCAPE: 인간관계, 사회, 집단, 윤리, 인지의 5개 영역과 14개 심리학 주제를 개념·사례·미니 체험으로 배우는 심리학 학습관.">
 <title>MINDSCAPE — 경험으로 배우는 심리학</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,6 +79,36 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 @media(max-width:930px){.hero{grid-template-columns:1fr;gap:25px;padding:70px 0}.hero-visual{min-height:230px}.study-columns{grid-template-columns:1fr}.about-band{grid-template-columns:1fr}}
 @media(max-width:640px){.wrap{width:calc(100% - 35px)}.topbar{min-height:68px;flex-wrap:wrap;gap:5px;padding:10px 0}.nav{gap:15px}.nav a,.nav button{font-size:11px}.top-progress{display:none}.hero{padding:56px 0}.hero-visual{padding:23px}.section-head{display:block}.lesson-grid,.scenario-grid,.quiz-options,.example-pair{grid-template-columns:1fr}#library{padding-top:48px}.lesson-card{padding:23px;min-height:190px}.lesson-box,.demo-shell{padding:22px 19px}.demo-heading{display:block}.demo-state{display:inline-block;margin-top:12px}.demo-content{padding-left:0;padding-right:0}.choice-row{grid-template-columns:1fr 1fr}.topic-head{display:block}.lesson-counter{display:inline-block;margin-top:18px}footer{flex-direction:column}.study-footer{align-items:stretch}.study-footer button{width:100%}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Category atlas — large subject areas with independent topic cards */
+.explore-toolbar{display:flex;flex-direction:column;gap:15px;margin:-5px 0 32px}
+.category-tabs{display:flex;flex-wrap:wrap;gap:9px}
+.category-tabs button{background:#132338;border:1px solid #38566b;border-radius:999px;color:#c2d5dc;min-height:39px;padding:8px 14px;font:500 12px var(--sans);display:inline-flex;align-items:center;gap:9px}
+.category-tabs button:hover{background:#234057;color:#fff}
+.category-tabs button[aria-pressed="true"]{background:#a4e9d1;border-color:#a4e9d1;color:#10262e;font-weight:700}
+.category-tabs button span{font-size:10px;opacity:.75}
+.topic-search-line{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between}
+.topic-search-line label{font-size:12px;color:#b8d2da}
+.topic-search-line input{flex:1;min-width:160px;max-width:390px;border:1px solid #426076;background:#14263a;color:#fff;border-radius:9px;padding:11px 14px;font-size:13px}
+.topic-search-line input::placeholder{color:#91abb8}
+#listSummary{font-size:11px;color:#adc9d0;font-variant-numeric:tabular-nums}
+.category-directory{display:grid;gap:48px}
+.category-section{border-top:1px solid #36536b;padding:24px 0 0;scroll-margin-top:100px}
+.category-heading{display:flex;justify-content:space-between;gap:26px;align-items:start;margin:0 0 22px}
+.category-heading span{color:var(--mint);font-size:10px;letter-spacing:.13em}
+.category-heading h3{font:500 clamp(23px,3vw,29px)/1.6 var(--serif);margin:6px 0}
+.category-heading p{color:#a9c5cd;font-size:12px;line-height:1.9;max-width:490px;margin:0}
+.category-heading .category-progress{font-size:11px;white-space:nowrap;letter-spacing:0;color:#bddedc;background:#172a39;border:1px solid #365266;padding:6px 13px;border-radius:999px}
+.category-directory .lesson-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.category-directory .lesson-card{min-height:225px}
+.empty-result{background:#162739;border:1px solid #355064;border-radius:12px;padding:30px 26px;color:#c8dce3;font-size:13px}
+.category-directory .lesson-card .category-chip{font-size:11px;color:#a4e9d1}
+.scenario-prompt{font:500 15px/2 var(--serif);max-width:650px;color:#edf8fa;margin:5px auto 15px}
+.scenario-options{width:min(740px,100%);display:grid;grid-template-columns:1fr;gap:9px;margin:8px auto}
+.scenario-options button{min-height:46px;border:1px solid #3a5a6e;border-radius:9px;background:#1c3244;padding:13px 17px;color:#e7f1f1;text-align:left;font:400 13px/1.8 var(--sans)}
+.scenario-options button:hover{background:#2b495d}
+.scenario-options button[aria-pressed="true"]{border-color:#b6e9d7;background:#2b514a;color:#fff}
+@media(max-width:700px){.category-directory .lesson-grid{grid-template-columns:1fr}.category-heading{display:block}.category-heading .category-progress{display:inline-block;margin-top:12px}.category-directory{gap:35px}.topic-search-line{align-items:start}.topic-search-line input{max-width:none;width:100%;flex-basis:100%}}
 </style>
 </head>
 <body>
@@ -99,8 +129,8 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 <div>
 <span class="overline">A LITTLE SCIENCE OF THE MIND</span>
 <h1>마음을 공부하는 일은<br>내 생각을 <em>다시 보는 일.</em></h1>
-<p class="intro">주의는 왜 흔들릴까요? 기억은 무엇을 붙잡아 둘까요? 왜 내 생각과 맞는 증거만 더 잘 보일까요? MINDSCAPE는 이 질문들을 작은 체험과 짧은 설명으로 함께 살펴보는 심리학 학습 공간입니다.</p>
-<div class="hero-actions"><button class="button primary" id="heroStart" type="button">첫 번째 주제 배우기 →</button><a class="button ghost" href="#library">4개 주제 둘러보기 ↓</a></div>
+<p class="intro">우리는 왜 사람을 오해하고, 주변 사람들의 의견을 따르며, 때로는 자신의 행동을 정당화할까요? 인간관계에서 시작해 사회·집단·윤리·인지까지, 일상의 질문을 심리학의 개념과 간단한 체험으로 배웁니다.</p>
+<div class="hero-actions"><button class="button primary" id="heroStart" type="button">인간관계부터 배우기 →</button><a class="button ghost" href="#library">14개 주제 둘러보기 ↓</a></div>
 </div>
 <div class="hero-visual" aria-hidden="true">
 <small>01 · ATTENTION / 주의</small>
@@ -110,12 +140,16 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 </div>
 </section>
 <section id="library">
-<div class="section-head"><div><span class="overline">FOUR SHORT LESSONS</span><h2>하나씩 배워 보는 마음의 원리.</h2></div><p>각 주제 약 3~5분. 개념을 읽고, 작은 체험을 거쳐, 한 문제로 이해를 확인합니다.</p></div>
-<div class="lesson-grid" id="lessonGrid"></div>
+<div class="section-head"><div><span class="overline">FIVE CATEGORIES · FOURTEEN LESSONS</span><h2>관계에서 사회까지,<br>다섯 갈래로 배우는 심리학.</h2></div><p>관심 있는 카테고리를 고르거나 키워드를 검색해 보세요. 개념을 읽고, 상황을 경험한 뒤 이해를 확인합니다.</p></div>
+<div class="explore-toolbar" aria-label="심리학 주제 찾아보기">
+ <div id="categoryTabs" class="category-tabs" role="group" aria-label="카테고리 필터"></div>
+ <div class="topic-search-line"><label for="topicSearch">주제 검색</label><input id="topicSearch" type="search" maxlength="70" placeholder="예: 후광효과, 친구, 동조" autocomplete="off"><span id="listSummary" role="status" aria-live="polite"></span></div>
+</div>
+<div id="lessonGrid" class="category-directory"></div>
 </section>
 <div class="about-band" id="study-guide">
 <div><h3>시험보다 이해에 가까운 수업</h3><p>체험을 잘하거나 못하는 것이 목표가 아닙니다. 마음이 어떻게 작동할 수 있는지 이해하고, 일상에서 비슷한 장면을 찾아보세요.</p></div>
-<div><h3>기록은 어디에 남나요?</h3><p>학습 완료 표시는 현재 브라우저에만 저장합니다. 체험 응답이나 기억한 숫자는 서버로 보내지 않습니다. 모든 테스트는 학습용이며 진단이나 지능 측정이 아닙니다.</p></div>
+<div><h3>기록은 어디에 남나요?</h3><p>학습 완료 표시는 현재 브라우저에만 저장합니다. 체험 응답은 서버로 보내지 않습니다. 선택 결과는 성격·관계·도덕성을 측정하는 심리검사가 아닙니다. 모든 테스트는 학습용이며 진단이나 지능 측정이 아닙니다.</p></div>
 </div>
 </div>
 </div>
@@ -151,10 +185,19 @@ const lessons=[
 {id:'bias',no:'03',cat:'사고 · THINKING',short:'확증편향',title:'왜 내 생각을 뒷받침하는 것만 보일까요?',lead:'이미 갖고 있던 믿음은 어떤 자료를 찾아보고 어떻게 해석할지에도 영향을 줄 수 있습니다.',conceptTitle:'확증편향: 믿음에 유리한 정보만 찾기',conceptBody:'확증편향은 자신의 기대나 기존 생각을 지지하는 정보를 더 쉽게 찾거나, 받아들이거나, 그렇게 해석하려는 경향입니다. 검증할 때는 내 가설과 어긋나는 사례도 적극적으로 살펴보는 것이 중요합니다.',points:['‘맞았던 경험’만 기억하면 다른 사례가 가려질 수 있습니다.','반대되는 증거를 살피는 것은 생각을 다듬는 방법입니다.','한 사람의 경험보다 비교 가능한 여러 자료가 도움이 될 수 있습니다.'],dailyTitle:'“음악을 들으면 공부가 잘된다”는 믿음',dailyBody:'음악을 켜고 공부가 잘된 날만 떠오른다면, 잘되지 않았던 날은 빠진 건 아닐까요? 내 생각을 시험해 보려면 반대 결과나 비교할 만한 자료를 함께 보세요.',takeaway:'좋은 검증은 내가 옳다는 증거뿐 아니라 틀렸을 가능성도 찾습니다.',demoTitle:'어떤 자료를 먼저 확인할까요?',demoLead:'가설을 더 공정하게 검토하는 데 유용한 두 가지 자료를 골라보세요.',quiz:'확증편향을 줄이려는 태도로 가장 적절한 것은?',options:['내 생각과 같은 글만 반복해서 읽는다','반례와 비교 자료도 적극적으로 살핀다','반대 의견은 항상 틀렸다고 본다','친구 한 명의 경험으로 일반화한다'],correct:1,explain:'반대 사례와 비교 가능한 자료를 함께 살피는 태도가 기존 믿음에 치우친 판단을 줄이는 데 도움이 됩니다.',sources:[['NIST — Confirmation Bias','https://www.nist.gov/glossary-term/36676']]},
 {id:'framing',no:'04',cat:'선택 · DECISION',short:'프레이밍 효과',title:'같은 사실도 말하는 방식이 다르다면?',lead:'정보의 내용이 같아도 표현하는 틀에 따라 느낌이나 선택이 달라질 수 있습니다.',conceptTitle:'프레이밍: 내용뿐 아니라 표현의 틀',conceptBody:'프레이밍 효과는 문제나 선택지가 어떤 문맥과 표현으로 제시되는지에 따라 판단이 달라질 수 있음을 가리킵니다. 같은 비율을 성공과 실패로 바꿔 말해도 받아들이는 인상이 달라질 수 있습니다.',points:['성공률 80%와 실패율 20%는 같은 기준 집단에서는 같은 비율을 나타냅니다.','긍정·부정 표현이 각각 다른 점에 주의를 끌 수 있습니다.','결정을 내릴 때 분모, 기간, 비교 조건을 함께 확인하면 좋습니다.'],dailyTitle:'후기를 볼 때의 두 문장',dailyBody:'“구매자 10명 중 8명이 만족했어요”와 “10명 중 2명이 만족하지 않았어요”는 같은 상황을 나타낼 수 있습니다. 어떤 표현이 먼저 보였는지가 제품에 대한 느낌에 영향을 줄 수 있겠지요.',takeaway:'결정 전에는 표현의 분위기와 실제 수치를 분리해서 살펴보세요.',demoTitle:'같은 정보인지 확인하기',demoLead:'다음 두 문장이 같은 모집단을 설명한다고 가정하면 수학적으로 같은 말일까요?',quiz:'프레이밍 효과를 이해한 설명으로 적절한 것은?',options:['사람의 선택은 문장 표현의 영향을 전혀 받지 않는다','정보를 어떻게 제시하느냐가 판단에 영향을 줄 수 있다','숫자는 언제나 거짓이다','긍정적 표현은 언제나 정답이다'],correct:1,explain:'같은 내용도 긍정 또는 부정의 틀로 제시되면 느낌과 선택이 달라질 수 있습니다. 모든 사람에게 항상 나타나는 것은 아닙니다.',sources:[['APA Dictionary — Framing','https://dictionary.apa.org/framing'],['Tversky & Kahneman (1981) — The Framing of Decisions','https://stanford.edu/class/psych205/papers/Tversky-Kahneman-1981.pdf']]}
 ];
+// Ten additional mini-lessons sourced from psychology texts and research.
+const socialLessons=[{"id":"attribution","group":"relations","cat":"인간관계 · RELATIONSHIPS","no":"05","short":"기본적 귀인 오류","title":"기본적 귀인 오류를 일상에서 이해하기","lead":"왜 늦은 답장을 곧바로 성격 문제로 해석할까요?","conceptTitle":"기본적 귀인 오류란?","conceptBody":"상대방의 행동을 설명할 때 개인의 성격을 과도하게 강조하고 상황을 과소평가하는 경향입니다. 문화와 맥락에 따라 나타나는 정도가 다를 수 있습니다.","points":["관찰한 사실과 추측한 이유를 분리하세요.","하나의 사례만으로 사람의 성향이나 능력을 진단할 수 없습니다.","설명의 원리와 실제 상황의 복잡성을 함께 고려하세요."],"dailyTitle":"일상 속에서 찾아보기","dailyBody":"친구가 답장을 늦게 했습니다. 이유를 아직 모르는 상황이라면?","takeaway":"관찰한 사실과 추측한 이유를 분리하세요.","demoTitle":"상황을 읽고 선택해 보세요","demoLead":"친구가 답장을 늦게 했습니다. 이유를 아직 모르는 상황이라면?","demoOptions":["'원래 나를 무시하는 사람'이라고 단정한다.","시간·일정·상황을 확인한 뒤 판단한다.","아무 문제도 없었다고 무조건 넘긴다."],"demoCorrect":1,"demoFeedback":"늦은 답장은 사실이지만 원인은 아직 추정입니다. 성격과 상황을 함께 확인하는 것이 중요합니다.","quiz":"기본적 귀인 오류는 어떤 해석일까요?","options":["상황 정보 없이 성격 탓이라고 단정하기","상황과 개인 요인을 구분해보기","책임을 항상 면제하기","관찰과 추측을 나누기"],"correct":0,"explain":"타인의 행동을 개인 특성 중심으로 과잉 해석하는 것이 핵심입니다.","sources":[["OpenStax Psychology 2e — 관련 심리학 학습 자료","https://openstax.org/books/psychology-2e/pages/12-1-what-is-social-psychology"]]},{"id":"halo","group":"relations","cat":"인간관계 · RELATIONSHIPS","no":"06","short":"후광효과","title":"후광효과를 일상에서 이해하기","lead":"첫인상이 다른 능력과 성격에 대한 평가까지 바꿀까요?","conceptTitle":"후광효과란?","conceptBody":"한 사람의 두드러진 인상이 충분한 근거가 없는 다른 특성의 평가에도 영향을 미치는 현상입니다. 친절한 인상이나 유창한 말투가 모든 능력을 보장하지는 않습니다.","points":["첫인상과 다른 능력의 증거를 구분하세요.","하나의 사례만으로 사람의 성향이나 능력을 진단할 수 없습니다.","설명의 원리와 실제 상황의 복잡성을 함께 고려하세요."],"dailyTitle":"일상 속에서 찾아보기","dailyBody":"발표를 잘하는 팀원에게 새 프로젝트 역할을 배정하려 합니다.","takeaway":"첫인상과 다른 능력의 증거를 구분하세요.","demoTitle":"상황을 읽고 선택해 보세요","demoLead":"발표를 잘하는 팀원에게 새 프로젝트 역할을 배정하려 합니다.","demoOptions":["발표를 잘하니 모든 업무도 잘할 것이라 추정한다.","맡길 업무와 관련된 실제 경험을 따로 확인한다.","말을 잘하면 다른 능력은 무조건 부족하다고 본다."],"demoCorrect":1,"demoFeedback":"한 영역의 강점과 별개의 업무 수행 능력은 독립적으로 검토할 필요가 있습니다.","quiz":"후광효과의 특징은?","options":["한 가지 인상이 다른 평가로 번지는 것","모든 사람이 같은 결정을 내리는 것","익숙한 단어를 쉽게 읽는 것","기억이 영구히 지속되는 것"],"correct":0,"explain":"한 특성에 대한 인상이 전체 평가에 영향을 주는 경향입니다.","sources":[["OpenStax Psychology 2e — 관련 심리학 학습 자료","https://openstax.org/books/psychology-2e/pages/12-1-what-is-social-psychology"]]},{"id":"reciprocity","group":"relations","cat":"인간관계 · RELATIONSHIPS","no":"07","short":"상호성과 자기개방","title":"상호성과 자기개방를 일상에서 이해하기","lead":"친밀감은 어떤 대화에서 생기고 유지될까요?","conceptTitle":"상호성과 자기개방란?","conceptBody":"상호성은 관계에서 관심과 도움을 주고받는 특성을, 자기개방은 자신의 정보와 경험을 자발적으로 나누는 것을 뜻합니다. 서로의 속도와 경계를 존중하는 것이 중요합니다.","points":["자발적인 나눔과 경계 존중은 함께 가야 합니다.","하나의 사례만으로 사람의 성향이나 능력을 진단할 수 없습니다.","설명의 원리와 실제 상황의 복잡성을 함께 고려하세요."],"dailyTitle":"일상 속에서 찾아보기","dailyBody":"친구가 낯선 환경에 적응하기 어렵다고 이야기합니다.","takeaway":"자발적인 나눔과 경계 존중은 함께 가야 합니다.","demoTitle":"상황을 읽고 선택해 보세요","demoLead":"친구가 낯선 환경에 적응하기 어렵다고 이야기합니다.","demoOptions":["'별일 아닌데 왜 그래?'라고 평가한다.","이야기를 듣고 편하면 내 경험도 조심스럽게 나눈다.","서로 친해지려면 비밀을 꼭 털어놓아야 한다고 말한다."],"demoCorrect":1,"demoFeedback":"상대의 경험을 존중하고 적절한 범위에서 자신도 나누는 대화는 관계 형성에 도움을 줄 수 있습니다.","quiz":"자기개방의 적절한 설명은?","options":["상대에게 비밀 공개를 요구하는 기술","자발적으로 자신에 관한 정보를 공유하는 일","호의를 계산해 갚는 의무","많을수록 무조건 더 좋은 행동"],"correct":1,"explain":"공유할 내용과 정도를 스스로 정할 수 있는 자발성이 중요합니다.","sources":[["OpenStax Psychology 2e — 관련 심리학 학습 자료","https://openstax.org/books/psychology-2e/pages/12-7-prosocial-behavior"]]},{"id":"similarity","group":"relations","cat":"인간관계 · RELATIONSHIPS","no":"08","short":"근접성과 유사성","title":"근접성과 유사성를 일상에서 이해하기","lead":"왜 자주 마주치는 사람과 더 쉽게 친해질까요?","conceptTitle":"근접성과 유사성란?","conceptBody":"가까이서 자주 만날 기회와 비슷한 관심사·태도는 관계가 시작되는 데 영향을 줄 수 있습니다. 이것이 모든 우정의 필요조건은 아닙니다.","points":["만남의 기회는 관계의 시작점이 될 수 있습니다.","하나의 사례만으로 사람의 성향이나 능력을 진단할 수 없습니다.","설명의 원리와 실제 상황의 복잡성을 함께 고려하세요."],"dailyTitle":"일상 속에서 찾아보기","dailyBody":"신입 동아리에서 새로운 사람을 알아가고 싶습니다.","takeaway":"만남의 기회는 관계의 시작점이 될 수 있습니다.","demoTitle":"상황을 읽고 선택해 보세요","demoLead":"신입 동아리에서 새로운 사람을 알아가고 싶습니다.","demoOptions":["함께 하는 활동에 참여해 자연스럽게 대화한다.","상대가 먼저 연락할 때까지 접점을 만들지 않는다.","관심사가 다르면 대화 자체를 피한다."],"demoCorrect":0,"demoFeedback":"정기적으로 만나 공통 경험을 나눌 기회가 늘면 서로를 알아가기 쉬워질 수 있습니다.","quiz":"근접성과 유사성이 뜻하는 것은?","options":["서로 다른 사람은 친구가 될 수 없다는 법칙","만남의 기회와 공통점이 관계 형성에 영향을 줄 수 있다는 것","친구는 반드시 집이 가까워야 한다는 것","가까이 있으면 누구나 사랑하게 된다는 것"],"correct":1,"explain":"이들은 관계 형성의 영향 요인이지 결정적인 공식은 아닙니다.","sources":[["OpenStax Psychology 2e — 관련 심리학 학습 자료","https://openstax.org/books/psychology-2e/pages/12-7-prosocial-behavior"]]},{"id":"bystander","group":"society","cat":"사회 · SOCIETY","no":"09","short":"방관자 효과","title":"방관자 효과를 일상에서 이해하기","lead":"많은 사람들이 보고 있는데도 도움이 늦어질 수 있을까요?","conceptTitle":"방관자 효과란?","conceptBody":"방관자 효과는 다른 목격자가 있다는 상황에서 개인의 도움 행동이 줄어들 수 있는 현상입니다. 책임이 분산되는 경향 등이 영향을 미칩니다. 실제 위험 상황에서는 자신의 안전을 먼저 확보해야 합니다.","points":["사람이 많다는 사실만으로 책임이 사라지지 않습니다.","하나의 사례만으로 사람의 성향이나 능력을 진단할 수 없습니다.","설명의 원리와 실제 상황의 복잡성을 함께 고려하세요."],"dailyTitle":"일상 속에서 찾아보기","dailyBody":"사람이 쓰러져 있고 주변에도 목격자가 있습니다.","takeaway":"사람이 많다는 사실만으로 책임이 사라지지 않습니다.","demoTitle":"상황을 읽고 선택해 보세요","demoLead":"사람이 쓰러져 있고 주변에도 목격자가 있습니다.","demoOptions":["누군가 하겠지 생각하고 지나간다.","안전을 확인한 뒤 도움을 요청하고 주변에 구체적으로 협조를 구한다.","위험한지 확인하지 않고 무조건 접근한다."],"demoCorrect":1,"demoFeedback":"위험 상황에서는 안전을 우선하며 긴급 도움과 주변 협조를 요청하는 대응이 중요합니다.","quiz":"방관자 효과와 관련된 것은?","options":["책임이 여러 사람에게 분산되는 상황","모든 군중의 도움 행동 증가","방관자는 언제나 나쁜 사람이라는 판정","혼자 있으면 절대 돕지 않는 행동"],"correct":0,"explain":"여럿이 목격할 때 개인의 책임감을 덜 느끼는 책임 분산이 관련 요인입니다.","sources":[["OpenStax Psychology 2e — 관련 심리학 학습 자료","https://openstax.org/books/psychology-2e/pages/12-6-aggression"]]},{"id":"norms","group":"society","cat":"사회 · SOCIETY","no":"10","short":"사회 규범과 역할","title":"사회 규범과 역할를 일상에서 이해하기","lead":"왜 같은 사람도 장소에 따라 다르게 행동할까요?","conceptTitle":"사회 규범과 역할란?","conceptBody":"사회 규범은 집단에서 적절하다고 기대되는 행동 기준이고, 역할은 특정 위치에 기대되는 행동 방식입니다. 규범은 문화에 따라 다르며 오래된 관습이 언제나 정당한 것은 아닙니다.","points":["규범은 행동을 돕는 단서이지만 윤리적 정답은 아닙니다.","하나의 사례만으로 사람의 성향이나 능력을 진단할 수 없습니다.","설명의 원리와 실제 상황의 복잡성을 함께 고려하세요."],"dailyTitle":"일상 속에서 찾아보기","dailyBody":"동아리에 신입생만 잡무를 맡는 관습이 있습니다.","takeaway":"규범은 행동을 돕는 단서이지만 윤리적 정답은 아닙니다.","demoTitle":"상황을 읽고 선택해 보세요","demoLead":"동아리에 신입생만 잡무를 맡는 관습이 있습니다.","demoOptions":["관습이니 항상 공정하다.","관습과 그 관습의 정당성을 별도로 살펴본다.","모든 사회 규범은 반드시 나쁘다."],"demoCorrect":1,"demoFeedback":"사람들이 따르는 관습이 있다는 사실과 그것이 바람직한지는 다른 판단입니다.","quiz":"사회 규범의 정의에 가장 가까운 것은?","options":["집단이 공유하는 행동의 기대","모든 나라에서 동일한 법률","변하지 않는 도덕적 진리","타고난 성격 유형"],"correct":0,"explain":"규범은 맥락과 집단에 따라 달라지는 공유된 기대입니다.","sources":[["OpenStax Psychology 2e — 관련 심리학 학습 자료","https://openstax.org/books/psychology-2e/pages/12-2-self-presentation"]]},{"id":"conformity","group":"groups","cat":"집단 · GROUPS","no":"11","short":"동조와 애쉬 효과","title":"동조와 애쉬 효과를 일상에서 이해하기","lead":"모두 같은 답을 말하면 내 판단도 흔들릴까요?","conceptTitle":"동조와 애쉬 효과란?","conceptBody":"동조는 개인이 집단의 행동이나 판단에 맞추는 현상을 포함합니다. 집단에 받아들여지고 싶어 따르는 규범적 영향과 집단이 정확할 거라 믿는 정보적 영향은 구별됩니다.","points":["다수의 답과 답의 타당성은 같은 뜻이 아닙니다.","하나의 사례만으로 사람의 성향이나 능력을 진단할 수 없습니다.","설명의 원리와 실제 상황의 복잡성을 함께 고려하세요."],"dailyTitle":"일상 속에서 찾아보기","dailyBody":"친구들은 모두 A가 답이라지만, 자신의 계산에서는 B가 나옵니다.","takeaway":"다수의 답과 답의 타당성은 같은 뜻이 아닙니다.","demoTitle":"상황을 읽고 선택해 보세요","demoLead":"친구들은 모두 A가 답이라지만, 자신의 계산에서는 B가 나옵니다.","demoOptions":["수적으로 많으니 이유 없이 A를 고른다.","풀이를 다시 확인하고 서로의 근거를 비교한다.","혼자 다른 답이니 무조건 B가 정답이다."],"demoCorrect":1,"demoFeedback":"집단의 의견은 단서가 될 수 있지만 판단을 대신하지는 않습니다. 근거를 확인해 보세요.","quiz":"규범적 동조에 관한 설명은?","options":["받아들여지고 싶어 행동을 맞추는 것","모든 집단에서 항상 옳은 답을 고르는 것","기억의 저장 공간을 늘리는 것","개인의 성격을 결정하는 것"],"correct":0,"explain":"규범적 영향은 소속과 수용에 대한 동기와 관련됩니다.","sources":[["OpenStax Psychology 2e — 관련 심리학 학습 자료","https://openstax.org/books/psychology-2e/pages/12-4-conformity-compliance-and-obedience"]]},{"id":"groupthink","group":"groups","cat":"집단 · GROUPS","no":"12","short":"집단사고","title":"집단사고를 일상에서 이해하기","lead":"회의에서 모두 동의하면 좋은 결정이라는 뜻일까요?","conceptTitle":"집단사고란?","conceptBody":"집단사고는 집단의 조화와 합의를 과도하게 우선시하여 반론과 대안에 대한 비판적 검토가 약해지는 경향입니다. 이견이 없어 보인다고 충분히 검토한 것은 아닙니다.","points":["좋은 팀은 이견을 말할 수 있는 팀이기도 합니다.","하나의 사례만으로 사람의 성향이나 능력을 진단할 수 없습니다.","설명의 원리와 실제 상황의 복잡성을 함께 고려하세요."],"dailyTitle":"일상 속에서 찾아보기","dailyBody":"팀장이 제시한 계획에 다른 팀원들이 바로 동의했습니다.","takeaway":"좋은 팀은 이견을 말할 수 있는 팀이기도 합니다.","demoTitle":"상황을 읽고 선택해 보세요","demoLead":"팀장이 제시한 계획에 다른 팀원들이 바로 동의했습니다.","demoOptions":["반대 의견은 분위기를 망치므로 금지한다.","익명으로도 좋으니 반론과 다른 대안을 수집한다.","모두 동의했으니 위험 검토를 생략한다."],"demoCorrect":1,"demoFeedback":"서로 다른 관점을 안전하게 내고 비교하는 절차는 집단사고를 줄이는 데 도움이 될 수 있습니다.","quiz":"집단사고에 가까운 현상은?","options":["대안을 충분히 비교한 합리적 토론","합의를 중시하다 비판적 검토가 약해지는 것","모든 집단이 항상 잘못 판단하는 것","개인이 낸 의견이 항상 옳은 것"],"correct":1,"explain":"집단의 일치에 대한 압력이 중요한 반론을 가릴 수 있습니다.","sources":[["OpenStax Psychology 2e — 관련 심리학 학습 자료","https://openstax.org/books/psychology-2e/pages/12-4-conformity-compliance-and-obedience"]]},{"id":"justworld","group":"ethics","cat":"윤리 · ETHICAL JUDGMENT","no":"13","short":"정의로운 세상 가설","title":"정의로운 세상 가설를 일상에서 이해하기","lead":"좋지 않은 일을 당한 사람을 왜 비난하게 될까요?","conceptTitle":"정의로운 세상 가설란?","conceptBody":"정의로운 세상 가설은 사람들이 자신이 마땅히 받아야 할 결과를 얻는다고 믿으려는 경향을 말합니다. 피해나 불리한 결과를 겪은 사람에게 부당하게 책임을 돌리는 판단과 연결될 수 있습니다.","points":["결과와 책임을 자동으로 연결하지 마세요.","하나의 사례만으로 사람의 성향이나 능력을 진단할 수 없습니다.","설명의 원리와 실제 상황의 복잡성을 함께 고려하세요."],"dailyTitle":"일상 속에서 찾아보기","dailyBody":"친구가 부당한 대우를 받았다고 말하지만 아직 자세한 사정을 모릅니다.","takeaway":"결과와 책임을 자동으로 연결하지 마세요.","demoTitle":"상황을 읽고 선택해 보세요","demoLead":"친구가 부당한 대우를 받았다고 말하지만 아직 자세한 사정을 모릅니다.","demoOptions":["무슨 잘못을 했으니 그 일을 당했을 것이라고 생각한다.","사실을 듣고 상황과 필요한 도움을 살펴본다.","사실관계 없이 누가 잘못인지 확정한다."],"demoCorrect":1,"demoFeedback":"불리한 결과가 있었다는 사실만으로 개인에게 책임이 있다는 뜻은 아닙니다.","quiz":"정의로운 세상 가설과 연결될 수 있는 생각은?","options":["피해자는 그 결과를 받을 만했을 거라고 단정한다.","원인과 상황을 두루 확인한다.","불리한 결과와 책임을 구분한다.","도움이 필요한지 물어본다."],"correct":0,"explain":"세상은 항상 공정하다는 믿음이 피해자 비난을 낳을 수 있습니다.","sources":[["OpenStax Psychology 2e — 관련 심리학 학습 자료","https://openstax.org/books/psychology-2e/pages/12-1-what-is-social-psychology"]]},{"id":"moraldisengagement","group":"ethics","cat":"윤리 · ETHICAL JUDGMENT","no":"14","short":"도덕적 이탈","title":"도덕적 이탈를 일상에서 이해하기","lead":"‘다들 그렇게 하니까’는 행동의 정당화가 될까요?","conceptTitle":"도덕적 이탈란?","conceptBody":"도덕적 이탈은 자신의 행동을 정당화하거나 책임을 전가하면서 도덕적 자기조절을 약화시키는 인지적 기제입니다. 한 번의 행동이나 문장으로 사람의 도덕성을 측정하는 검사로 사용해서는 안 됩니다.","points":["행동에 붙인 설명이 책임을 없애지는 않습니다.","하나의 사례만으로 사람의 성향이나 능력을 진단할 수 없습니다.","설명의 원리와 실제 상황의 복잡성을 함께 고려하세요."],"dailyTitle":"일상 속에서 찾아보기","dailyBody":"과제에서 출처를 밝히지 않은 자료를 가져와 썼습니다.","takeaway":"행동에 붙인 설명이 책임을 없애지는 않습니다.","demoTitle":"상황을 읽고 선택해 보세요","demoLead":"과제에서 출처를 밝히지 않은 자료를 가져와 썼습니다.","demoOptions":["먼저 이용 허락과 출처를 확인해야겠다.","누구나 하니까 내 책임은 없다.","원작자에게 미치는 영향을 살펴보자."],"demoCorrect":1,"demoFeedback":"‘다들 한다’는 말은 스스로의 책임과 행동의 영향을 검토하는 일을 대신하지 못합니다.","quiz":"도덕적 이탈의 특징은?","options":["책임을 인정하고 행동을 바로잡는 것","부적절한 행동을 정당화해 책임을 덜 느끼는 것","반대 의견을 듣는 것","의도와 결과를 따로 검토하는 것"],"correct":1,"explain":"도덕적 이탈은 자기 정당화의 심리 기제로 설명할 수 있습니다.","sources":[["Detert et al. (2008) — Moral disengagement","https://pubmed.ncbi.nlm.nih.gov/18361639/"]]}];
+lessons.forEach(l=>{l.group='cognition';});
+const socialEnrichment={"attribution":["답장을 못 받은 단체 채팅","수업이나 근무 때문에 답하지 못할 수도 있습니다. 행동의 영향은 말하되, 그 원인은 상대에게 물어보기 전까지 알기 어렵습니다.",["관찰한 사실과 해석을 구분합니다.","개인의 성향과 상황의 영향을 따로 검토합니다.","문화와 맥락에 따라 나타나는 정도는 달라질 수 있습니다."]],"halo":["유창한 발표와 다른 역량","말을 잘하는 팀원에게 성실함과 자료 검증 능력까지 자동으로 기대하지 않았나요? 능력마다 별도의 증거가 필요합니다.",["눈에 띄는 한 특성에 먼저 주목할 수 있습니다.","관련 없는 특성으로 평가가 확장되는지 확인합니다.","실제 행동이나 성과의 근거를 독립적으로 찾습니다."]],"reciprocity":["새 친구와 나누는 취향 이야기","상대가 자신의 취미를 이야기할 때 나도 편안한 만큼 경험을 나눌 수 있습니다. 질문과 경청은 도움이 되지만 비밀을 요구할 권리는 없습니다.",["서로 관심을 주고받는 경험이 관계에 영향을 줍니다.","자기개방의 정도는 스스로 선택해야 합니다.","개인정보와 심리적 경계는 존중받아야 합니다."]],"similarity":["스터디에서 생긴 새로운 친구","같은 수업을 듣고 자주 만나며 관심사를 나누면 친해질 기회가 늘어날 수 있습니다. 하지만 관심사가 다르다고 관계가 불가능한 것은 아닙니다.",["근접성은 함께 지낼 기회를 늘립니다.","유사성은 공통 대화의 출발점이 될 수 있습니다.","다양한 배경의 사람과도 깊은 관계가 가능합니다."]],"bystander":["도움을 요청하기 어려운 순간","캠퍼스에서 도움이 필요한 사람을 보았을 때 주변에 사람이 많다는 이유로 다른 사람에게 맡기지 마세요. 다만 위험할 땐 안전을 먼저 확보해야 합니다.",["여러 목격자 사이에서 책임이 분산될 수 있습니다.","상황이 모호하면 서로의 반응을 기다릴 수 있습니다.","본인의 안전을 지키며 구체적으로 도움을 요청합니다."]],"norms":["동아리와 회사의 서로 다른 분위기","같은 사람도 가족 모임, 학교, 회사에서 행동이 달라질 수 있습니다. 하지만 오래된 관습이나 유행이 늘 정당한 것은 아닙니다.",["사회 규범은 상황과 문화마다 다를 수 있습니다.","규범은 행동에 대한 기대와 단서를 제공합니다.","관습의 존재와 윤리적 정당성을 구분합니다."]],"conformity":["친구들의 추천을 고를 때","대부분의 친구가 한 영화를 추천해도 내 취향은 다를 수 있습니다. 집단의 정보가 가치 있어도 이유를 확인해보는 것이 좋습니다.",["규범적 영향은 소속과 수용의 욕구와 관련됩니다.","정보적 영향은 집단의 지식에 대한 신뢰와 관련됩니다.","다수의 의견과 근거의 강도를 구분합니다."]],"groupthink":["팀플 기획 회의의 빠른 합의","팀장이 제시한 아이디어에 모두가 말없이 동의했다고 해서 검토가 끝난 것은 아닙니다. 대안과 예상 문제를 말할 수 있어야 합니다.",["침묵과 동의는 같은 뜻이 아닐 수 있습니다.","안전한 반론 제시는 집단 판단에 도움이 됩니다.","대안과 실패 가능성을 함께 검토합니다."]],"justworld":["불리한 일을 겪은 친구에게","사정을 다 듣지 않고 '조심했어야지'라고 말하면 피해의 원인을 지나치게 개인에게 돌릴 수 있습니다. 환경과 제도적 요인도 생각해 보세요.",["결과가 나쁘다고 곧바로 개인의 책임이 되는 것은 아닙니다.","우연·환경·제도 같은 요인을 함께 살펴야 합니다.","피해자의 상황을 충분히 듣고 도움을 고민합니다."]],"moraldisengagement":["과제 출처 표기를 생략하자는 제안","'다른 팀도 하니까'라는 말은 출처 표기를 생략한 영향과 책임을 설명하지 못합니다. 변명과 정당한 근거를 구별해 보세요.",["행동의 피해나 결과를 축소할 수 있습니다.","남에게 책임을 전가하는 설명을 사용할 수 있습니다.","행동의 책임과 영향을 구체적으로 확인합니다."]]};
+socialLessons.forEach(l=>{const [dailyTitle,dailyBody,points]=socialEnrichment[l.id];l.dailyTitle=dailyTitle;l.dailyBody=dailyBody;l.points=points;});
+lessons.push(...socialLessons);
+const categories=[{"id":"relations","title":"인간관계","english":"RELATIONSHIPS","desc":"상대방의 행동을 해석하고, 친밀감을 쌓으며 오해를 줄이는 심리학"},{"id":"society","title":"사회","english":"SOCIETY","desc":"문화, 사회적 규범, 주변 사람의 존재가 행동에 미치는 영향"},{"id":"groups","title":"집단","english":"GROUPS","desc":"다수의 의견과 팀의 분위기가 우리의 판단을 바꾸는 방식"},{"id":"ethics","title":"윤리","english":"ETHICAL JUDGMENT","desc":"책임과 공정성에 대한 판단을 비판적으로 되돌아보기"},{"id":"cognition","title":"인지","english":"COGNITION","desc":"주의, 기억, 사고, 선택의 기본 원리를 실험으로 배우기"}];
+const categoryById=Object.fromEntries(categories.map(c=>[c.id,c]));
+const CATEGORY_ALL='all';
 const STORAGE_KEY='mindscape.lessons.completed.v1';
 const completed=new Set();
 try{JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]').forEach(x=>{if(lessons.some(l=>l.id===x))completed.add(x);});}catch{}
-let active=null,disposeDemo=()=>{},trialState=null;
+let active=null,disposeDemo=()=>{},trialState=null,activeCategory='all',searchTerm='';
 const make=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
 const putText=(id,text)=>{$(id).textContent=text;};
 function completion(){
@@ -165,17 +208,62 @@ function saveCompletion(){
  try{localStorage.setItem(STORAGE_KEY,JSON.stringify([...completed]));}catch{}
  completion();drawCards();
 }
-function drawCards(){
- const grid=$('lessonGrid');grid.replaceChildren();
- lessons.forEach(l=>{
-  const card=make('article','lesson-card');
-  const top=make('div','card-top');top.append(make('span','',l.no+' / '+l.cat),make('span','complete',completed.has(l.id)?'✓ 학습 완료':'짧은 체험'));
-  card.append(top,make('h3','',l.short),make('p','',l.lead));
-  const tail=make('div','card-tail');tail.append(make('span','','읽기 · 체험 · 확인'));
-  const button=make('button','',completed.has(l.id)?'다시 복습하기 →':'학습하기 →');
-  button.type='button';button.addEventListener('click',()=>showLesson(l.id));tail.append(button);card.append(tail);
-  grid.append(card);
+
+function orderedLessons(){return categories.flatMap(cat=>lessons.filter(l=>l.group===cat.id));}
+function drawCategoryTabs(){
+ const tabs=$('categoryTabs');tabs.replaceChildren();
+ [{id:'all',title:'전체'},...categories].forEach(cat=>{
+  const count=cat.id==='all'?lessons.length:lessons.filter(l=>l.group===cat.id).length;
+  const b=make('button','',cat.title+' ');
+  b.type='button';b.dataset.category=cat.id;
+  b.setAttribute('aria-pressed',String(activeCategory===cat.id));
+  b.append(make('span','',String(count)));
+  b.addEventListener('click',()=>{
+   activeCategory=cat.id;
+   drawCategoryTabs();drawCards();
+  });
+  tabs.append(b);
  });
+}
+function drawCards(){
+ const root=$('lessonGrid');root.replaceChildren();
+ const query=searchTerm.trim().normalize('NFKC').toLocaleLowerCase('ko-KR');
+ let shown=0;
+ for(const category of categories){
+  if(activeCategory!=='all'&&activeCategory!==category.id)continue;
+  const groupLessons=lessons.filter(l=>l.group===category.id);
+  const filtered=groupLessons.filter(l=>{
+   if(!query)return true;
+   return [l.short,l.title,l.lead,l.cat,l.conceptBody,l.dailyBody,...l.points]
+    .some(text=>text.normalize('NFKC').toLocaleLowerCase('ko-KR').includes(query));
+  });
+  if(!filtered.length)continue;
+  shown+=filtered.length;
+  const section=make('section','category-section');
+  section.id='category-'+category.id;
+  const heading=make('div','category-heading'),left=make('div');
+  left.append(make('span','',category.english+' / '+String(groupLessons.length).padStart(2,'0')+' TOPICS'));
+  left.append(make('h3','',category.title));
+  left.append(make('p','',category.desc));
+  const done=groupLessons.filter(l=>completed.has(l.id)).length;
+  heading.append(left,make('span','category-progress','학습 완료 '+done+' / '+groupLessons.length));
+  section.append(heading);
+  const grid=make('div','lesson-grid');
+  filtered.forEach(l=>{
+   const card=make('article','lesson-card');
+   const top=make('div','card-top');
+   top.append(make('span','',l.no+' / '+category.english),make('span','complete',completed.has(l.id)?'✓ 학습 완료':'개념 · 체험'));
+   card.append(top,make('h3','',l.short),make('p','',l.lead));
+   const tail=make('div','card-tail');tail.append(make('span','','짧은 설명 · 상황 선택 · 확인'));
+   const action=make('button','',completed.has(l.id)?'복습하기 →':'학습하기 →');
+   action.type='button';action.setAttribute('aria-label',l.short+' '+(completed.has(l.id)?'복습하기':'학습하기'));
+   action.addEventListener('click',()=>showLesson(l.id));
+   tail.append(action);card.append(tail);grid.append(card);
+  });
+  section.append(grid);root.append(section);
+ }
+ putText('listSummary',shown+'개 주제 표시 · 총 '+lessons.length+'개');
+ if(!shown)root.append(make('p','empty-result','일치하는 학습 주제가 없습니다. 검색어를 바꾸거나 전체 카테고리를 선택해 주세요.'));
 }
 function setStatus(text){putText('demoStatus',text);}
 function button(label,onClick,primary=false){
@@ -213,7 +301,7 @@ function showLesson(id){
  resetModule();active=l;
  $('homeView').hidden=true;$('lessonView').hidden=false;
  document.title=l.short+' | MINDSCAPE';
- const setters=[['crumbTitle',l.short],['lessonOverline',l.no+' / '+l.cat],['lessonTitle',l.title],['lessonLead',l.lead],['lessonCounter',l.no+' / 04'],['conceptTitle',l.conceptTitle],['conceptBody',l.conceptBody],['dailyTitle',l.dailyTitle],['dailyBody',l.dailyBody],['takeaway',l.takeaway],['demoTitle',l.demoTitle],['demoLead',l.demoLead]];
+ const setters=[['crumbTitle',l.short],['lessonOverline',l.no+' / '+l.cat],['lessonTitle',l.title],['lessonLead',l.lead],['lessonCounter',l.no+' / '+lessons.length],['conceptTitle',l.conceptTitle],['conceptBody',l.conceptBody],['dailyTitle',l.dailyTitle],['dailyBody',l.dailyBody],['takeaway',l.takeaway],['demoTitle',l.demoTitle],['demoLead',l.demoLead]];
  setters.forEach(([key,val])=>putText(key,val));
  const list=$('conceptPoints');list.replaceChildren(...l.points.map(x=>make('li','',x)));
  const sources=$('sourceList');sources.replaceChildren();
@@ -222,15 +310,41 @@ function showLesson(id){
   const li=make('li');li.append(a);sources.append(li);
  });
  renderQuestion(l);
- const index=lessons.indexOf(l);
- putText('nextLesson',index===lessons.length-1?'다시 첫 주제 보기 ↻':'다음 주제 배우기 →');
- $('nextLesson').onclick=()=>showLesson(lessons[(index+1)%lessons.length].id);
+ const sequence=orderedLessons(),index=sequence.findIndex(x=>x.id===l.id);
+ putText('nextLesson',index===sequence.length-1?'다시 처음부터 보기 ↻':'다음 주제 배우기 →');
+ $('nextLesson').onclick=()=>showLesson(sequence[(index+1)%sequence.length].id);
  if(l.id==='attention')initStroop();
  if(l.id==='memory')initMemory();
  if(l.id==='bias')initBias();
  if(l.id==='framing')initFraming();
+ if(l.demoOptions)initScenario(l);
  window.scrollTo({top:0,behavior:'instant'});
 }
+
+function initScenario(l){
+ const content=$('demoContent');let selected=null;
+ function render(){
+  content.replaceChildren(make('p','scenario-prompt',l.demoLead));
+  const options=make('div','scenario-options');
+  l.demoOptions.forEach((answer,i)=>{
+   const choice=make('button','',String(i+1)+'. '+answer);
+   choice.type='button';choice.setAttribute('aria-pressed',String(selected===i));
+   choice.addEventListener('click',()=>{
+    selected=i;
+    render();
+    putText('demoState','체험 완료');
+    setStatus((i===l.demoCorrect?'핵심 관점에 가까운 답입니다. ':'다른 관점도 살펴보세요. ')+l.demoFeedback);
+   });
+   options.append(choice);
+  });
+  content.append(options);
+  setActions(button('상황 다시 생각해보기 ↻',()=>{selected=null;render();putText('demoState','시작 전');setStatus('정답보다 이 선택의 이유를 떠올려 보세요.');}));
+ }
+ putText('demoState','상황 선택');
+ setStatus('이 활동은 실제 심리 특성을 측정하는 검사가 아니라 개념을 생각해보는 예시입니다.');
+ render();
+}
+
 function initStroop(){
  const labels=['빨강','파랑','초록','노랑'],inks=['#ff97a4','#91bfff','#88e6ba','#ffe090'];
  // Three congruent and three incongruent trials, shuffled with balanced positions.
@@ -359,11 +473,13 @@ function initFraming(){
 }
 $('navLessons').addEventListener('click',()=>{showHome();$('library').scrollIntoView({behavior:'instant',block:'start'});});
 $('navGuide').addEventListener('click',()=>{if(active)showHome();});
-$('heroStart').addEventListener('click',()=>showLesson('attention'));
+$('heroStart').addEventListener('click',()=>showLesson('attribution'));
 $('backLessons').addEventListener('click',showHome);
 $('footerBack').addEventListener('click',showHome);
 $('brandHome').addEventListener('click',e=>{e.preventDefault();showHome();});
 window.addEventListener('visibilitychange',()=>{if(document.hidden&&active?.id==='memory'){disposeDemo();if($('demoState').textContent==='기억하기'){putText('demoState','일시중지');setStatus('탭을 떠나 숫자를 보는 시간이 중단됐습니다. 다시 시작해 주세요.');setActions(button('다시 시작 →',()=>{if(active?.id==='memory')initMemory();},true));$('demoContent').replaceChildren(make('p','','시간이 중단되어 숫자를 다시 보여드립니다.'));}}});
+$('topicSearch').addEventListener('input',e=>{searchTerm=e.target.value;drawCards();});
+drawCategoryTabs();
 completion();drawCards();
 })();
 </script>

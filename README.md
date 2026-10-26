@@ -1,47 +1,57 @@
 # MINDSCAPE — 경험으로 배우는 심리학
 
-심리학 개념을 **읽고 → 작은 체험을 해보고 → 이해도를 확인하는** 정적 학습 사이트입니다.
+**웹사이트:** https://gwonjae06-droid.github.io/mindscape/
 
-**사이트:** https://gwonjae06-droid.github.io/mindscape/
+인간관계·사회·집단·윤리·인지 영역의 심리학을 **핵심 개념 → 일상 사례 → 짧은 활동 → 이해도 확인** 순서로 공부하는 인터랙티브 학습관입니다.
 
-## 학습 주제
+## 학습 카테고리
 
-| 주제 | 핵심 개념 | 짧은 학습 활동 |
-| --- | --- | --- |
-| 주의 · 스트룹 효과 | 자동적인 단어 읽기와 색 판단의 간섭 | **6문항** 글자색 고르기 (일치 3, 불일치 3) |
-| 기억 · 작업기억 | 현재 필요한 정보를 잠시 유지하고 활용하기 | 다섯 자리 숫자를 **4초** 기억하고 입력하기 |
-| 사고 · 확증편향 | 기존 믿음을 지지하는 증거에 치우치기 | 근거 4개 중 균형 잡힌 검증 자료 2개 선택 |
-| 선택 · 프레이밍 효과 | 표현 방식이 판단에 미칠 수 있는 영향 | 같은 비율을 다른 문장으로 설명하는 사례 비교 |
+| 카테고리 | 학습 주제 수 | 콘텐츠 |
+| --- | ---: | --- |
+| 인간관계 | 4 | 기본적 귀인 오류, 후광효과, 상호성과 자기개방, 근접성과 유사성 |
+| 사회 | 2 | 방관자 효과, 사회 규범과 역할 |
+| 집단 | 2 | 동조와 애쉬 효과, 집단사고 |
+| 윤리 | 2 | 정의로운 세상 가설, 도덕적 이탈 |
+| 인지 | 4 | 스트룹 효과, 작업기억, 확증편향, 프레이밍 효과 |
 
-각 학습 주제에는 **핵심 개념**, **일상 사례**, **미니 체험**, **객관식 이해도 확인**, **출처 링크**가 있습니다.
+**총 14개 주제**입니다. 상단 카테고리 필터와 검색으로 골라볼 수 있고, 카테고리별 학습 완료 수를 표시합니다.
 
-## 구현 방식
+## 미니 체험
 
-- 단일 HTML 파일: HTML, CSS, JavaScript. 설치나 빌드 도구 불필요
-- 작은 화면 및 키보드 접근성 고려
-- 학습 완료 여부만 브라우저 localStorage에 저장
-- 체험 응답과 숫자 기록은 서버로 전송하지 않음
-- 색 체험의 개인 반응시간은 참고용으로만 표시하며 **능력·건강 진단을 하지 않음**
-- 작업기억 활동은 한 번의 기억 결과로 능력을 평가하지 않음
+- 인간관계·사회·집단·윤리의 새 주제 10개: 일상 상황에서 여러 설명이나 대응 중 하나를 선택하고 심리학적 관점을 확인합니다.
+- 기존 스트룹 효과: 일치/불일치 6문항의 색 선택.
+- 기존 작업기억: 숫자 5개를 4초 동안 기억.
+- 기존 확증편향: 증거 선택과 관점 확인.
+- 기존 프레이밍 효과: 같은 비율을 다른 표현으로 비교.
+- 모든 주제에는 별도의 객관식 이해도 문제가 있습니다.
 
-## 검증 방법
+**학습용 안내:** 짧은 상황 선택과 미니 테스트는 심리적 성격, 능력, 관계의 질, 윤리성을 진단하는 심리검사가 아닙니다. 설명은 개념 이해를 위한 예시이며, 실제 인간관계의 복잡한 사정과 차이를 일반화하지 않습니다.
 
-1. 첫 화면에 **4개의 주제 카드**가 보이는지 확인합니다.
-2. 첫 주제의 **6문항**을 모두 답한 뒤 간단한 피드백이 나오는지 확인합니다.
-3. 두 번째 주제에서 숫자가 **4초** 나타난 뒤 입력 화면으로 바뀌는지 확인합니다.
-4. 세 번째 주제에서 자료 **2개 선택/선택 해제**와 설명이 작동하는지 확인합니다.
-5. 네 번째 주제에서 동일 비율 문장에 대한 확인이 작동하는지 확인합니다.
-6. 각 주제의 객관식 질문에 정답을 선택하면 **학습 완료**가 누적되는지 확인합니다.
-7. 포트폴리오 돌아가기 링크와 모바일 레이아웃을 확인합니다.
+## 프라이버시와 구현
 
-## 참고 자료
+- 정적 HTML/CSS/JavaScript. 별도의 설치 과정 없음.
+- 학습 완료 여부만 현재 브라우저 localStorage에 저장, 기존 4개 주제의 완료 기록도 유지.
+- 응답과 짧은 체험 결과는 서버로 업로드되지 않음.
+- 모바일 레이아웃, 키보드 포커스, 응답 피드백의 접근성 고려.
+- 사이트에서 포트폴리오로 돌아가는 링크 제공.
 
-- [American Psychological Association — Stroop effect](https://www.apa.org/science/resources/stroop.aspx)
-- [University of Queensland — Attention, interference and control](https://qbi.uq.edu.au/node/6060)
-- [National Institute of Mental Health — Working Memory](https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc/constructs/working-memory)
-- [Noba — Memory: Encoding, Storage, Retrieval](https://nobaproject.com/modules/memory-encoding-storage-retrieval)
-- [National Institute of Standards and Technology — Confirmation bias](https://www.nist.gov/glossary-term/36676)
-- [APA Dictionary — Framing](https://dictionary.apa.org/framing)
-- [Tversky & Kahneman, 1981 — The Framing of Decisions and the Psychology of Choice](https://stanford.edu/class/psych205/papers/Tversky-Kahneman-1981.pdf)
+## 검증하기
 
-**주의:** 모든 활동은 비진단적 교육 시연입니다. 개인의 짧은 응답 결과는 심리학 연구 결과를 검증하거나 능력을 측정하기에 충분하지 않습니다.
+1. 카테고리 **전체/인간관계/사회/집단/윤리/인지** 필터와 주제 검색을 확인합니다.
+2. **인간관계 4, 사회 2, 집단 2, 윤리 2, 인지 4**개가 각각 표시되는지 확인합니다.
+3. 각 카드에서 개념, 일상 사례, 체험 선택, 이해도 문제, 출처를 볼 수 있는지 확인합니다.
+4. 미니 상황 문제를 골랐을 때 설명이 나타나고 다른 선택으로 다시 풀 수 있는지 확인합니다.
+5. 객관식 정답을 고르면 학습 완료가 14개 중 1개로 집계되는지 확인합니다.
+6. 기존 6문항 스트룹 체험과 숫자 기억 체험이 유지되는지 확인합니다.
+7. 카테고리 필터 상태에서 검색 및 주제 이동/돌아가기를 확인합니다.
+
+## 학습 참고 자료
+
+- [OpenStax Psychology 2e — What Is Social Psychology?](https://openstax.org/books/psychology-2e/pages/12-1-what-is-social-psychology)
+- [OpenStax Psychology 2e — Prosocial Behavior and Relationships](https://openstax.org/books/psychology-2e/pages/12-7-prosocial-behavior)
+- [OpenStax Psychology 2e — Self-presentation and Social Norms](https://openstax.org/books/psychology-2e/pages/12-2-self-presentation)
+- [OpenStax Psychology 2e — Aggression and the Bystander Effect](https://openstax.org/books/psychology-2e/pages/12-6-aggression)
+- [OpenStax Psychology 2e — Conformity, Compliance, and Obedience](https://openstax.org/books/psychology-2e/pages/12-4-conformity-compliance-and-obedience)
+- [Detert, Treviño & Sweitzer (2008), Moral Disengagement in Ethical Decision Making, *Journal of Applied Psychology*](https://pubmed.ncbi.nlm.nih.gov/18361639/)
+
+각 학습 페이지 하단에도 관련 자료 링크가 있습니다.
