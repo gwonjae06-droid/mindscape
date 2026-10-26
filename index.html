@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b1d">
+  <meta name="description" content="MINDSCAPE: 글자색을 고르는 짧은 실험으로 스트룹 효과를 경험하고, 일상 속 주의와 인지 간섭을 쉽게 이해하는 인터랙티브 심리학 학습 공간.">
+  <meta property="og:title" content="MINDSCAPE — 마음을 경험하는 심리학">
+  <meta property="og:description" content="보고, 선택하고, 깨닫는 5분. 스트룹 효과를 직접 경험해 보세요.">
+  <title>MINDSCAPE · 마음을 경험하는 심리학</title>
+  <style>
+:root{color-scheme:dark;--ink-green:#71e4b7;--ink-red:#ff91a1;--ink-blue:#94bdff;--ink-yellow:#ffda79;--accent:#8fd8ea}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#080b1d;color:#eff5ff;font:15px/1.75 system-ui,"Noto Sans KR",sans-serif;min-height:100vh;transition:background 1s ease}button,a{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible{outline:3px solid #a7eefa;outline-offset:4px}.screen[hidden],[hidden]{display:none!important}
+.landscape{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 75% 16%,#43588b8f 0,transparent 38%),linear-gradient(150deg,#101a35,#10142c 58%,#0c1025);transition:background 1.3s}
+.landscape__aura{position:absolute;width:60vw;height:60vw;min-width:420px;min-height:420px;border-radius:50%;filter:blur(35px);opacity:.5;animation:float 19s ease-in-out infinite alternate;transition:background 1s}
+.landscape__aura--one{top:-26%;right:-15%;background:radial-gradient(circle,#4b6cb0a8,transparent 66%)}
+.landscape__aura--two{bottom:-42%;left:-15%;background:radial-gradient(circle,#956ba48b,transparent 70%);animation-delay:-9s}
+.landscape__orbit{position:absolute;border:1px solid #d3e1ff1a;border-radius:50%;width:min(65vw,700px);height:min(65vw,700px);left:47%;top:5%;transform:rotate(-18deg)}
+.landscape__orbit--two{width:min(75vw,850px);height:min(75vw,850px);left:42%;top:0;border-color:#9cf1ed11}
+.landscape__glass{position:absolute;inset:0;background:linear-gradient(120deg,transparent 20%,#ffffff08 55%,transparent 75%)}.landscape__stars{position:absolute;inset:0;background-image:radial-gradient(#f5f9ff 1px,transparent 1.5px);background-size:94px 107px;opacity:.13}
+body[data-phase=task][data-condition=incongruent] .landscape{background:radial-gradient(circle at 65% 23%,#6f254866,transparent 55%),linear-gradient(155deg,#211328,#14182f 70%,#101125)}
+body[data-phase=task][data-condition=congruent] .landscape{background:radial-gradient(circle at 65% 23%,#206c6e77,transparent 55%),linear-gradient(155deg,#0e2d35,#12192e 70%,#101125)}
+body[data-phase=task][data-condition=neutral] .landscape{background:radial-gradient(circle at 65% 23%,#6d6d4a5e,transparent 55%),linear-gradient(155deg,#292638,#141729 70%,#101125)}
+body[data-phase=results] .landscape{background:radial-gradient(circle at 70% 12%,#52679177,transparent 50%),linear-gradient(140deg,#11152c,#151d31)}
+body[data-phase=learn] .landscape{background:radial-gradient(circle at 70% 14%,#3a6e8194,transparent 50%),linear-gradient(145deg,#12283b,#0a1527)}
+.page-shell{position:relative;z-index:1;max-width:1180px;padding:0 clamp(20px,5vw,60px);margin:auto}.topbar{min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #c5eff324}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.1em}.brand__glyph{display:grid;place-content:center;border-radius:14px;width:40px;height:40px;background:linear-gradient(135deg,#a2efef,#8685c6);box-shadow:0 0 45px #97a2df3b}.brand__glyph span{width:13px;height:3px;background:#14243b;border-radius:4px;transform:rotate(-30deg)}.brand__name{font-size:18px}.brand__name>span{color:#a8e6e7}.brand__name small{display:block;font-size:8px;color:#adc0d4;letter-spacing:.22em}.topbar__right{display:flex;align-items:center;gap:15px}.topbar__edition{font:11px ui-monospace,monospace;letter-spacing:.12em;color:#a9bbd1}.topbar__slash{opacity:.6}.icon-button{padding:9px 14px;background:#bfeefa11;border:1px solid #c9e9f638;color:#d2eefa;border-radius:99px;font-size:12px}
+main{padding:50px 0 100px;min-height:76vh}.screen{animation:appear .65s ease both;max-width:100%}.eyebrow,.overline,.chapter-head,.task-top,.task-focus__eyebrow,.choice-header,.result-stat>span,.source-details summary,.learn-conclusion>span{font:600 11px/1.7 ui-monospace,monospace;letter-spacing:.13em;color:#9dd6dc}.eyebrow__dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#a7ebdc;margin-right:8px}.eyebrow--korean{font-family:inherit;letter-spacing:0;color:#c1cee2}
+h1,h2,h3{letter-spacing:-.055em}h1,.display-title,.chapter-main h2{font-family:Georgia,"Noto Serif KR",serif;font-weight:400}h1{font-size:clamp(43px,6vw,76px);line-height:1.34;margin:23px 0}h1 em,.display-title em{font-weight:400;color:#ace9e4}p{margin:0 0 18px}.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(270px,.8fr);align-items:center;gap:50px;min-height:65vh}.hero-copy{max-width:640px}.hero-copy__lede{max-width:510px;color:#b8c7d8;font-size:16px}.hero-copy__accent{color:#c0f5ed}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.button{border:1px solid #8fafcc55;padding:13px 21px;border-radius:99px;background:#d0ebfc13;color:#e8f6ff;transition:transform .2s,border-color .2s,background .2s}.button:hover,.choice:hover{transform:translateY(-2px);border-color:#b7e9ea}.button--primary{background:#c9eee9;color:#14243d;border-color:transparent;font-weight:750}.button--primary:hover{background:#edfefa}.button--quiet{background:#e4edff0e}.text-button{border:0;background:transparent;color:#bad6ee;padding:6px}
+.hero-visual,.visual-scene,.hero-art,.hero-orbit{min-height:380px;position:relative}.hero-visual{border:1px solid #b6dbff35;border-radius:46% 54% 59% 41%;display:grid;place-items:center;background:radial-gradient(circle at 40% 35%,#a2b6ef36,#171b3f11 70%);box-shadow:inset 0 0 75px #a4dae51a,0 0 100px #a2b9e31c;animation:float 14s ease-in-out infinite alternate}.hero-visual>*{max-width:100%}.hero-visual .color-card,.floating-card{background:#172a49b8;border:1px solid #e5efff44;border-radius:22px;box-shadow:0 16px 40px #030b1944;padding:20px}
+.chapter-head{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #c6f1f02e;padding-bottom:18px;margin-bottom:40px}.chapter-main h2,.display-title{font-size:clamp(31px,4.4vw,53px);line-height:1.34;margin:16px 0 23px}.chapter-main,.preparation,.section-heading{max-width:780px}.soft-paragraph,.large-paragraph,.hero-copy__lede{color:#c4d2e2}.large-paragraph{font-size:17px;max-width:900px}.prepare-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}.prepare-demo,.instruction-card,.demo-visual,.chart-card,.insight,.result-stat,.explain-cards article,.source-details{background:#101c35af;border:1px solid #c5ebf330;border-radius:25px;padding:26px;box-shadow:0 20px 50px #070d2240}.prepare-demo{min-height:160px;display:grid;place-items:center}.prepare-demo strong{font-size:56px}.prep-actions,.results-actions,.learn-actions{display:flex;flex-wrap:wrap;gap:13px;margin:28px 0}.screen--prepare .button--primary{margin-top:17px}
+.task-layout{max-width:840px;margin:0 auto}.task-top,.choice-header{display:flex;justify-content:space-between;gap:10px}.progress-rail{height:4px;border-radius:10px;background:#9ac3e02c;overflow:hidden;margin:15px 0 35px}.progress-rail>span{display:block;width:0;height:100%;background:#a4eadf;transition:width .3s}.task-focus{text-align:center}.task-focus__title{font-size:clamp(25px,4vw,38px);line-height:1.4;font-weight:500}.stimulus-frame{position:relative;display:grid;place-items:center;min-height:235px;margin:23px 0;border-radius:26px;background:radial-gradient(circle at center,#8ca3c31b,#070d2238);border:1px solid #adbbdb33}.stimulus-frame__word{font-size:clamp(56px,11vw,108px);font-weight:800;letter-spacing:.05em}.stimulus-frame__corner{display:none}.task-feedback{min-height:32px;text-align:center;color:#b7d5e7}.choice-area{margin-top:20px}.choice-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:15px 0}.choice{min-height:82px;display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid #b0d9ec48;background:#142342b8;color:#f0f6ff;border-radius:18px;font-weight:700;transition:transform .2s}.choice__dot{width:12px;height:12px;border-radius:50%;background:currentColor}.choice--red .choice__dot{background:#ff91a1}.choice--blue .choice__dot{background:#94bdff}.choice--green .choice__dot{background:#71e4b7}.choice--yellow .choice__dot{background:#ffda79}kbd{font:11px ui-monospace,monospace;color:#a8b9ce}.task-bottom{display:flex;justify-content:space-between;align-items:center;color:#9eb2c8;margin-top:20px;font-size:12px}
+.pause-overlay{position:fixed;inset:0;z-index:15;background:#070d1deb;display:grid;place-items:center;padding:20px}.pause-overlay__card{max-width:480px;background:#14243d;padding:34px;border-radius:22px;text-align:center;border:1px solid #b5e4eb50}
+.results-heading,.learn-heading{margin-bottom:34px}.result-overview{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:27px}.result-stat{padding:23px}.result-stat strong{display:block;font:36px/1.4 Georgia,serif;color:#f0ffff;letter-spacing:-.07em}.result-stat small{font-size:11px;color:#a5b9ce}.result-stat--accent{border-color:#9ed8d45e}.chart-card{margin:15px 0 22px}.chart-card__head{display:flex;justify-content:space-between;gap:20px;align-items:center}.chart-card h3{margin:0 0 15px}.chart-card__hint,.chart-card__note{color:#a9bfd5;font-size:12px}.chart-row{display:grid;grid-template-columns:90px 1fr 75px;gap:13px;align-items:center;margin:16px 0}.chart-row>div{background:#d4e5ff14;height:13px;border-radius:15px;overflow:hidden}.chart-row i{display:block;height:100%;background:linear-gradient(90deg,#7abacd,#bddfff);border-radius:15px}.chart-row b{font:13px ui-monospace,monospace;text-align:right}.ethics-note{font-size:12px;color:#a4b9d3}
+.demo-section{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin:45px 0}.demo-text h3{font-size:25px;line-height:1.45}.demo-text p{color:#bfcede}.demo-tabs{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}.demo-tab{border:1px solid #a8d0eb55;background:#e7f6ff0c;border-radius:99px;padding:9px 16px;color:#dfedf6}.demo-tab.is-selected{background:#bde8e3;color:#16283b}.demo-visual{min-height:265px;display:flex;flex-direction:column;justify-content:space-between;transition:background .6s}.demo-visual__panel strong{font-size:62px;display:block;margin:15px 0}.demo-visual__footer{font-size:11px;color:#a0b8d5}.explain-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:25px 0}.explain-cards article h3{font-size:19px}.explain-cards article p{font-size:13px;color:#bdcfe2}.explain-cards__number{color:#9fdfdb;font:11px ui-monospace,monospace}.learn-conclusion{padding:35px 15px;margin:30px 0;text-align:center;border-block:1px solid #b7e6e636;font-size:20px}.source-details{margin:22px 0}.source-details summary{cursor:pointer}
+.footer,.site-footer,footer{color:#9db4c9;font-size:12px;margin:30px 0;padding-top:22px;border-top:1px solid #b0cfe72a}.skip-link{position:absolute;left:0;top:-90px;padding:12px;background:#0c1b31;z-index:30}.skip-link:focus{top:0}
+@keyframes float{to{transform:translate(12px,-20px) rotate(5deg)}}@keyframes appear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+@media(max-width:850px){.hero-grid,.prepare-layout,.demo-section{grid-template-columns:1fr}.hero-visual{min-height:230px;max-height:330px}.result-overview,.explain-cards{grid-template-columns:1fr 1fr}.topbar__edition{display:none}}
+@media(max-width:610px){.page-shell{padding:0 19px}.topbar{min-height:67px}.brand__name{font-size:16px}main{padding:27px 0 70px}.hero-grid{gap:10px;min-height:0}.hero-visual{min-height:240px}.result-overview,.explain-cards{grid-template-columns:1fr}.choice-grid{grid-template-columns:1fr 1fr}.chart-card__head{display:block}.chapter-head{margin-bottom:25px}.stimulus-frame{min-height:185px}.result-stat strong{font-size:29px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}body.reduce-motion *,body.reduce-motion *:before,body.reduce-motion *:after{animation:none!important;transition:none!important}
+</style>
+  <script defer>
+(()=>{'use strict';
+const colors={red:{label:'빨강',ink:'#ff91a1'},blue:{label:'파랑',ink:'#94bdff'},green:{label:'초록',ink:'#71e4b7'},yellow:{label:'노랑',ink:'#ffda79'}},keys=Object.keys(colors),$=id=>document.getElementById(id);
+let mode='intro',index=0,trials=[],results=[],ready=false,paused=false,start=0,timer=null;
+function show(name){clearTimeout(timer);mode=name;ready=false;document.querySelectorAll('[data-screen]').forEach(s=>{let a=s.dataset.screen===name;s.hidden=!a;s.classList.toggle('is-active',a)});document.body.dataset.phase=name;document.body.dataset.condition='neutral';$('pauseOverlay').hidden=true;window.scrollTo({top:0,behavior:'instant'});}
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a}
+function trialsFor(practice){if(practice)return shuffle([{condition:'congruent',word:'빨강',ink:'red'},{condition:'incongruent',word:'초록',ink:'blue'},{condition:'neutral',word:'●●●',ink:'green'},{condition:'incongruent',word:'노랑',ink:'red'}]);let t=[];for(const ink of keys){t.push({condition:'congruent',ink,word:colors[ink].label});t.push({condition:'neutral',ink,word:'●●●'});let diff=keys.filter(k=>k!==ink);t.push({condition:'incongruent',ink,word:colors[diff[0]].label},{condition:'congruent',ink,word:colors[ink].label},{condition:'neutral',ink,word:'●●●'},{condition:'incongruent',ink,word:colors[diff[1]].label})}return shuffle(t)}
+function begin(practice){trials=trialsFor(practice);results=[];index=0;paused=false;mode=practice?'practice':'experiment';show('task');mode=practice?'practice':'experiment';draw();}
+function draw(){if(index>=trials.length){if(mode==='practice'){paused=true;$('pauseTitle').textContent='연습을 마쳤어요.';$('pauseDesc').textContent='이제 24문항의 본 실험이 시작됩니다. 뜻이 아닌 글자색을 선택하세요.';$('resumeButton').textContent='본 실험 시작 →';$('pauseOverlay').hidden=false;return;}finish();return}const t=trials[index];ready=false;document.body.dataset.condition=t.condition;$('taskMode').textContent=mode==='practice'?'PRACTICE / 연습':'EXPERIMENT / 본 실험';$('taskProgress').textContent=String(index+1).padStart(2,'0')+' / '+String(trials.length).padStart(2,'0');$('taskProgressbar').setAttribute('aria-valuemax',trials.length);$('taskProgressbar').setAttribute('aria-valuenow',index);$('progressFill').style.width=(index/trials.length*100)+'%';$('stimulus').textContent=t.word;$('stimulus').style.color=colors[t.ink].ink;$('taskFeedback').textContent=mode==='practice'?'정확한 글자색을 선택해 주세요.':'글자의 색을 선택하세요.';$('taskFooterMessage').textContent='빠르면서도 정확하게 선택해 보세요.';requestAnimationFrame(()=>{requestAnimationFrame(()=>{start=performance.now();ready=true;});});}
+function answer(key){if(!ready||paused||(mode!=='experiment'&&mode!=='practice'))return;ready=false;const t=trials[index],ms=performance.now()-start,correct=key===t.ink;if(mode==='experiment')results.push({condition:t.condition,ms,correct});else $('taskFeedback').textContent=correct?'정답이에요.':'정답은 '+colors[t.ink].label+'입니다.';index++;timer=setTimeout(draw,mode==='practice'?550:190);}
+function median(a){if(!a.length)return null;a=[...a].sort((x,y)=>x-y);return(a[Math.floor((a.length-1)/2)]+a[Math.floor(a.length/2)])/2}
+function finish(){show('results');const correct=results.filter(r=>r.correct),percent=Math.round(correct.length/results.length*100),overall=median(correct.map(r=>r.ms));$('accuracyValue').textContent=percent+'%';$('accuracySub').textContent=correct.length+' / '+results.length+' 정답';$('overallTimeValue').textContent=overall===null?'—':Math.round(overall)+' ms';const parts=['congruent','incongruent','neutral'].map(id=>({id,name:{congruent:'일치',incongruent:'불일치',neutral:'중립'}[id],ms:median(correct.filter(x=>x.condition===id).map(x=>x.ms))})),co=parts[0].ms,inc=parts[1].ms,diff=co!==null&&inc!==null?inc-co:null;$('interferenceValue').textContent=diff===null?'자료 부족':(diff>=0?'+':'')+Math.round(diff)+' ms';$('interferenceSub').textContent='불일치 − 일치 / 정답 반응시간';const max=Math.max(350,...parts.map(x=>x.ms||0));$('chartRows').replaceChildren();for(const x of parts){const row=document.createElement('div');row.className='chart-row';const title=document.createElement('span');title.textContent=x.name;const track=document.createElement('div'),bar=document.createElement('i');bar.style.width=(x.ms===null?0:Math.max(4,x.ms/max*100))+'%';track.append(bar);const n=document.createElement('b');n.textContent=x.ms===null?'자료 부족':Math.round(x.ms)+'ms';row.append(title,track,n);$('chartRows').append(row)}$('resultInsight').textContent=diff===null?'조건별 정답이 부족해 차이를 판단하기 어렵습니다.':diff>0?'불일치 문항에서 더 오래 걸렸습니다. 단어의 뜻이 색 판단을 방해했을 가능성이 있습니다.':'이번에는 불일치 문항이 더 느리지 않았습니다. 짧은 교육용 실험에서는 여러 요인 때문에 차이가 달라질 수 있습니다.';}
+function demo(k){const demos={congruent:{word:'초록',color:colors.green.ink,label:'CONGRUENT / 일치',text:'단어의 의미와 색이 같아요. 두 정보가 같은 답을 가리킵니다.'},incongruent:{word:'빨강',color:colors.blue.ink,label:'INCONGRUENT / 불일치',text:'뜻은 빨강인데 글자색은 파랑이에요. 서로 다른 답이 떠올라 방해될 수 있어요.'},neutral:{word:'●●●',color:colors.yellow.ink,label:'NEUTRAL / 중립',text:'색 이름이 아닌 기호예요. 단어의 의미가 색 판단에 개입하지 않는 비교 조건입니다.'}},d=demos[k];$('demoWord').textContent=d.word;$('demoWord').style.color=d.color;$('demoCondition').textContent=d.label;$('demoMeaning').textContent=d.text;document.querySelectorAll('[data-demo]').forEach(b=>{const on=b.dataset.demo===k;b.classList.toggle('is-selected',on);b.setAttribute('aria-pressed',String(on))});document.body.dataset.condition=k;}
+function learn(){show('learn');demo('congruent')}
+$('beginButton').onclick=()=>show('prepare');$('learnDirectButton').onclick=learn;$('prepareSkip').onclick=learn;$('startPractice').onclick=()=>begin(true);$('taskExit').onclick=()=>show('intro');$('resultToLearn').onclick=learn;$('retryButton').onclick=()=>show('prepare');$('learnRetry').onclick=()=>show('prepare');$('backHome').onclick=()=>show('intro');$('brandHome').onclick=e=>{e.preventDefault();show('intro')};$('resumeButton').onclick=()=>{paused=false;$('pauseOverlay').hidden=true;if(mode==='practice'&&index>=trials.length)begin(false);else draw()};$('choiceGrid').onclick=e=>{const b=e.target.closest('[data-color]');if(b)answer(b.dataset.color)};document.addEventListener('keydown',e=>{if(e.altKey||e.metaKey||e.ctrlKey||paused)return;const m={'1':'red','2':'blue','3':'green','4':'yellow'};if(m[e.key]){e.preventDefault();answer(m[e.key]);}});document.querySelectorAll('[data-demo]').forEach(b=>b.onclick=()=>demo(b.dataset.demo));$('motionToggle').onclick=()=>{let yes=document.body.classList.toggle('reduce-motion');$('motionToggle').textContent=yes?'움직임 켜기':'움직임 줄이기';$('motionToggle').setAttribute('aria-pressed',yes)};document.addEventListener('visibilitychange',()=>{if(document.hidden&&(mode==='practice'||mode==='experiment')&&!paused){clearTimeout(timer);ready=false;paused=true;$('pauseTitle').textContent='실험이 잠시 멈췄어요.';$('pauseDesc').textContent='다른 탭으로 이동했습니다. 이 문항의 반응시간을 새로 측정합니다.';$('resumeButton').textContent='다시 시작 →';$('pauseOverlay').hidden=false;}});
+})();
+</script>
+</head>
+<body data-phase="intro" data-condition="neutral">
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <div class="landscape" aria-hidden="true">
+    <div class="landscape__base"></div>
+    <div class="landscape__aura landscape__aura--one"></div>
+    <div class="landscape__aura landscape__aura--two"></div>
+    <div class="landscape__orbit landscape__orbit--one"></div>
+    <div class="landscape__orbit landscape__orbit--two"></div>
+    <div class="landscape__glass"></div>
+    <div class="landscape__noise"></div>
+    <div class="landscape__stars"></div>
+  </div>
+
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#intro" id="brandHome" aria-label="MINDSCAPE 처음으로 돌아가기">
+        <span class="brand__glyph" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="brand__name">MIND<span>SCAPE</span><small>INTERACTIVE PSYCHOLOGY</small></span>
+      </a>
+      <div class="topbar__right">
+        <span class="topbar__edition">VOL. 01 <span class="topbar__slash">/</span> THE STROOP EFFECT</span>
+        <button id="motionToggle" class="icon-button" type="button" aria-pressed="false" title="움직임 최소화">움직임 줄이기</button>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="screen screen--intro is-active" id="intro" data-screen="intro" aria-labelledby="introTitle">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow__dot"></span> INTERACTIVE LEARNING · EPISODE 01</p>
+            <p class="eyebrow eyebrow--korean">마음을 이해하는 첫 번째 실험</p>
+            <h1 id="introTitle">당신의 마음은<br><em>생각만큼</em><br>단순하지 않습니다.</h1>
+            <p class="hero-copy__lede">똑같은 글자를 보고도, 우리의 뇌는 서로 다른 답을 떠올립니다. 때로는 너무 익숙한 생각이 오히려 방해가 되죠.</p>
+            <p class="hero-copy__accent">이해하기 전에, 먼저 경험해 보세요.</p>
+            <div class="hero-actions">
+              <button class="button button--primary" id="beginButton" type="button">첫 번째 실험 시작 <span aria-hidden="true">↗</span></button>
+              <button class="button button--quiet" id="learnDirectButton" type="button">설명부터 보기 <span aria-hidden="true">↘</span></button>
+            </div>
+            <div class="hero-facts" aria-label="실험 안내">
+              <span><span class="fact-icon" aria-hidden="true">◷</span> 약 3~5분</span>
+              <span><span class="fact-icon" aria-hidden="true">◌</span> 설치 없이 체험</span>
+              <span><span class="fact-icon" aria-hidden="true">✦</span> 무료 학습</span>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="hero-art__rings"><i></i><i></i><i></i></div>
+            <div class="hero-art__pane hero-art__pane--back"><span>당신이 읽는 글자</span><strong>빨강</strong></div>
+            <div class="hero-art__pane hero-art__pane--front"><span>당신이 보는 색</span><strong>파랑</strong></div>
+            <div class="hero-art__center"><span>?</span></div>
+            <p class="hero-art__annotation">READING <span>≠</span> SEEING</p>
+          </div>
+        </div>
+        <div class="intro-footer"><span>SCROLL LESS. NOTICE MORE.</span><span>01 — 인지심리학 · 주의와 자동화</span></div>
+      </section>
+
+      <section class="screen screen--prepare" id="prepare" data-screen="prepare" aria-labelledby="prepareTitle" hidden>
+        <div class="chapter-head">
+          <span class="chapter-head__index">01 <i></i> BEFORE THE EXPERIMENT</span>
+          <span class="chapter-head__time">준비 단계</span>
+        </div>
+        <div class="prepare-layout">
+          <div>
+            <p class="overline">먼저, 아주 간단한 약속 하나.</p>
+            <h2 class="display-title" id="prepareTitle">단어가 아닌,<br><em>글자의 색</em>을 골라주세요.</h2>
+            <p class="large-paragraph">화면에 색 이름이 등장합니다. 그 단어가 무슨 뜻인지는 무시하고, <strong>실제로 보이는 글자색</strong>에 해당하는 버튼을 눌러주세요.</p>
+            <p class="soft-paragraph">예를 들어 아래 글자의 뜻은 ‘빨강’이지만, 글자색은 ‘파랑’입니다. 이때 정답은 <b>파랑</b>이에요.</p>
+          </div>
+          <div class="instruction-card">
+            <div class="instruction-card__top"><span>EXAMPLE 001</span><span>눈에 보이는 색에 집중</span></div>
+            <div class="instruction-card__word" style="color:var(--ink-blue)">빨강</div>
+            <div class="instruction-card__arrow">↓</div>
+            <div class="instruction-card__answer"><span>정답</span><strong><i class="swatch swatch--blue"></i> 파랑</strong></div>
+          </div>
+        </div>
+        <div class="prepare-bottom">
+          <div class="prepare-note"><span aria-hidden="true">ⓘ</span> 총 4문항 연습 뒤 24문항을 진행합니다. 숫자키 1~4로도 답할 수 있어요. 색 구분이 어려운 경우 <button type="button" id="prepareSkip">설명만 보기</button>를 선택하세요.</div>
+          <button id="startPractice" class="button button--primary" type="button">연습해 보기 <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <section class="screen screen--task" id="task" data-screen="task" aria-labelledby="taskTitle" hidden>
+        <div class="task-layout">
+          <div class="task-top">
+            <span class="task-top__label" id="taskMode">PRACTICE / 연습</span>
+            <span class="task-top__progress" id="taskProgress" aria-live="off">01 / 04</span>
+          </div>
+          <div class="progress-rail" role="progressbar" id="taskProgressbar" aria-label="문제 진행률" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span id="progressFill"></span></div>
+          <div class="task-focus">
+            <span class="task-focus__eyebrow">INK COLOR · NOT THE WORD</span>
+            <h2 id="taskTitle" class="task-focus__title">뜻을 읽지 말고,<br>색을 선택하세요.</h2>
+            <div class="stimulus-frame" id="stimulusFrame">
+              <div class="stimulus-frame__corner stimulus-frame__corner--tl"></div>
+              <div class="stimulus-frame__corner stimulus-frame__corner--tr"></div>
+              <div class="stimulus-frame__corner stimulus-frame__corner--bl"></div>
+              <div class="stimulus-frame__corner stimulus-frame__corner--br"></div>
+              <span class="stimulus-frame__word" id="stimulus" aria-label="글자색을 선택하세요">·</span>
+            </div>
+            <p class="task-feedback" id="taskFeedback" aria-live="polite">실제로 보이는 글자색을 선택해 주세요.</p>
+          </div>
+          <div class="choice-area">
+            <div class="choice-header"><span>CHOOSE THE INK COLOR</span><span>키보드 <kbd>1</kbd>–<kbd>4</kbd></span></div>
+            <div class="choice-grid" id="choiceGrid" role="group" aria-label="글자색 선택">
+              <button type="button" class="choice choice--red" data-color="red" aria-label="빨강"><span class="choice__dot"></span><span>빨강</span><kbd>1</kbd></button>
+              <button type="button" class="choice choice--blue" data-color="blue" aria-label="파랑"><span class="choice__dot"></span><span>파랑</span><kbd>2</kbd></button>
+              <button type="button" class="choice choice--green" data-color="green" aria-label="초록"><span class="choice__dot"></span><span>초록</span><kbd>3</kbd></button>
+              <button type="button" class="choice choice--yellow" data-color="yellow" aria-label="노랑"><span class="choice__dot"></span><span>노랑</span><kbd>4</kbd></button>
+            </div>
+          </div>
+          <div class="task-bottom"><span id="taskFooterMessage">서두를 필요 없어요. 정확하게 골라보세요.</span><button id="taskExit" class="text-button" type="button">체험 끝내기</button></div>
+        </div>
+        <div id="pauseOverlay" class="pause-overlay" hidden>
+          <div class="pause-overlay__dialog" role="alertdialog" aria-labelledby="pauseTitle" aria-describedby="pauseDesc">
+            <span>EXPERIMENT PAUSED</span><h3 id="pauseTitle">실험이 잠시 멈췄어요.</h3><p id="pauseDesc">다른 탭으로 이동했어요. 돌아온 다음 문항부터 반응시간을 새로 측정합니다.</p>
+            <button id="resumeButton" class="button button--primary" type="button">다시 시작 <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen screen--results" id="results" data-screen="results" aria-labelledby="resultsTitle" hidden>
+        <div class="chapter-head"><span class="chapter-head__index">03 <i></i> YOUR OBSERVATION</span><span>실험 결과</span></div>
+        <div class="results-heading"><p class="overline">YOUR MIND, IN MOTION</p><h2 class="display-title" id="resultsTitle">방금 당신의 마음에서<br><em>어떤 일이 일어났을까요?</em></h2><p class="soft-paragraph">글자색을 맞히는 동안, 단어가 떠올라 방해되지는 않았나요? 아래는 이번 짧은 체험에서 기록된 결과입니다.</p></div>
+        <div class="result-overview">
+          <div class="result-stat"><span>OVERALL ACCURACY</span><strong id="accuracyValue">—</strong><small id="accuracySub">총 24문항 중</small></div>
+          <div class="result-stat"><span>CORRECT RESPONSE TIME</span><strong id="overallTimeValue">—</strong><small>정답 문항의 반응시간 중앙값</small></div>
+          <div class="result-stat result-stat--accent"><span>INTERFERENCE / EXPLORATORY</span><strong id="interferenceValue">—</strong><small id="interferenceSub">불일치 − 일치, 정답 기준</small></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card__head"><div><p class="overline">REACTION TIME COMPARISON</p><h3>조건별 반응시간 비교</h3></div><span class="chart-card__hint">정답 응답 중앙값 · ms</span></div>
+          <div class="chart-rows" id="chartRows"></div>
+          <p class="chart-card__note" id="chartNote">반응시간은 화면에서 색 자극이 나타난 뒤 선택하기까지의 시간을 뜻합니다.</p>
+        </div>
+        <div id="resultInsight" class="insight" aria-live="polite"></div>
+        <p class="ethics-note"><span aria-hidden="true">ⓘ</span> 이 결과는 짧은 교육용 체험입니다. 문항 수가 적고 기기·조명·학습 효과의 영향을 받으므로 지능, 성격, 주의력이나 건강 상태를 평가하지 않습니다.</p>
+        <div class="results-actions"><button class="button button--primary" id="resultToLearn" type="button">왜 이런 일이 생기는지 보기 <span aria-hidden="true">→</span></button><button class="button button--quiet" id="retryButton" type="button">다시 체험하기 ↻</button></div>
+      </section>
+
+      <section class="screen screen--learn" id="learn" data-screen="learn" aria-labelledby="learnTitle" hidden>
+        <div class="chapter-head"><span class="chapter-head__index">04 <i></i> UNDERSTANDING THE MIND</span><span>쉬운 심리학 해설</span></div>
+        <div class="learn-heading"><p class="overline">THE STROOP EFFECT / 스트룹 효과</p><h2 class="display-title" id="learnTitle">우리는 글자를<br>너무 <em>잘 읽어서</em> 방해받습니다.</h2><p class="large-paragraph">글을 읽는 일은 수없이 반복해 익숙해진 행동입니다. 글자색을 말하려고 할 때도 단어의 의미가 빠르게 떠올라, 두 정보가 서로 충돌할 수 있어요. 이처럼 <strong>서로 어울리지 않는 정보 때문에 반응이 늦어지는 현상</strong>을 스트룹 효과라고 부릅니다.</p></div>
+        <div class="demo-section">
+          <div class="demo-text"><span class="overline">TRY THE DIFFERENCE</span><h3>같은 색이어도<br>느껴지는 난이도는 다를까요?</h3><p>아래 세 가지 상황을 선택해 보세요. 모두 색을 고르는 과제이지만, 단어와 색의 관계가 달라집니다.</p><div class="demo-tabs" role="group" aria-label="스트룹 조건 비교"><button class="demo-tab is-selected" type="button" data-demo="congruent" aria-pressed="true">일치</button><button class="demo-tab" type="button" data-demo="incongruent" aria-pressed="false">불일치</button><button class="demo-tab" type="button" data-demo="neutral" aria-pressed="false">중립</button></div></div>
+          <div class="demo-visual"><div class="demo-visual__panel"><span id="demoCondition">CONGRUENT / 일치</span><strong id="demoWord" style="color:var(--ink-green)">초록</strong><p id="demoMeaning">단어의 뜻과 글자색이 같아요. 두 정보가 같은 답을 가리킵니다.</p></div><div class="demo-visual__footer"><span>YOUR TASK</span><strong>글자의 색을 고르세요.</strong></div></div>
+        </div>
+        <div class="explain-cards"><article><span class="explain-cards__number">01 / AUTOMATICITY</span><h3>읽기는 빠르게 떠오릅니다.</h3><p>익숙한 단어를 보면 뜻을 알아차리는 일이 쉽게 일어납니다. ‘색에만 집중해야지’라고 해도 단어의 뜻을 완전히 무시하기는 어려울 수 있습니다.</p></article><article><span class="explain-cards__number">02 / CONFLICT</span><h3>두 정보가 서로 다른 답을 줍니다.</h3><p>‘빨강’이라는 단어가 파랗게 보이면, 단어의 의미와 실제 글자색이 경쟁합니다. 그래서 색을 선택하는 시간이 늘거나 실수하기도 합니다.</p></article><article><span class="explain-cards__number">03 / EVERYDAY LIFE</span><h3>우리의 일상에도 비슷한 일이 있어요.</h3><p>익숙한 길로 무심코 향하거나, 기존의 습관이 새로운 규칙을 방해할 때처럼 ‘자동으로 하던 일’과 ‘지금 해야 할 일’이 부딪히는 순간을 떠올려 볼 수 있습니다.</p></article></div>
+        <div class="learn-conclusion"><span>THE TAKEAWAY</span><p>방해를 받았다고 해서 주의력이 부족한 것은 아닙니다.<br><strong>익숙한 반응과 현재의 목표가 충돌할 수 있다는 것</strong>, 그것이 이 체험의 핵심이에요.</p></div>
+        <details class="source-details"><summary>연구 출처와 실험 한계 읽기 <span aria-hidden="true">↗</span></summary><div><p>J. R. Stroop (1935), <em>Studies of Interference in Serial Verbal Reactions</em>, Journal of Experimental Psychology 18(6), 643–662. 이 사이트의 실험은 고전 연구에서 영감을 받은 짧은 교육용 변형이며, 원래 연구의 실험 설계나 결과를 재현한 것은 아닙니다.</p><p>본 사이트는 한글 색 이름, 네 가지 선택 버튼, 조건별 적은 문항, 다양한 기기와 환경을 사용하므로 반응시간 차이를 과학적 진단이나 개인 능력 측정에 사용하면 안 됩니다.</p><a href="https://doi.org/10.1037/h0054651" target="_blank" rel="noopener noreferrer">원 연구 DOI 살펴보기 ↗</a><a href="https://psychclassics.yorku.ca/Stroop/" target="_blank" rel="noopener noreferrer">원문 다시 읽기 ↗</a></div></details>
+        <div class="learn-end"><div><span>END OF EPISODE 01</span><h3>방금, 마음의 한 장면을 발견했습니다.</h3><p>다음에는 우리가 사실이라고 믿는 것을 어떻게 선택해서 보는지 알아볼 예정입니다.</p></div><div class="learn-end__buttons"><button type="button" id="learnRetry" class="button button--primary">다시 체험하기 ↻</button><button type="button" id="backHome" class="button button--quiet">처음으로 ↑</button></div></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>MINDSCAPE / THE SCIENCE OF NOTICING</span><span>교육용 인터랙티브 프로젝트 · 기록은 기기에 저장하거나 전송하지 않습니다.</span></footer>
+  </div>
+</body>
+</html>
