@@ -165,26 +165,79 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 </div>
 <div id="lessonView" hidden>
 <div class="wrap learning-pane">
-<div class="crumbs"><button type="button" id="backLessons">← 아르카나 세계로 돌아가기</button><span>/</span><span id="crumbTitle"></span></div>
-<div class="topic-head"><div><span class="overline" id="lessonOverline"></span><h1 class="page-title" id="lessonTitle"></h1><p id="lessonLead"></p></div><span class="lesson-counter" id="lessonCounter"></span></div>
-<div class="study-columns">
-<article class="lesson-box"><span class="mini-title">01 / 핵심 개념</span><h3 id="conceptTitle"></h3><p id="conceptBody"></p><ul id="conceptPoints"></ul></article>
-<aside class="lesson-box explainer"><span class="mini-title">02 / 일상에서 찾기</span><h3 id="dailyTitle"></h3><p id="dailyBody"></p><span class="mini-title">기억할 한 문장</span><p id="takeaway"></p></aside>
-</div>
-<section class="demo-shell" aria-labelledby="demoTitle">
-<div class="demo-heading"><div><span class="mini-title">03 / 1분 안팎의 체험</span><h3 id="demoTitle"></h3><p id="demoLead"></p></div><span class="demo-state" id="demoState">시작 전</span></div>
-<div id="demoContent" class="demo-content"></div>
-<p class="demo-status" id="demoStatus" role="status" aria-live="polite"></p>
-<div class="demo-actions" id="demoActions"></div>
-<div class="quiz"><span class="mini-title">04 / 이해도 확인</span><h3 id="quizQuestion"></h3><div class="quiz-options" id="quizOptions"></div><p id="quizFeedback" class="feedback" role="status" aria-live="polite"></p></div>
-</section>
-<div class="sources"><h3>더 읽어보기 · 근거 자료</h3><p>학습 내용을 구성할 때 참고한 대학·학술·공공기관의 설명입니다.</p><ul id="sourceList"></ul></div>
-<div class="not-diagnostic">이 사이트의 미니 테스트는 개념 이해를 돕기 위한 예시입니다. 반응속도·기억 정답·선택 결과 하나만으로 주의력, 기억력, 성격이나 심리 상태를 평가할 수 없습니다.</div>
-<div class="study-footer"><button class="button ghost" type="button" id="footerBack">← 카드 덱으로 돌아가기</button><button class="button primary" type="button" id="nextLesson">다음 주제 배우기 →</button></div>
+ <div class="crumbs"><button type="button" id="backLessons">← 아르카나 카드</button><span>/</span><span id="crumbTitle"></span></div>
+ <div class="vn-chapter-heading">
+  <span class="overline" id="lessonOverline"></span>
+  <h1 class="page-title" id="lessonTitle"></h1>
+  <p class="vn-chapter-deck" id="lessonLead"></p>
+  <span class="lesson-counter" id="lessonCounter"></span>
+ </div>
+ <section class="vn-stage" id="vnStage" data-world="relations" aria-label="선택형 심리학 이야기">
+  <div class="vn-stage__sky" aria-hidden="true">
+   <div class="vn-stage__orb"></div>
+   <div class="vn-stage__horizon"></div>
+   <div class="vn-stage__window"></div>
+   <div class="vn-character vn-character--left"><span></span></div>
+   <div class="vn-character vn-character--right"><span></span></div>
+   <div class="vn-stage__vignette"></div>
+  </div>
+  <div class="vn-scene-meta"><span id="vnSceneLocation"></span><span id="vnSceneCounter"></span></div>
+  <div class="vn-dialogue">
+   <div class="vn-dialogue__speaker" id="vnSpeaker">나레이션</div>
+   <div class="vn-dialogue__text" id="vnText" role="status" aria-live="polite"></div>
+   <p id="vnPrompt" class="vn-question" hidden></p>
+   <div id="vnChoices" class="vn-choices" role="group" aria-label="이야기 속 선택지" hidden></div>
+   <div class="vn-dialogue__footer">
+    <span class="vn-chapter-counter">CHAPTER <span id="vnNumber"></span> · <span id="vnProgressText">01 / 09</span></span>
+    <div class="vn-dialogue__actions">
+     <button type="button" id="vnReplay" class="vn-replay">↺ 처음부터</button>
+     <button type="button" id="vnNext" class="vn-next">다음 장면 <span aria-hidden="true">→</span></button>
+    </div>
+   </div>
+   <div class="vn-progress-track" aria-hidden="true"><span id="vnMeter"></span></div>
+  </div>
+ </section>
+ <section id="vnQuizPanel" class="vn-epilogue" hidden>
+  <span class="mini-title">AFTER THE STORY · 마음에 남는 질문</span>
+  <h2>이 장면을 이해했나요?</h2>
+  <div class="quiz"><h3 id="quizQuestion"></h3><div id="quizOptions" class="quiz-options"></div><p id="quizFeedback" class="feedback" role="status" aria-live="polite"></p></div>
+  <p class="vn-small-note">한 번의 선택은 개인의 성격이나 능력을 평가하지 않습니다. 질문은 개념을 이해하기 위한 것입니다.</p>
+ </section>
+ <div class="vn-extras">
+  <details class="vn-detail" id="vnConcept">
+   <summary>심리학 개념 더 깊이 보기 <span aria-hidden="true">＋</span></summary>
+   <div class="vn-detail__content">
+    <h3 id="conceptTitle"></h3><p id="conceptBody"></p>
+    <ul id="conceptPoints"></ul>
+    <h3 id="dailyTitle"></h3><p id="dailyBody"></p>
+    <p id="takeaway" class="vn-takeaway"></p>
+   </div>
+  </details>
+  <details class="vn-detail" id="vnLab">
+   <summary>짧은 인지 실험 해보기 <span aria-hidden="true">＋</span></summary>
+   <div class="vn-detail__content">
+    <section class="demo-shell" aria-labelledby="demoTitle">
+     <div class="demo-heading"><div><span class="mini-title">OPTIONAL LAB</span><h3 id="demoTitle"></h3><p id="demoLead"></p></div><span class="demo-state" id="demoState">시작 전</span></div>
+     <div id="demoContent" class="demo-content"></div>
+     <p class="demo-status" id="demoStatus" role="status" aria-live="polite"></p>
+     <div class="demo-actions" id="demoActions"></div>
+    </section>
+   </div>
+  </details>
+  <details class="vn-detail" id="vnSources">
+   <summary>이야기의 심리학 근거와 출처 <span aria-hidden="true">＋</span></summary>
+   <div class="vn-detail__content">
+    <ul id="sourceList"></ul>
+    <p class="vn-small-note">이야기와 인물은 이해를 돕기 위한 창작 사례입니다. 심리학 효과는 상황·문화·개인차에 따라 다르게 나타날 수 있습니다.</p>
+   </div>
+  </details>
+ </div>
+ <div class="study-footer"><button class="button ghost" type="button" id="footerBack">← 카드 덱으로 돌아가기</button><button class="button primary" type="button" id="nextLesson">다음 이야기 열기 →</button></div>
 </div>
 </div>
 </main>
 <footer><div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px"><span>© 2026 MINDSCAPE · 이권재</span><span>읽고, 경험하고, 다시 생각하기</span><a href="https://gwonjae06-droid.github.io/portfolio/">포트폴리오로 돌아가기 ↗</a></div></footer>
+<script src="./arcana-stories.js"></script>
 <script>
 (()=>{
 'use strict';
@@ -349,34 +402,110 @@ function resetModule(){
  setStatus('');putText('demoState','시작 전');
 }
 function showHome(){
- resetModule();active=null;$('lessonView').hidden=true;$('homeView').hidden=false;
+ resetModule();active=null;$('lessonView').hidden=true;$('homeView').hidden=false;$('arcanaStudy').hidden=true;
  document.title='MINDSCAPE — 경험으로 배우는 심리학';completion();drawCards();
  window.scrollTo({top:0,behavior:'instant'});
+}
+
+let vnStep=0,vnSelected=null;
+function storyFor(l){
+ return window.MindscapeStories?.[l.id]||null;
+}
+function richStoryText(element,value){
+ // Author-supplied **bold** markers are rendered without using innerHTML.
+ element.replaceChildren();
+ String(value||'').split(/(\*\*[^*]+\*\*)/g).forEach(chunk=>{
+  if(!chunk)return;
+  if(chunk.startsWith('**')&&chunk.endsWith('**'))element.append(make('strong','',chunk.slice(2,-2)));
+  else element.append(document.createTextNode(chunk));
+ });
+}
+function renderVN(){
+ const l=active;if(!l)return;
+ const story=storyFor(l);
+ if(!story)return;
+ const stage=$('vnStage'),speaker=$('vnSpeaker'),line=$('vnText');
+ const prompt=$('vnPrompt'),choices=$('vnChoices'),next=$('vnNext'),quiz=$('vnQuizPanel');
+ stage.dataset.world=story.world||l.group;
+ putText('vnSceneLocation',story.scene||'MINDSCAPE');
+ putText('vnNumber',l.no);
+ putText('vnProgressText',String(vnStep+1).padStart(2,'0')+' / 09');
+ putText('vnSceneCounter','ARCANA · '+(vnStep<3?'SCENE':vnStep===3?'CHOICE':vnStep===4?'AFTERMATH':vnStep<7?'REFLECTION':vnStep===7?'EPILOGUE':'COMPLETE'));
+ $('vnMeter').style.width=String((vnStep+1)/9*100)+'%';
+ choices.replaceChildren();choices.hidden=true;
+ prompt.hidden=true;next.hidden=false;
+ quiz.hidden=vnStep!==8;
+ let who='',text='';
+ if(vnStep<=2){[who,text]=story.dialogue[vnStep];next.textContent=vnStep===2?'선택하기 →':'다음 장면 →';}
+ else if(vnStep===3){
+  who='당신의 선택';text='이 순간, 당신은 어떤 행동을 하시겠어요?';
+  prompt.hidden=false;putText('vnPrompt',story.prompt);
+  choices.hidden=false;next.hidden=true;
+  story.choices.forEach((choice,i)=>{
+   const b=make('button','vn-choice');
+   b.type='button';
+   const number=make('span','vn-choice__number',String(i+1).padStart(2,'0'));
+   const description=make('span','vn-choice__text',choice);
+   b.append(number,description);
+   b.addEventListener('click',()=>{vnSelected=i;vnStep=4;renderVN();});
+   choices.append(b);
+  });
+ }
+ else if(vnStep===4){who='그 이후';text=story.outcomes[vnSelected??0];next.textContent='왜 이런 생각이 들었을까? →';}
+ else if(vnStep===5){who='아르카나의 기록자';text=story.teacher[0];next.textContent='이야기 더 듣기 →';}
+ else if(vnStep===6){who='아르카나의 기록자';text=story.teacher[1];next.textContent='마지막 장면 →';}
+ else if(vnStep===7){who='나레이션';text=story.ending;next.textContent='기억해 둘 질문 →';}
+ else{
+  who='아르카나의 기록자';text='이제 이 장면을 돌아볼 시간입니다. 아래의 짧은 질문으로 오늘의 이야기를 마무리해 보세요.';next.hidden=true;
+ }
+ putText('vnSpeaker',who);richStoryText(line,text);
+ stage.classList.remove('vn-turn');
+ // Restart the subtle text entrance without reflowing the whole scene.
+ void line.offsetWidth;
+ stage.classList.add('vn-turn');
+ if(vnStep===8)requestAnimationFrame(()=>quiz.scrollIntoView({behavior:'smooth',block:'nearest'}));
+}
+function resetVN(){
+ vnStep=0;vnSelected=null;
+ if(active)renderQuestion(active);
+ renderVN();
 }
 function showLesson(id){
  const l=lessons.find(x=>x.id===id);if(!l)return;
  resetModule();active=l;activeCategory=l.group;
  $('homeView').hidden=true;$('lessonView').hidden=false;
  document.title=l.short+' | MINDSCAPE';
- const setters=[['crumbTitle',l.short],['lessonOverline',l.no+' / '+l.cat],['lessonTitle',l.title],['lessonLead',l.lead],['lessonCounter',l.no+' / '+lessons.length],['conceptTitle',l.conceptTitle],['conceptBody',l.conceptBody],['dailyTitle',l.dailyTitle],['dailyBody',l.dailyBody],['takeaway',l.takeaway],['demoTitle',l.demoTitle],['demoLead',l.demoLead]];
+ const setters=[
+ ['crumbTitle',l.short],['lessonOverline',l.no+' / '+l.cat],
+ ['lessonTitle',l.short],['lessonLead',l.lead],
+ ['lessonCounter',l.no+' / '+lessons.length],
+ ['conceptTitle',l.conceptTitle],['conceptBody',l.conceptBody],
+ ['dailyTitle',l.dailyTitle],['dailyBody',l.dailyBody],
+ ['takeaway',l.takeaway],['demoTitle',l.demoTitle],['demoLead',l.demoLead]
+ ];
  setters.forEach(([key,val])=>putText(key,val));
- const list=$('conceptPoints');list.replaceChildren(...l.points.map(x=>make('li','',x)));
+ $('conceptPoints').replaceChildren(...l.points.map(x=>make('li','',x)));
  const sources=$('sourceList');sources.replaceChildren();
  l.sources.forEach(([name,url])=>{
-  const a=make('a','',name);a.href=url;a.target='_blank';a.rel='noopener noreferrer';
-  const li=make('li');li.append(a);sources.append(li);
+  const anchor=make('a','',name);
+  anchor.href=url;anchor.target='_blank';anchor.rel='noopener noreferrer';
+  const li=make('li');li.append(anchor);sources.append(li);
  });
- renderQuestion(l);
- const sequence=orderedLessons(),index=sequence.findIndex(x=>x.id===l.id);
- putText('nextLesson',index===sequence.length-1?'다시 처음부터 보기 ↻':'다음 주제 배우기 →');
- $('nextLesson').onclick=()=>showLesson(sequence[(index+1)%sequence.length].id);
+ $('vnConcept').open=false;$('vnSources').open=false;$('vnLab').open=false;
+ const hasLab=['attention','memory','bias','framing'].includes(l.id);
+ $('vnLab').hidden=!hasLab;
+ const ordered=orderedLessons(),index=ordered.findIndex(x=>x.id===l.id);
+ putText('nextLesson',index===ordered.length-1?'첫 번째 이야기로 ↻':'다음 이야기 열기 →');
+ $('nextLesson').onclick=()=>openPortal('다음 이야기',()=>showLesson(ordered[(index+1)%ordered.length].id));
  if(l.id==='attention')initStroop();
  if(l.id==='memory')initMemory();
  if(l.id==='bias')initBias();
  if(l.id==='framing')initFraming();
- if(l.demoOptions)initScenario(l);
+ resetVN();
  window.scrollTo({top:0,behavior:'instant'});
 }
+$('vnNext').addEventListener('click',()=>{if(!active||vnStep>=8||vnStep===3)return;vnStep++;renderVN();});
+$('vnReplay').addEventListener('click',resetVN);
 
 function initScenario(l){
  const content=$('demoContent');let selected=null;
