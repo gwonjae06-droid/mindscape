@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101827">
-<meta name="description" content="MINDSCAPE: 인간관계, 사회, 집단, 윤리, 인지의 5개 영역과 14개 심리학 주제를 개념·사례·미니 체험으로 배우는 심리학 학습관.">
-<title>MINDSCAPE — 경험으로 배우는 심리학</title>
+<meta name="theme-color" content="#f7f6f2">
+<meta name="description" content="MINDSCAPE는 인간관계, 사회, 집단, 윤리, 인지의 14개 심리학 주제를 선택형 이야기와 연구 기반 해설로 배우는 학습 공간입니다.">
+<title>MINDSCAPE — 이야기로 이해하는 심리학</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet">
@@ -114,7 +114,7 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 <link rel="stylesheet" href="./arcana-theme.css">
 </head>
 <body>
-<canvas id="arcanaStars" aria-hidden="true"></canvas>
+
 <div id="arcanaPortal" class="arcana-portal" aria-hidden="true"><div class="arcana-portal__ring"></div><div class="arcana-portal__label" id="arcanaPortalLabel">THE ARCANA OPENS</div></div>
 <a href="#main" class="skip">본문으로 이동</a>
 <header><div class="wrap topbar">
@@ -130,25 +130,30 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 <div id="homeView">
 <div class="wrap">
 <section class="hero" id="home">
-<div>
-<span class="overline">THE ARCANA OF CURIOSITY · 14 LESSONS</span>
-<h1>궁금증이 적힌 <em>아르카나 카드</em>를 뽑고,<br>그 마음의 세계로 들어가 보세요.</h1>
-<p class="intro">사람의 마음은 때때로 낯선 미지처럼 느껴집니다. 인간관계, 사회, 집단, 윤리, 인지의 다섯 세계 가운데 궁금한 질문이 적힌 카드를 뽑아 보세요. 카드 너머에서는 심리학의 개념과 짧은 체험이 기다립니다.</p>
-<div class="hero-actions"><button class="button primary" id="heroStart" type="button">첫 번째 아르카나 카드 뽑기 ✦</button><button class="button ghost" id="arcanaRandom" type="button">운명의 카드 뽑기 ↗</button></div>
-</div>
-<div class="hero-visual" aria-hidden="true">
-<div class="arcana-sanctum">
-<div class="arcana-orb"></div>
-<div class="arcana-ritual-card"><span class="top">I · THE SOUL</span><span class="symbol">☾</span><span class="bottom">RELATIONSHIPS</span></div>
-<div class="arcana-ritual-card"><span class="top">III · THE MANY</span><span class="symbol">✶</span><span class="bottom">GROUPS</span></div>
-<div class="arcana-ritual-card"><span class="top">V · THE MIND</span><span class="symbol">✧</span><span class="bottom">COGNITION</span></div>
-</div></div>
+ <div class="hero-copy">
+  <span class="overline">MINDSCAPE / PSYCHOLOGY LIBRARY</span>
+  <h1>이야기로 이해하는<br><em>사람의 마음.</em></h1>
+  <p class="intro">답장이 늦은 친구를 오해하고, 다수의 의견에 흔들리는 순간. 익숙한 일상 속에 숨어 있는 심리학을 직접 선택하고, 이유까지 배워보세요.</p>
+  <div class="hero-actions">
+   <button class="button primary" id="heroStart" type="button">인간관계부터 시작하기 →</button>
+   <button class="button ghost" id="arcanaRandom" type="button">랜덤 주제 선택</button>
+  </div>
+ </div>
+ <aside class="hero-visual" aria-label="학습 이용 안내">
+  <div class="editorial-feature">
+   <span class="editorial-feature__index">01 — 05 / PSYCHOLOGY</span>
+   <p class="editorial-feature__headline">읽고,<br>선택하고,<br><em>이해하기.</em></p>
+   <p>5개 분야 · 14개 이야기 · 연구 기반 해설</p>
+   <div class="editorial-feature__rule"></div>
+   <span>감정이나 성격을 점치는 검사가 아닌, 심리학을 배우는 작은 읽을거리입니다.</span>
+  </div>
+ </aside>
 </section>
 <section id="library">
-<div class="section-head"><div><span class="overline">THE FIVE MAJOR ARCANA</span><h2>어떤 질문의 세계로 들어갈까요?</h2></div><p>다섯 장의 카드 중 끌리는 질문을 골라 뽑으세요. 각 카드에는 더 작은 학습 카드가 담긴 세계가 펼쳐집니다.</p></div>
+<div class="section-head"><div><span class="overline">EXPLORE BY SUBJECT</span><h2>관심 있는 분야부터.</h2></div><p>분야를 고르면 관련 이야기를 바로 볼 수 있습니다. 설명은 스토리 뒤에 정리되어 있습니다.</p></div>
 <div id="arcanaDeck" class="arcana-deck" aria-label="다섯 가지 아르카나 세계의 카드"></div>
-<div class="hero-actions" style="margin:0 0 27px"><button type="button" id="arcanaAll" class="button ghost">모든 14개 주제 펼치기 ↓</button></div>
-<div id="arcanaStudy" hidden>
+<div class="hero-actions" style="margin:0 0 27px"><button type="button" id="arcanaAll" class="button ghost">전체 14개 주제 보기</button></div>
+<div id="arcanaStudy">
 <div id="arcanaWorld" class="arcana-world-intro" aria-live="polite"></div>
 <div class="explore-toolbar" aria-label="심리학 주제 찾아보기">
  <div id="categoryTabs" class="category-tabs" role="group" aria-label="카테고리 필터"></div>
@@ -158,8 +163,8 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 </div>
 </section>
 <div class="about-band" id="study-guide">
-<div><h3>시험보다 이해에 가까운 수업</h3><p>체험을 잘하거나 못하는 것이 목표가 아닙니다. 마음이 어떻게 작동할 수 있는지 이해하고, 일상에서 비슷한 장면을 찾아보세요.</p></div>
-<div><h3>기록은 어디에 남나요?</h3><p>학습 완료 표시는 현재 브라우저에만 저장합니다. 체험 응답은 서버로 보내지 않습니다. 선택 결과는 성격·관계·도덕성을 측정하는 심리검사가 아닙니다. 모든 테스트는 학습용이며 진단이나 지능 측정이 아닙니다.</p></div>
+<div><h3>이렇게 공부해 보세요</h3><p>이야기 속 선택 → 심리학적 해설 → 핵심 정리 → 이해도 확인. 궁금한 분야부터 자유롭게 읽어보세요.</p></div>
+<div><h3>학습 기록과 개인정보</h3><p>완료 표시는 현재 브라우저에만 저장됩니다. 이야기 선택은 심리검사나 능력 진단이 아니며, 서버로 전송하지 않습니다.</p></div>
 </div>
 </div>
 </div>
@@ -197,6 +202,21 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
    <div class="vn-progress-track" aria-hidden="true"><span id="vnMeter"></span></div>
   </div>
  </section>
+ <section id="vnLearning" class="knowledge-sheet" hidden aria-label="심리학 개념 정리">
+  <div class="knowledge-sheet__head">
+   <span class="mini-title">PSYCHOLOGY NOTES</span>
+   <h2>이야기 뒤의 심리학</h2>
+   <p id="noteCore"></p>
+  </div>
+  <div class="knowledge-sheet__grid">
+   <article class="knowledge-cell"><span class="knowledge-cell__number">01</span><h3>왜 이런 일이 생길까?</h3><p id="noteMechanism"></p></article>
+   <article class="knowledge-cell"><span class="knowledge-cell__number">02</span><h3>무엇과 다를까?</h3><p id="noteDistinction"></p></article>
+   <article class="knowledge-cell"><span class="knowledge-cell__number">03</span><h3>연구에서는</h3><p id="noteEvidence"></p></article>
+   <article class="knowledge-cell"><span class="knowledge-cell__number">04</span><h3>일상에서 활용하기</h3><p id="noteApplication"></p></article>
+  </div>
+  <p class="knowledge-limits"><strong>기억할 점</strong> <span id="noteCaution"></span></p>
+  <a class="knowledge-source" id="noteSource" target="_blank" rel="noopener noreferrer" href="https://openstax.org/">참고 자료 보기 ↗</a>
+ </section>
  <section id="vnQuizPanel" class="vn-epilogue" hidden>
   <span class="mini-title">AFTER THE STORY · 마음에 남는 질문</span>
   <h2>이 장면을 이해했나요?</h2>
@@ -205,7 +225,7 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
  </section>
  <div class="vn-extras">
   <details class="vn-detail" id="vnConcept">
-   <summary>심리학 개념 더 깊이 보기 <span aria-hidden="true">＋</span></summary>
+   <summary>원래 개념 설명과 일상 사례 더 읽기 <span aria-hidden="true">＋</span></summary>
    <div class="vn-detail__content">
     <h3 id="conceptTitle"></h3><p id="conceptBody"></p>
     <ul id="conceptPoints"></ul>
@@ -238,6 +258,7 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 </main>
 <footer><div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px"><span>© 2026 MINDSCAPE · 이권재</span><span>읽고, 경험하고, 다시 생각하기</span><a href="https://gwonjae06-droid.github.io/portfolio/">포트폴리오로 돌아가기 ↗</a></div></footer>
 <script src="./arcana-stories.js"></script>
+<script src="./psychology-notes.js"></script>
 <script>
 (()=>{
 'use strict';
@@ -276,16 +297,7 @@ function orderedLessons(){return categories.flatMap(cat=>lessons.filter(l=>l.gro
 
 const arcanaArt={"relations":["I","☾","THE BOND","그 사람의 행동을, 나는 얼마나 이해하고 있을까?"],"society":["II","✧","THE CROWD","많은 사람 속에서, 나는 왜 다르게 행동할까?"],"groups":["III","✶","THE CHORUS","모두가 같은 말을 할 때, 나는 무엇을 믿을까?"],"ethics":["IV","⚖","THE SCALE","옳고 그름을 판단하는 나의 기준은 무엇일까?"],"cognition":["V","◇","THE MIND","내 생각은 어디까지 내 마음대로 움직일까?"]};
 let arcanaPortalTimer=null;
-function openPortal(label,callback){
- if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){callback();return;}
- clearTimeout(arcanaPortalTimer);
- const overlay=$('arcanaPortal');putText('arcanaPortalLabel',label);
- overlay.classList.add('active');
- arcanaPortalTimer=setTimeout(()=>{
-  callback();
-  arcanaPortalTimer=setTimeout(()=>overlay.classList.remove('active'),250);
- },430);
-}
+function openPortal(label,callback){callback();}
 function makeArcana(data,onClick){
  const b=make('button','arcana-card');
  b.type='button';b.dataset.category=data.group;
@@ -327,7 +339,7 @@ function enterArcana(id){
  activeCategory=id;searchTerm='';$('topicSearch').value='';
  $('arcanaStudy').hidden=false;
  drawWorldIntro();drawCategoryTabs();drawCards();
- $('library').scrollIntoView({behavior:'instant',block:'start'});
+ $('arcanaWorld').scrollIntoView({behavior:'instant',block:'start'});
 }
 function returnToArcana(){
  const id=active?.group||activeCategory;
@@ -402,7 +414,7 @@ function resetModule(){
  setStatus('');putText('demoState','시작 전');
 }
 function showHome(){
- resetModule();active=null;$('lessonView').hidden=true;$('homeView').hidden=false;$('arcanaStudy').hidden=true;
+ resetModule();active=null;$('lessonView').hidden=true;$('homeView').hidden=false;$('arcanaStudy').hidden=false;activeCategory='all';drawWorldIntro();drawCategoryTabs();
  document.title='MINDSCAPE — 경험으로 배우는 심리학';completion();drawCards();
  window.scrollTo({top:0,behavior:'instant'});
 }
@@ -425,7 +437,7 @@ function renderVN(){
  const story=storyFor(l);
  if(!story)return;
  const stage=$('vnStage'),speaker=$('vnSpeaker'),line=$('vnText');
- const prompt=$('vnPrompt'),choices=$('vnChoices'),next=$('vnNext'),quiz=$('vnQuizPanel');
+ const prompt=$('vnPrompt'),choices=$('vnChoices'),next=$('vnNext'),quiz=$('vnQuizPanel'),notes=$('vnLearning');
  stage.dataset.world=story.world||l.group;
  putText('vnSceneLocation',story.scene||'MINDSCAPE');
  putText('vnNumber',l.no);
@@ -435,6 +447,7 @@ function renderVN(){
  choices.replaceChildren();choices.hidden=true;
  prompt.hidden=true;next.hidden=false;
  quiz.hidden=vnStep!==8;
+ notes.hidden=vnStep!==8;
  let who='',text='';
  if(vnStep<=2){[who,text]=story.dialogue[vnStep];next.textContent=vnStep===2?'선택하기 →':'다음 장면 →';}
  else if(vnStep===3){
@@ -463,7 +476,7 @@ function renderVN(){
  // Restart the subtle text entrance without reflowing the whole scene.
  void line.offsetWidth;
  stage.classList.add('vn-turn');
- if(vnStep===8)requestAnimationFrame(()=>quiz.scrollIntoView({behavior:'smooth',block:'nearest'}));
+ if(vnStep===8)requestAnimationFrame(()=>notes.scrollIntoView({behavior:'smooth',block:'start'}));
 }
 function resetVN(){
  vnStep=0;vnSelected=null;
@@ -491,6 +504,11 @@ function showLesson(id){
   anchor.href=url;anchor.target='_blank';anchor.rel='noopener noreferrer';
   const li=make('li');li.append(anchor);sources.append(li);
  });
+ const note=window.MindscapeNotes?.[l.id];
+ if(note){
+  for(const [id,field] of [['noteCore','core'],['noteMechanism','mechanism'],['noteDistinction','distinction'],['noteEvidence','evidence'],['noteApplication','application'],['noteCaution','caution']])putText(id,note[field]);
+  const link=$('noteSource');link.textContent=note.source[0]+' ↗';link.href=note.source[1];
+ }
  $('vnConcept').open=false;$('vnSources').open=false;$('vnLab').open=false;
  const hasLab=['attention','memory','bias','framing'].includes(l.id);
  $('vnLab').hidden=!hasLab;
@@ -668,9 +686,9 @@ $('brandHome').addEventListener('click',e=>{e.preventDefault();showHome();});
 window.addEventListener('visibilitychange',()=>{if(document.hidden&&active?.id==='memory'){disposeDemo();if($('demoState').textContent==='기억하기'){putText('demoState','일시중지');setStatus('탭을 떠나 숫자를 보는 시간이 중단됐습니다. 다시 시작해 주세요.');setActions(button('다시 시작 →',()=>{if(active?.id==='memory')initMemory();},true));$('demoContent').replaceChildren(make('p','','시간이 중단되어 숫자를 다시 보여드립니다.'));}}});
 $('topicSearch').addEventListener('input',e=>{searchTerm=e.target.value;drawCards();});
 drawCategoryTabs();
-completion();renderArcanaDeck();drawCards();
+completion();renderArcanaDeck();drawWorldIntro();drawCards();
 })();
 </script>
-<script defer src="./arcana-effects.js"></script>
+
 </body>
 </html>
