@@ -1,242 +1,370 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080b1d">
-  <meta name="description" content="MINDSCAPE: 글자색을 고르는 짧은 실험으로 스트룹 효과를 경험하고, 일상 속 주의와 인지 간섭을 쉽게 이해하는 인터랙티브 심리학 학습 공간.">
-  <meta property="og:title" content="MINDSCAPE — 마음을 경험하는 심리학">
-  <meta property="og:description" content="보고, 선택하고, 깨닫는 5분. 스트룹 효과를 직접 경험해 보세요.">
-  <title>MINDSCAPE · 마음을 경험하는 심리학</title>
-  <style>
-:root{color-scheme:dark;--ink-green:#71e4b7;--ink-red:#ff91a1;--ink-blue:#94bdff;--ink-yellow:#ffda79;--accent:#8fd8ea}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#080b1d;color:#eff5ff;font:15px/1.75 system-ui,"Noto Sans KR",sans-serif;min-height:100vh;transition:background 1s ease}button,a{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible{outline:3px solid #a7eefa;outline-offset:4px}.screen[hidden],[hidden]{display:none!important}
-.landscape{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 75% 16%,#43588b8f 0,transparent 38%),linear-gradient(150deg,#101a35,#10142c 58%,#0c1025);transition:background 1.3s}
-.landscape__aura{position:absolute;width:60vw;height:60vw;min-width:420px;min-height:420px;border-radius:50%;filter:blur(35px);opacity:.5;animation:float 19s ease-in-out infinite alternate;transition:background 1s}
-.landscape__aura--one{top:-26%;right:-15%;background:radial-gradient(circle,#4b6cb0a8,transparent 66%)}
-.landscape__aura--two{bottom:-42%;left:-15%;background:radial-gradient(circle,#956ba48b,transparent 70%);animation-delay:-9s}
-.landscape__orbit{position:absolute;border:1px solid #d3e1ff1a;border-radius:50%;width:min(65vw,700px);height:min(65vw,700px);left:47%;top:5%;transform:rotate(-18deg)}
-.landscape__orbit--two{width:min(75vw,850px);height:min(75vw,850px);left:42%;top:0;border-color:#9cf1ed11}
-.landscape__glass{position:absolute;inset:0;background:linear-gradient(120deg,transparent 20%,#ffffff08 55%,transparent 75%)}.landscape__stars{position:absolute;inset:0;background-image:radial-gradient(#f5f9ff 1px,transparent 1.5px);background-size:94px 107px;opacity:.13}
-body[data-phase=task][data-condition=incongruent] .landscape{background:radial-gradient(circle at 65% 23%,#6f254866,transparent 55%),linear-gradient(155deg,#211328,#14182f 70%,#101125)}
-body[data-phase=task][data-condition=congruent] .landscape{background:radial-gradient(circle at 65% 23%,#206c6e77,transparent 55%),linear-gradient(155deg,#0e2d35,#12192e 70%,#101125)}
-body[data-phase=task][data-condition=neutral] .landscape{background:radial-gradient(circle at 65% 23%,#6d6d4a5e,transparent 55%),linear-gradient(155deg,#292638,#141729 70%,#101125)}
-body[data-phase=results] .landscape{background:radial-gradient(circle at 70% 12%,#52679177,transparent 50%),linear-gradient(140deg,#11152c,#151d31)}
-body[data-phase=learn] .landscape{background:radial-gradient(circle at 70% 14%,#3a6e8194,transparent 50%),linear-gradient(145deg,#12283b,#0a1527)}
-.page-shell{position:relative;z-index:1;max-width:1180px;padding:0 clamp(20px,5vw,60px);margin:auto}.topbar{min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #c5eff324}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.1em}.brand__glyph{display:grid;place-content:center;border-radius:14px;width:40px;height:40px;background:linear-gradient(135deg,#a2efef,#8685c6);box-shadow:0 0 45px #97a2df3b}.brand__glyph span{width:13px;height:3px;background:#14243b;border-radius:4px;transform:rotate(-30deg)}.brand__name{font-size:18px}.brand__name>span{color:#a8e6e7}.brand__name small{display:block;font-size:8px;color:#adc0d4;letter-spacing:.22em}.topbar__right{display:flex;align-items:center;gap:15px}.topbar__edition{font:11px ui-monospace,monospace;letter-spacing:.12em;color:#a9bbd1}.topbar__slash{opacity:.6}.icon-button{padding:9px 14px;background:#bfeefa11;border:1px solid #c9e9f638;color:#d2eefa;border-radius:99px;font-size:12px}
-main{padding:50px 0 100px;min-height:76vh}.screen{animation:appear .65s ease both;max-width:100%}.eyebrow,.overline,.chapter-head,.task-top,.task-focus__eyebrow,.choice-header,.result-stat>span,.source-details summary,.learn-conclusion>span{font:600 11px/1.7 ui-monospace,monospace;letter-spacing:.13em;color:#9dd6dc}.eyebrow__dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#a7ebdc;margin-right:8px}.eyebrow--korean{font-family:inherit;letter-spacing:0;color:#c1cee2}
-h1,h2,h3{letter-spacing:-.055em}h1,.display-title,.chapter-main h2{font-family:Georgia,"Noto Serif KR",serif;font-weight:400}h1{font-size:clamp(43px,6vw,76px);line-height:1.34;margin:23px 0}h1 em,.display-title em{font-weight:400;color:#ace9e4}p{margin:0 0 18px}.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(270px,.8fr);align-items:center;gap:50px;min-height:65vh}.hero-copy{max-width:640px}.hero-copy__lede{max-width:510px;color:#b8c7d8;font-size:16px}.hero-copy__accent{color:#c0f5ed}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.button{border:1px solid #8fafcc55;padding:13px 21px;border-radius:99px;background:#d0ebfc13;color:#e8f6ff;transition:transform .2s,border-color .2s,background .2s}.button:hover,.choice:hover{transform:translateY(-2px);border-color:#b7e9ea}.button--primary{background:#c9eee9;color:#14243d;border-color:transparent;font-weight:750}.button--primary:hover{background:#edfefa}.button--quiet{background:#e4edff0e}.text-button{border:0;background:transparent;color:#bad6ee;padding:6px}
-.hero-visual,.visual-scene,.hero-art,.hero-orbit{min-height:380px;position:relative}.hero-visual{border:1px solid #b6dbff35;border-radius:46% 54% 59% 41%;display:grid;place-items:center;background:radial-gradient(circle at 40% 35%,#a2b6ef36,#171b3f11 70%);box-shadow:inset 0 0 75px #a4dae51a,0 0 100px #a2b9e31c;animation:float 14s ease-in-out infinite alternate}.hero-visual>*{max-width:100%}.hero-visual .color-card,.floating-card{background:#172a49b8;border:1px solid #e5efff44;border-radius:22px;box-shadow:0 16px 40px #030b1944;padding:20px}
-.chapter-head{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #c6f1f02e;padding-bottom:18px;margin-bottom:40px}.chapter-main h2,.display-title{font-size:clamp(31px,4.4vw,53px);line-height:1.34;margin:16px 0 23px}.chapter-main,.preparation,.section-heading{max-width:780px}.soft-paragraph,.large-paragraph,.hero-copy__lede{color:#c4d2e2}.large-paragraph{font-size:17px;max-width:900px}.prepare-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}.prepare-demo,.instruction-card,.demo-visual,.chart-card,.insight,.result-stat,.explain-cards article,.source-details{background:#101c35af;border:1px solid #c5ebf330;border-radius:25px;padding:26px;box-shadow:0 20px 50px #070d2240}.prepare-demo{min-height:160px;display:grid;place-items:center}.prepare-demo strong{font-size:56px}.prep-actions,.results-actions,.learn-actions{display:flex;flex-wrap:wrap;gap:13px;margin:28px 0}.screen--prepare .button--primary{margin-top:17px}
-.task-layout{max-width:840px;margin:0 auto}.task-top,.choice-header{display:flex;justify-content:space-between;gap:10px}.progress-rail{height:4px;border-radius:10px;background:#9ac3e02c;overflow:hidden;margin:15px 0 35px}.progress-rail>span{display:block;width:0;height:100%;background:#a4eadf;transition:width .3s}.task-focus{text-align:center}.task-focus__title{font-size:clamp(25px,4vw,38px);line-height:1.4;font-weight:500}.stimulus-frame{position:relative;display:grid;place-items:center;min-height:235px;margin:23px 0;border-radius:26px;background:radial-gradient(circle at center,#8ca3c31b,#070d2238);border:1px solid #adbbdb33}.stimulus-frame__word{font-size:clamp(56px,11vw,108px);font-weight:800;letter-spacing:.05em}.stimulus-frame__corner{display:none}.task-feedback{min-height:32px;text-align:center;color:#b7d5e7}.choice-area{margin-top:20px}.choice-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:15px 0}.choice{min-height:82px;display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid #b0d9ec48;background:#142342b8;color:#f0f6ff;border-radius:18px;font-weight:700;transition:transform .2s}.choice__dot{width:12px;height:12px;border-radius:50%;background:currentColor}.choice--red .choice__dot{background:#ff91a1}.choice--blue .choice__dot{background:#94bdff}.choice--green .choice__dot{background:#71e4b7}.choice--yellow .choice__dot{background:#ffda79}kbd{font:11px ui-monospace,monospace;color:#a8b9ce}.task-bottom{display:flex;justify-content:space-between;align-items:center;color:#9eb2c8;margin-top:20px;font-size:12px}
-.pause-overlay{position:fixed;inset:0;z-index:15;background:#070d1deb;display:grid;place-items:center;padding:20px}.pause-overlay__card{max-width:480px;background:#14243d;padding:34px;border-radius:22px;text-align:center;border:1px solid #b5e4eb50}
-.results-heading,.learn-heading{margin-bottom:34px}.result-overview{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:27px}.result-stat{padding:23px}.result-stat strong{display:block;font:36px/1.4 Georgia,serif;color:#f0ffff;letter-spacing:-.07em}.result-stat small{font-size:11px;color:#a5b9ce}.result-stat--accent{border-color:#9ed8d45e}.chart-card{margin:15px 0 22px}.chart-card__head{display:flex;justify-content:space-between;gap:20px;align-items:center}.chart-card h3{margin:0 0 15px}.chart-card__hint,.chart-card__note{color:#a9bfd5;font-size:12px}.chart-row{display:grid;grid-template-columns:90px 1fr 75px;gap:13px;align-items:center;margin:16px 0}.chart-row>div{background:#d4e5ff14;height:13px;border-radius:15px;overflow:hidden}.chart-row i{display:block;height:100%;background:linear-gradient(90deg,#7abacd,#bddfff);border-radius:15px}.chart-row b{font:13px ui-monospace,monospace;text-align:right}.ethics-note{font-size:12px;color:#a4b9d3}
-.demo-section{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin:45px 0}.demo-text h3{font-size:25px;line-height:1.45}.demo-text p{color:#bfcede}.demo-tabs{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}.demo-tab{border:1px solid #a8d0eb55;background:#e7f6ff0c;border-radius:99px;padding:9px 16px;color:#dfedf6}.demo-tab.is-selected{background:#bde8e3;color:#16283b}.demo-visual{min-height:265px;display:flex;flex-direction:column;justify-content:space-between;transition:background .6s}.demo-visual__panel strong{font-size:62px;display:block;margin:15px 0}.demo-visual__footer{font-size:11px;color:#a0b8d5}.explain-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:25px 0}.explain-cards article h3{font-size:19px}.explain-cards article p{font-size:13px;color:#bdcfe2}.explain-cards__number{color:#9fdfdb;font:11px ui-monospace,monospace}.learn-conclusion{padding:35px 15px;margin:30px 0;text-align:center;border-block:1px solid #b7e6e636;font-size:20px}.source-details{margin:22px 0}.source-details summary{cursor:pointer}
-.footer,.site-footer,footer{color:#9db4c9;font-size:12px;margin:30px 0;padding-top:22px;border-top:1px solid #b0cfe72a}.skip-link{position:absolute;left:0;top:-90px;padding:12px;background:#0c1b31;z-index:30}.skip-link:focus{top:0}
-@keyframes float{to{transform:translate(12px,-20px) rotate(5deg)}}@keyframes appear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
-@media(max-width:850px){.hero-grid,.prepare-layout,.demo-section{grid-template-columns:1fr}.hero-visual{min-height:230px;max-height:330px}.result-overview,.explain-cards{grid-template-columns:1fr 1fr}.topbar__edition{display:none}}
-@media(max-width:610px){.page-shell{padding:0 19px}.topbar{min-height:67px}.brand__name{font-size:16px}main{padding:27px 0 70px}.hero-grid{gap:10px;min-height:0}.hero-visual{min-height:240px}.result-overview,.explain-cards{grid-template-columns:1fr}.choice-grid{grid-template-columns:1fr 1fr}.chart-card__head{display:block}.chapter-head{margin-bottom:25px}.stimulus-frame{min-height:185px}.result-stat strong{font-size:29px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}body.reduce-motion *,body.reduce-motion *:before,body.reduce-motion *:after{animation:none!important;transition:none!important}
-
-.hero-art{position:relative;height:490px;min-width:0;display:grid;place-items:center;isolation:isolate}.hero-art__rings{position:absolute;inset:8% 4%;border:1px solid #c6f4ec30;border-radius:50%;box-shadow:0 0 0 40px #b7deed06,0 0 0 90px #7bbada04;transform:rotate(-19deg)}.hero-art__rings:after{content:'';position:absolute;inset:18%;border:1px dashed #cee7ef33;border-radius:50%}.hero-art__pane{position:absolute;width:43%;aspect-ratio:.74;border:1px solid #ffffff80;border-radius:26px;background:linear-gradient(145deg,#b3dced38,#735e9e36);backdrop-filter:blur(13px);box-shadow:0 18px 55px #060e2b9a;transform:rotate(-12deg) translate(-31%,-1%)}.hero-art__pane--back{transform:rotate(15deg) translate(28%,-15%);background:linear-gradient(125deg,#91dfcc37,#263f7d50)}.hero-art__pane--front{background:linear-gradient(120deg,#e5eafb44,#ab8acb2a)}.hero-art__center{position:relative;z-index:2;display:grid;place-items:center;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,#d4fdf7a0,#cbeefd55 38%,#4d85bc33 70%,transparent 75%);box-shadow:0 0 85px #bfeef87f;animation:float 9s ease-in-out infinite alternate}.hero-art__annotation{position:absolute;bottom:5%;right:5%;font:11px ui-monospace,monospace;color:#d4eef3;background:#11233d9e;padding:9px 13px;border:1px solid #c2d7ed3c;border-radius:30px}.hero-facts{display:flex;gap:16px;flex-wrap:wrap;margin-top:36px;color:#b3cbd8;font-size:12px}.hero-facts>*{border-top:1px solid #c4e5e92f;padding-top:10px}.intro-footer{color:#9cb7d1;font-size:12px;margin-top:20px}.instruction-card{max-width:500px;min-height:250px;display:grid;align-content:center;justify-items:center}.instruction-card__word{font-size:clamp(46px,7vw,75px);font-weight:800;color:#94bdff}.instruction-card__arrow{font-size:30px;color:#a1d2df}.instruction-card__answer{font-size:16px;color:#b4f5dd}.instruction-card__top{color:#9fbed1;font:11px ui-monospace,monospace}.prepare-note{color:#9cb7d1;font-size:12px}.prepare-bottom{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:20px}.pause-overlay__dialog{max-width:480px;background:#14243d;padding:38px;border-radius:22px;text-align:center;border:1px solid #b5e4eb50;box-shadow:0 24px 90px #020617}.pause-overlay__dialog h3{font-size:26px;margin:10px 0}.pause-overlay__dialog p{color:#c7d6e5}.learn-end__buttons{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.learn-end{margin:30px 0}.swatch{display:inline-block;width:11px;height:11px;border-radius:50%;background:#94bdff}
-@media(max-width:850px){.hero-art{height:300px}.hero-art__pane{max-width:150px}.hero-art__center{width:110px;height:110px}}@media(max-width:610px){.hero-art{height:240px}.hero-art__pane{max-width:110px;border-radius:18px}.hero-art__center{width:90px;height:90px}.hero-art__annotation{display:none}}
-
-/* 2026 MINDSCAPE clarity refresh: fewer decorations, clearer learning steps */
-.landscape__orbit,.landscape__stars,.landscape__glass,.hero-art__rings,.hero-art__center,.hero-art__annotation,.hero-facts,.intro-footer,.stimulus-frame__corner{display:none!important}
-.landscape{background:radial-gradient(ellipse at 50% 8%,#40577599 0,transparent 48%),linear-gradient(150deg,#111b32,#101626 66%,#0a1020)}
-.landscape__aura{opacity:.25;filter:blur(100px);animation-duration:35s}
-.hero-art{height:min(420px,65vh)}
-.hero-art__pane{border-radius:14px;box-shadow:0 12px 46px #060e2b55;backdrop-filter:blur(8px)}
-.hero-copy h1{font-family:'Noto Sans KR',system-ui,sans-serif;font-weight:800;letter-spacing:-.06em}
-.button{border-radius:14px;box-shadow:none!important}
-.screen--intro,.screen--prepare,.screen--results,.screen--learn{background:transparent}
-.instruction-card,.chart-card,.result-stat,.stimulus-frame,.choice,.learning-card,.demo-card{box-shadow:none!important}
-.hero-actions{gap:10px}.hero-copy__accent{font-weight:700}
-body[data-phase=task][data-learning-step=color] .landscape{background:linear-gradient(145deg,#0e2734,#0b1a29)}
-body[data-phase=task][data-learning-step=conflict] .landscape{background:linear-gradient(145deg,#392c43,#13192c)}
-body[data-phase=task][data-learning-step=test] .landscape{background:linear-gradient(145deg,#1e2b47,#10172a)}
-.topbar__edition{font-size:11px;letter-spacing:.08em}
-@media(prefers-reduced-motion:reduce){.landscape__aura{animation:none!important}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827">
+<meta name="description" content="MINDSCAPE: 주의, 작업기억, 확증편향, 프레이밍 효과를 짧은 체험과 개념 학습으로 이해하는 인터랙티브 심리학 노트.">
+<title>MINDSCAPE — 경험으로 배우는 심리학</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a101d;--surface:#101b2b;--panel:#142236;--line:#284059;--ink:#eef7f7;--muted:#b5c8d0;--dim:#8ca4b3;--mint:#a4e9d1;--cyan:#9bd6eb;--serif:"Noto Serif KR",serif;--sans:"Noto Sans KR",system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(ellipse 75% 28% at 83% 0%,#1d3a4b55,transparent 86%),var(--bg);font:400 15px/1.95 var(--sans);min-height:100svh}
+button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}a:hover{color:#bdece0}a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--mint);outline-offset:4px}
+[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.wrap{width:min(1110px,calc(100% - 56px));margin:auto}
+.skip{position:absolute;top:-100px;left:20px;z-index:100;background:#fff;color:#111;padding:8px 14px}
+.skip:focus{top:15px}
+header{border-bottom:1px solid #cadee422;background:#0a1522c9;backdrop-filter:blur(18px);position:sticky;top:0;z-index:20}
+.topbar{min-height:79px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font:600 18px var(--serif);letter-spacing:.025em;white-space:nowrap}.brand em{display:block;font:500 9px var(--sans);color:var(--dim);font-style:normal;letter-spacing:.16em;margin-top:5px}
+.nav{display:flex;gap:25px;align-items:center;flex-wrap:wrap}.nav a,.nav button{font:500 12px var(--sans);color:var(--muted);background:none;border:0;padding:7px 0}.nav a:hover,.nav button:hover{color:#fff}
+.top-progress{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted)}.top-progress span{font-variant-numeric:tabular-nums;color:var(--mint)}.progress-track{width:72px;height:4px;background:#28415a;border-radius:30px;overflow:hidden}.progress-track b{display:block;width:0;height:100%;background:var(--mint);transition:width .4s}
+main{padding:0 0 100px}.hero{padding:95px 0 92px;display:grid;grid-template-columns:1.2fr .8fr;gap:58px;align-items:center;border-bottom:1px solid var(--line)}
+.overline{font:600 10px/1.5 var(--sans);letter-spacing:.20em;color:var(--mint);text-transform:uppercase}
+h1,h2,h3,p{margin-top:0}h1,h2{font-family:var(--serif);font-weight:500;letter-spacing:-.048em;word-break:keep-all}
+h1{font-size:clamp(37px,5.2vw,60px);line-height:1.52;margin:20px 0 22px}h1 em{font-style:normal;color:var(--mint)}
+.hero p.intro{font-size:15px;color:var(--muted);max-width:560px;line-height:2.05}
+.hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:27px}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 18px;min-height:46px;font:600 13px var(--sans);border-radius:9px;border:1px solid #597b87;color:var(--ink);background:transparent;transition:background .16s,border-color .16s}
+.button:hover{background:#223b4c}.button.primary{background:#b4ead8;color:#112b32;border-color:#b4ead8}.button.primary:hover{background:#dcfff0;border-color:#dcfff0}.button.ghost{background:#0b172488}.button:disabled{opacity:.45;cursor:not-allowed}
+.hero-visual{position:relative;border:1px solid #39576a;border-radius:16px;padding:30px 25px;min-height:290px;background:linear-gradient(155deg,#183346c2,#112336),radial-gradient(circle at 70% 20%,#a8d2f2aa,transparent 50%);overflow:hidden}
+.hero-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 90% 0%,#b4e8df20,transparent 60%);pointer-events:none}
+.hero-visual small{display:block;font-size:10px;letter-spacing:.17em;color:#a3ced5}
+.hero-visual .visual-word{font:500 clamp(31px,4vw,51px) var(--serif);letter-spacing:-.05em;color:#ff96a9;text-align:center;margin:26px 0 23px}
+.visual-choices{display:flex;gap:8px;justify-content:center}
+.visual-choices span{font-size:11px;border:1px solid #65849470;background:#0b2134b7;border-radius:8px;padding:7px 10px;color:#cedce6}
+.visual-caption{text-align:right;color:#a1c1cc;font-size:11px;margin-top:26px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:22px;margin:0 0 30px}
+.section-head h2,.page-title{font-size:clamp(27px,3.5vw,39px);line-height:1.55;margin:9px 0 0}.section-head p{font-size:12px;color:var(--muted);max-width:350px;margin:0}
+#library{padding:70px 0 45px}.lesson-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.lesson-card{border:1px solid var(--line);border-radius:14px;background:#122033bb;padding:27px 28px;display:flex;flex-direction:column;gap:10px;min-height:245px}
+.lesson-card:hover{border-color:#71ada5}.card-top{display:flex;justify-content:space-between;gap:15px;color:var(--mint);font-size:11px;letter-spacing:.13em}.card-top .complete{color:#c5e5ca;font-size:10px;letter-spacing:0}.lesson-card h3{font:500 24px/1.45 var(--serif);margin:7px 0 0}.lesson-card p{font-size:13px;color:var(--muted);line-height:2;margin-bottom:7px}.card-tail{margin-top:auto;display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:11px;color:#a7bcc9}.card-tail button{border:0;background:none;color:var(--mint);font:600 12px var(--sans);padding:5px 0}
+.about-band{margin:47px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:27px 31px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.about-band h3{font:500 18px var(--serif);margin:0 0 7px}.about-band p{color:var(--muted);font-size:12px;margin:0}
+.learning-pane{padding:62px 0 0}
+.crumbs{font-size:11px;color:var(--dim);display:flex;gap:13px;align-items:center;margin-bottom:27px}.crumbs button{background:none;border:0;padding:0;color:var(--mint);font-size:11px}
+.topic-head{display:flex;gap:20px;justify-content:space-between;align-items:start;padding-bottom:29px;border-bottom:1px solid var(--line)}
+.topic-head .page-title{margin:10px 0 12px}.topic-head p{max-width:690px;color:var(--muted);font-size:14px;margin:0}
+.lesson-counter{font-size:11px;white-space:nowrap;color:#99c5c9;border:1px solid var(--line);padding:7px 12px;border-radius:40px}
+.study-columns{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(270px,.8fr);gap:21px;padding:29px 0}
+.lesson-box{border:1px solid var(--line);border-radius:14px;padding:29px 30px;background:#132137cf}.lesson-box h3{font:500 20px var(--serif);margin:12px 0 13px}
+.lesson-box p{font-size:13px;line-height:2.13;color:var(--muted);margin-bottom:17px}
+.lesson-box ul{padding-left:20px;font-size:13px;color:var(--muted);line-height:2.1;margin:0}
+.explainer{background:#102333;border-color:#33535b}
+.mini-title{font:600 10px/1.5 var(--sans);letter-spacing:.19em;color:var(--mint)}
+.demo-shell{margin:0 0 25px;border:1px solid #406070;border-radius:15px;background:#0d1a2d;padding:31px}
+.demo-heading{display:flex;align-items:start;justify-content:space-between;gap:14px;margin-bottom:17px}
+.demo-heading h3{font:500 21px/1.7 var(--serif);margin:0}.demo-heading p{font:12px var(--sans);color:var(--dim);margin:7px 0 0}
+.demo-state{font-size:11px;color:#a6cad1;border:1px solid #486272;border-radius:40px;padding:6px 11px;white-space:nowrap}
+.demo-content{text-align:center;padding:20px 10px 15px;min-height:195px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px}
+.stimulus{font:700 clamp(45px,7vw,72px)/1.25 var(--sans);letter-spacing:.04em;padding:12px}
+.choice-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:min(680px,100%);margin:10px auto}
+.choice-row button{display:flex;align-items:center;justify-content:center;gap:9px;min-height:52px;background:#203448;border:1px solid #476070;color:#fff;border-radius:9px}
+.choice-row button:hover{background:#305368}.swatch{width:11px;height:11px;border-radius:50%;flex:none}
+.big-number{font:600 clamp(39px,7vw,70px)/1.3 var(--serif);letter-spacing:.22em;color:#e0f4f5}
+.digit-entry{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;width:100%}.digit-entry input{max-width:220px;border:1px solid #60768a;border-radius:9px;background:#1c3041;color:#fff;padding:13px 16px;text-align:center;letter-spacing:.19em;font-size:24px}
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(700px,100%);margin:8px auto}.scenario-choice{background:#1b3044;border:1px solid #537081;color:#e5f3f5;border-radius:10px;text-align:left;padding:18px 15px;min-height:100px;font-size:13px;line-height:1.8}
+.scenario-choice:hover{background:#27465a}.scenario-choice[aria-pressed=true]{border-color:#a7ead4;background:#29483f}
+.example-pair{display:grid;grid-template-columns:1fr 1fr;gap:15px;width:min(720px,100%);margin:0 auto 10px}
+.example-pair div{border:1px solid #557387;border-radius:12px;background:#1e3547;padding:22px}.example-pair span{display:block;font-size:12px;color:var(--muted)}.example-pair strong{font:600 clamp(19px,3vw,26px) var(--serif);display:block;margin-top:7px}
+.demo-status{font-size:13px;line-height:1.9;min-height:24px;color:#cae6de;max-width:740px;margin:12px auto 0;text-align:center}
+.demo-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:5px 0 0}
+.quiz{border-top:1px solid #3e5669;margin-top:25px;padding-top:26px}.quiz h3{font:500 19px/1.7 var(--serif);margin:10px 0 15px}.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quiz-options button{background:#1a2e41;color:#d9eaf0;text-align:left;padding:14px 16px;border:1px solid #3b5766;border-radius:8px;font-size:12px;line-height:1.8}.quiz-options button:hover{background:#28445a}.quiz-options button[aria-pressed=true]{border-color:var(--mint);background:#214239}.feedback{min-height:26px;font-size:12px;color:#b9e6da;margin:14px 0 0}
+.study-footer{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;padding:17px 0 45px}
+.sources{padding:24px 0 0;border-top:1px solid var(--line)}.sources h3{font:500 17px var(--serif);margin:0 0 8px}.sources p{font-size:11px;color:var(--dim)}.sources ul{font-size:12px;color:#b5dce1;display:grid;gap:7px;margin:12px 0;padding-left:18px}.sources a{text-decoration:underline;text-decoration-color:#86b2b870;text-underline-offset:3px}
+.not-diagnostic{font-size:11px;color:#aabfca;padding:15px 18px;border:1px solid var(--line);border-radius:9px;line-height:2;margin-top:18px}
+footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);display:flex;justify-content:space-between;gap:16px;font-size:11px}footer a{color:#b1d8db}
+@media(max-width:930px){.hero{grid-template-columns:1fr;gap:25px;padding:70px 0}.hero-visual{min-height:230px}.study-columns{grid-template-columns:1fr}.about-band{grid-template-columns:1fr}}
+@media(max-width:640px){.wrap{width:calc(100% - 35px)}.topbar{min-height:68px;flex-wrap:wrap;gap:5px;padding:10px 0}.nav{gap:15px}.nav a,.nav button{font-size:11px}.top-progress{display:none}.hero{padding:56px 0}.hero-visual{padding:23px}.section-head{display:block}.lesson-grid,.scenario-grid,.quiz-options,.example-pair{grid-template-columns:1fr}#library{padding-top:48px}.lesson-card{padding:23px;min-height:190px}.lesson-box,.demo-shell{padding:22px 19px}.demo-heading{display:block}.demo-state{display:inline-block;margin-top:12px}.demo-content{padding-left:0;padding-right:0}.choice-row{grid-template-columns:1fr 1fr}.topic-head{display:block}.lesson-counter{display:inline-block;margin-top:18px}footer{flex-direction:column}.study-footer{align-items:stretch}.study-footer button{width:100%}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 </style>
-  
 </head>
-<body data-phase="intro" data-condition="neutral">
-  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
-  <div class="landscape" aria-hidden="true">
-    <div class="landscape__base"></div>
-    <div class="landscape__aura landscape__aura--one"></div>
-    <div class="landscape__aura landscape__aura--two"></div>
-    <div class="landscape__orbit landscape__orbit--one"></div>
-    <div class="landscape__orbit landscape__orbit--two"></div>
-    <div class="landscape__glass"></div>
-    <div class="landscape__noise"></div>
-    <div class="landscape__stars"></div>
-  </div>
-
-  <div class="page-shell">
-    <header class="topbar">
-      <a class="brand" href="#intro" id="brandHome" aria-label="MINDSCAPE 처음으로 돌아가기">
-        <span class="brand__glyph" aria-hidden="true"><span></span><span></span><span></span></span>
-        <span class="brand__name">MIND<span>SCAPE</span><small>INTERACTIVE PSYCHOLOGY</small></span>
-      </a>
-      <div class="topbar__right">
-        <span class="topbar__edition">VOL. 01 <span class="topbar__slash">/</span> THE STROOP EFFECT</span>
-        <button id="motionToggle" class="icon-button" type="button" aria-pressed="false" title="움직임 최소화">움직임 줄이기</button>
-      </div>
-    </header>
-
-    <main id="main" tabindex="-1">
-      <section class="screen screen--intro is-active" id="intro" data-screen="intro" aria-labelledby="introTitle">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow"><span class="eyebrow__dot"></span> INTERACTIVE LEARNING · EPISODE 01</p>
-            <p class="eyebrow eyebrow--korean">마음을 이해하는 첫 번째 실험</p>
-            <h1 id="introTitle">당신은 지금<br><em>무엇을</em><br>보고 있나요?</h1>
-            <p class="hero-copy__lede">똑같은 글자를 보고도, 우리의 뇌는 서로 다른 답을 떠올립니다. 때로는 너무 익숙한 생각이 오히려 방해가 되죠.</p>
-            <p class="hero-copy__accent">이해하기 전에, 먼저 경험해 보세요.</p>
-            <div class="hero-actions">
-              <button class="button button--primary" id="beginButton" type="button">체험 시작하기 <span aria-hidden="true">→</span></button>
-              <button class="button button--quiet" id="learnDirectButton" type="button">설명부터 보기 <span aria-hidden="true">↘</span></button>
-            </div>
-            <div class="hero-facts" aria-label="실험 안내">
-              <span><span class="fact-icon" aria-hidden="true">◷</span> 약 3~5분</span>
-              <span><span class="fact-icon" aria-hidden="true">◌</span> 설치 없이 체험</span>
-              <span><span class="fact-icon" aria-hidden="true">✦</span> 무료 학습</span>
-            </div>
-          </div>
-          <div class="hero-art" aria-hidden="true">
-            <div class="hero-art__rings"><i></i><i></i><i></i></div>
-            <div class="hero-art__pane hero-art__pane--back"><span>당신이 읽는 글자</span><strong>빨강</strong></div>
-            <div class="hero-art__pane hero-art__pane--front"><span>당신이 보는 색</span><strong>파랑</strong></div>
-            <div class="hero-art__center"><span>?</span></div>
-            <p class="hero-art__annotation">READING <span>≠</span> SEEING</p>
-          </div>
-        </div>
-        <div class="intro-footer"><span>SCROLL LESS. NOTICE MORE.</span><span>01 — 인지심리학 · 주의와 자동화</span></div>
-      </section>
-
-      <section class="screen screen--prepare" id="prepare" data-screen="prepare" aria-labelledby="prepareTitle" hidden>
-        <div class="chapter-head">
-          <span class="chapter-head__index">01 <i></i> BEFORE THE EXPERIMENT</span>
-          <span class="chapter-head__time">준비 단계</span>
-        </div>
-        <div class="prepare-layout">
-          <div>
-            <p class="overline">먼저, 아주 간단한 약속 하나.</p>
-            <h2 class="display-title" id="prepareTitle">단어가 아닌,<br><em>글자의 색</em>을 골라주세요.</h2>
-            <p class="large-paragraph">화면에 색 이름이 등장합니다. 그 단어가 무슨 뜻인지는 무시하고, <strong>실제로 보이는 글자색</strong>에 해당하는 버튼을 눌러주세요.</p>
-            <p class="soft-paragraph">예를 들어 아래 글자의 뜻은 ‘빨강’이지만, 글자색은 ‘파랑’입니다. 이때 정답은 <b>파랑</b>이에요.</p>
-          </div>
-          <div class="instruction-card">
-            <div class="instruction-card__top"><span>EXAMPLE 001</span><span>눈에 보이는 색에 집중</span></div>
-            <div class="instruction-card__word" style="color:var(--ink-blue)">빨강</div>
-            <div class="instruction-card__arrow">↓</div>
-            <div class="instruction-card__answer"><span>정답</span><strong><i class="swatch swatch--blue"></i> 파랑</strong></div>
-          </div>
-        </div>
-        <div class="prepare-bottom">
-          <div class="prepare-note"><span aria-hidden="true">ⓘ</span> 먼저 색만 고르는 워밍업 4문항과 읽기 충돌 체험 4문항을 진행한 뒤 본 실험 24문항으로 이어집니다. 숫자키 1~4로도 답할 수 있어요. 색 구분이 어려운 경우 <button type="button" id="prepareSkip">설명만 보기</button>를 선택하세요.</div>
-          <button id="startPractice" class="button button--primary" type="button">연습해 보기 <span aria-hidden="true">→</span></button>
-        </div>
-      </section>
-
-      <section class="screen screen--task" id="task" data-screen="task" aria-labelledby="taskTitle" hidden>
-        <div class="task-layout">
-          <div class="task-top">
-            <span class="task-top__label" id="taskMode">PRACTICE / 연습</span>
-            <span class="task-top__progress" id="taskProgress" aria-live="off">01 / 04</span>
-          </div>
-          <div class="progress-rail" role="progressbar" id="taskProgressbar" aria-label="문제 진행률" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span id="progressFill"></span></div>
-          <div class="task-focus">
-            <span class="task-focus__eyebrow">INK COLOR · NOT THE WORD</span>
-            <h2 id="taskTitle" class="task-focus__title">뜻을 읽지 말고,<br>색을 선택하세요.</h2>
-            <div class="stimulus-frame" id="stimulusFrame">
-              <div class="stimulus-frame__corner stimulus-frame__corner--tl"></div>
-              <div class="stimulus-frame__corner stimulus-frame__corner--tr"></div>
-              <div class="stimulus-frame__corner stimulus-frame__corner--bl"></div>
-              <div class="stimulus-frame__corner stimulus-frame__corner--br"></div>
-              <span class="stimulus-frame__word" id="stimulus" aria-label="글자색을 선택하세요">·</span>
-            </div>
-            <p class="task-feedback" id="taskFeedback" aria-live="polite">실제로 보이는 글자색을 선택해 주세요.</p>
-          </div>
-          <div class="choice-area">
-            <div class="choice-header"><span>CHOOSE THE INK COLOR</span><span>키보드 <kbd>1</kbd>–<kbd>4</kbd></span></div>
-            <div class="choice-grid" id="choiceGrid" role="group" aria-label="글자색 선택">
-              <button type="button" class="choice choice--red" data-color="red" aria-label="빨강"><span class="choice__dot"></span><span>빨강</span><kbd>1</kbd></button>
-              <button type="button" class="choice choice--blue" data-color="blue" aria-label="파랑"><span class="choice__dot"></span><span>파랑</span><kbd>2</kbd></button>
-              <button type="button" class="choice choice--green" data-color="green" aria-label="초록"><span class="choice__dot"></span><span>초록</span><kbd>3</kbd></button>
-              <button type="button" class="choice choice--yellow" data-color="yellow" aria-label="노랑"><span class="choice__dot"></span><span>노랑</span><kbd>4</kbd></button>
-            </div>
-          </div>
-          <div class="task-bottom"><span id="taskFooterMessage">서두를 필요 없어요. 정확하게 골라보세요.</span><button id="taskExit" class="text-button" type="button">체험 끝내기</button></div>
-        </div>
-        <div id="pauseOverlay" class="pause-overlay" hidden>
-          <div class="pause-overlay__dialog" role="alertdialog" aria-labelledby="pauseTitle" aria-describedby="pauseDesc">
-            <span>EXPERIMENT PAUSED</span><h3 id="pauseTitle">실험이 잠시 멈췄어요.</h3><p id="pauseDesc">다른 탭으로 이동했어요. 돌아온 다음 문항부터 반응시간을 새로 측정합니다.</p>
-            <button id="resumeButton" class="button button--primary" type="button">다시 시작 <span aria-hidden="true">→</span></button>
-          </div>
-        </div>
-      </section>
-
-      <section class="screen screen--results" id="results" data-screen="results" aria-labelledby="resultsTitle" hidden>
-        <div class="chapter-head"><span class="chapter-head__index">03 <i></i> YOUR OBSERVATION</span><span>실험 결과</span></div>
-        <div class="results-heading"><p class="overline">YOUR MIND, IN MOTION</p><h2 class="display-title" id="resultsTitle">방금 당신의 마음에서<br><em>어떤 일이 일어났을까요?</em></h2><p class="soft-paragraph">글자색을 맞히는 동안, 단어가 떠올라 방해되지는 않았나요? 아래는 이번 짧은 체험에서 기록된 결과입니다.</p></div>
-        <div class="result-overview">
-          <div class="result-stat"><span>OVERALL ACCURACY</span><strong id="accuracyValue">—</strong><small id="accuracySub">총 24문항 중</small></div>
-          <div class="result-stat"><span>CORRECT RESPONSE TIME</span><strong id="overallTimeValue">—</strong><small>정답 문항의 반응시간 중앙값</small></div>
-          <div class="result-stat result-stat--accent"><span>INTERFERENCE / EXPLORATORY</span><strong id="interferenceValue">—</strong><small id="interferenceSub">불일치 − 일치, 정답 기준</small></div>
-        </div>
-        <div class="chart-card">
-          <div class="chart-card__head"><div><p class="overline">REACTION TIME COMPARISON</p><h3>조건별 반응시간 비교</h3></div><span class="chart-card__hint">정답 응답 중앙값 · ms</span></div>
-          <div class="chart-rows" id="chartRows"></div>
-          <p class="chart-card__note" id="chartNote">반응시간은 화면에서 색 자극이 나타난 뒤 선택하기까지의 시간을 뜻합니다.</p>
-        </div>
-        <div id="resultInsight" class="insight" aria-live="polite"></div>
-        <p class="ethics-note"><span aria-hidden="true">ⓘ</span> 이 결과는 짧은 교육용 체험입니다. 문항 수가 적고 기기·조명·학습 효과의 영향을 받으므로 지능, 성격, 주의력이나 건강 상태를 평가하지 않습니다.</p>
-        <div class="results-actions"><button class="button button--primary" id="resultToLearn" type="button">왜 이런 일이 생기는지 보기 <span aria-hidden="true">→</span></button><button class="button button--quiet" id="retryButton" type="button">다시 체험하기 ↻</button></div>
-      </section>
-
-      <section class="screen screen--learn" id="learn" data-screen="learn" aria-labelledby="learnTitle" hidden>
-        <div class="chapter-head"><span class="chapter-head__index">04 <i></i> UNDERSTANDING THE MIND</span><span>쉬운 심리학 해설</span></div>
-        <div class="learn-heading"><p class="overline">THE STROOP EFFECT / 스트룹 효과</p><h2 class="display-title" id="learnTitle">우리는 글자를<br>너무 <em>잘 읽어서</em> 방해받습니다.</h2><p class="large-paragraph">글을 읽는 일은 수없이 반복해 익숙해진 행동입니다. 글자색을 말하려고 할 때도 단어의 의미가 빠르게 떠올라, 두 정보가 서로 충돌할 수 있어요. 이처럼 <strong>서로 어울리지 않는 정보 때문에 반응이 늦어지는 현상</strong>을 스트룹 효과라고 부릅니다.</p></div>
-        <div class="demo-section">
-          <div class="demo-text"><span class="overline">TRY THE DIFFERENCE</span><h3>같은 색이어도<br>느껴지는 난이도는 다를까요?</h3><p>아래 세 가지 상황을 선택해 보세요. 모두 색을 고르는 과제이지만, 단어와 색의 관계가 달라집니다.</p><div class="demo-tabs" role="group" aria-label="스트룹 조건 비교"><button class="demo-tab is-selected" type="button" data-demo="congruent" aria-pressed="true">일치</button><button class="demo-tab" type="button" data-demo="incongruent" aria-pressed="false">불일치</button><button class="demo-tab" type="button" data-demo="neutral" aria-pressed="false">중립</button></div></div>
-          <div class="demo-visual"><div class="demo-visual__panel"><span id="demoCondition">CONGRUENT / 일치</span><strong id="demoWord" style="color:var(--ink-green)">초록</strong><p id="demoMeaning">단어의 뜻과 글자색이 같아요. 두 정보가 같은 답을 가리킵니다.</p></div><div class="demo-visual__footer"><span>YOUR TASK</span><strong>글자의 색을 고르세요.</strong></div></div>
-        </div>
-        <div class="explain-cards"><article><span class="explain-cards__number">01 / AUTOMATICITY</span><h3>읽기는 빠르게 떠오릅니다.</h3><p>익숙한 단어를 보면 뜻을 알아차리는 일이 쉽게 일어납니다. ‘색에만 집중해야지’라고 해도 단어의 뜻을 완전히 무시하기는 어려울 수 있습니다.</p></article><article><span class="explain-cards__number">02 / CONFLICT</span><h3>두 정보가 서로 다른 답을 줍니다.</h3><p>‘빨강’이라는 단어가 파랗게 보이면, 단어의 의미와 실제 글자색이 경쟁합니다. 그래서 색을 선택하는 시간이 늘거나 실수하기도 합니다.</p></article><article><span class="explain-cards__number">03 / EVERYDAY LIFE</span><h3>우리의 일상에도 비슷한 일이 있어요.</h3><p>익숙한 길로 무심코 향하거나, 기존의 습관이 새로운 규칙을 방해할 때처럼 ‘자동으로 하던 일’과 ‘지금 해야 할 일’이 부딪히는 순간을 떠올려 볼 수 있습니다.</p></article></div>
-        <div class="learn-conclusion"><span>THE TAKEAWAY</span><p>방해를 받았다고 해서 주의력이 부족한 것은 아닙니다.<br><strong>익숙한 반응과 현재의 목표가 충돌할 수 있다는 것</strong>, 그것이 이 체험의 핵심이에요.</p></div>
-        <details class="source-details"><summary>연구 출처와 실험 한계 읽기 <span aria-hidden="true">↗</span></summary><div><p>J. R. Stroop (1935), <em>Studies of Interference in Serial Verbal Reactions</em>, Journal of Experimental Psychology 18(6), 643–662. 이 사이트의 실험은 고전 연구에서 영감을 받은 짧은 교육용 변형이며, 원래 연구의 실험 설계나 결과를 재현한 것은 아닙니다.</p><p>본 사이트는 한글 색 이름, 네 가지 선택 버튼, 조건별 적은 문항, 다양한 기기와 환경을 사용하므로 반응시간 차이를 과학적 진단이나 개인 능력 측정에 사용하면 안 됩니다.</p><a href="https://doi.org/10.1037/h0054651" target="_blank" rel="noopener noreferrer">원 연구 DOI 살펴보기 ↗</a><a href="https://psychclassics.yorku.ca/Stroop/" target="_blank" rel="noopener noreferrer">원문 다시 읽기 ↗</a></div></details>
-        <div class="learn-end"><div><span>END OF EPISODE 01</span><h3>방금, 마음의 한 장면을 발견했습니다.</h3><p>다음에는 우리가 사실이라고 믿는 것을 어떻게 선택해서 보는지 알아볼 예정입니다.</p></div><div class="learn-end__buttons"><button type="button" id="learnRetry" class="button button--primary">다시 체험하기 ↻</button><button type="button" id="backHome" class="button button--quiet">처음으로 ↑</button></div></div>
-      </section>
-    </main>
-
-    <footer class="site-footer"><span>MINDSCAPE / THE SCIENCE OF NOTICING</span><span>교육용 인터랙티브 프로젝트 · 기록은 기기에 저장하거나 전송하지 않습니다.</span></footer>
-  </div>
+<body>
+<a href="#main" class="skip">본문으로 이동</a>
+<header><div class="wrap topbar">
+<a class="brand" href="#home" id="brandHome">MINDSCAPE<em>PSYCHOLOGY, MADE UNDERSTANDABLE</em></a>
+<nav class="nav" aria-label="주요 메뉴">
+<button type="button" id="navLessons">학습 주제</button>
+<a href="#study-guide" id="navGuide">학습 방법</a>
+<a href="https://gwonjae06-droid.github.io/portfolio/" rel="noopener noreferrer">포트폴리오 ↗</a>
+</nav>
+<div class="top-progress"><span id="doneCount">0 / 4</span><div class="progress-track"><b id="doneProgress"></b></div></div>
+</div></header>
+<main id="main">
+<div id="homeView">
+<div class="wrap">
+<section class="hero" id="home">
+<div>
+<span class="overline">A LITTLE SCIENCE OF THE MIND</span>
+<h1>마음을 공부하는 일은<br>내 생각을 <em>다시 보는 일.</em></h1>
+<p class="intro">주의는 왜 흔들릴까요? 기억은 무엇을 붙잡아 둘까요? 왜 내 생각과 맞는 증거만 더 잘 보일까요? MINDSCAPE는 이 질문들을 작은 체험과 짧은 설명으로 함께 살펴보는 심리학 학습 공간입니다.</p>
+<div class="hero-actions"><button class="button primary" id="heroStart" type="button">첫 번째 주제 배우기 →</button><a class="button ghost" href="#library">4개 주제 둘러보기 ↓</a></div>
+</div>
+<div class="hero-visual" aria-hidden="true">
+<small>01 · ATTENTION / 주의</small>
+<div class="visual-word">파랑</div>
+<div class="visual-choices"><span>빨강</span><span>파랑</span><span>초록</span><span>노랑</span></div>
+<div class="visual-caption">같은 단어, 다른 글자색 — 왜 헷갈릴까요?</div>
+</div>
+</section>
+<section id="library">
+<div class="section-head"><div><span class="overline">FOUR SHORT LESSONS</span><h2>하나씩 배워 보는 마음의 원리.</h2></div><p>각 주제 약 3~5분. 개념을 읽고, 작은 체험을 거쳐, 한 문제로 이해를 확인합니다.</p></div>
+<div class="lesson-grid" id="lessonGrid"></div>
+</section>
+<div class="about-band" id="study-guide">
+<div><h3>시험보다 이해에 가까운 수업</h3><p>체험을 잘하거나 못하는 것이 목표가 아닙니다. 마음이 어떻게 작동할 수 있는지 이해하고, 일상에서 비슷한 장면을 찾아보세요.</p></div>
+<div><h3>기록은 어디에 남나요?</h3><p>학습 완료 표시는 현재 브라우저에만 저장합니다. 체험 응답이나 기억한 숫자는 서버로 보내지 않습니다. 모든 테스트는 학습용이며 진단이나 지능 측정이 아닙니다.</p></div>
+</div>
+</div>
+</div>
+<div id="lessonView" hidden>
+<div class="wrap learning-pane">
+<div class="crumbs"><button type="button" id="backLessons">← 학습 주제로 돌아가기</button><span>/</span><span id="crumbTitle"></span></div>
+<div class="topic-head"><div><span class="overline" id="lessonOverline"></span><h1 class="page-title" id="lessonTitle"></h1><p id="lessonLead"></p></div><span class="lesson-counter" id="lessonCounter"></span></div>
+<div class="study-columns">
+<article class="lesson-box"><span class="mini-title">01 / 핵심 개념</span><h3 id="conceptTitle"></h3><p id="conceptBody"></p><ul id="conceptPoints"></ul></article>
+<aside class="lesson-box explainer"><span class="mini-title">02 / 일상에서 찾기</span><h3 id="dailyTitle"></h3><p id="dailyBody"></p><span class="mini-title">기억할 한 문장</span><p id="takeaway"></p></aside>
+</div>
+<section class="demo-shell" aria-labelledby="demoTitle">
+<div class="demo-heading"><div><span class="mini-title">03 / 1분 안팎의 체험</span><h3 id="demoTitle"></h3><p id="demoLead"></p></div><span class="demo-state" id="demoState">시작 전</span></div>
+<div id="demoContent" class="demo-content"></div>
+<p class="demo-status" id="demoStatus" role="status" aria-live="polite"></p>
+<div class="demo-actions" id="demoActions"></div>
+<div class="quiz"><span class="mini-title">04 / 이해도 확인</span><h3 id="quizQuestion"></h3><div class="quiz-options" id="quizOptions"></div><p id="quizFeedback" class="feedback" role="status" aria-live="polite"></p></div>
+</section>
+<div class="sources"><h3>더 읽어보기 · 근거 자료</h3><p>학습 내용을 구성할 때 참고한 대학·학술·공공기관의 설명입니다.</p><ul id="sourceList"></ul></div>
+<div class="not-diagnostic">이 사이트의 미니 테스트는 개념 이해를 돕기 위한 예시입니다. 반응속도·기억 정답·선택 결과 하나만으로 주의력, 기억력, 성격이나 심리 상태를 평가할 수 없습니다.</div>
+<div class="study-footer"><button class="button ghost" type="button" id="footerBack">← 모든 주제 보기</button><button class="button primary" type="button" id="nextLesson">다음 주제 배우기 →</button></div>
+</div>
+</div>
+</main>
+<footer><div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px"><span>© 2026 MINDSCAPE · 이권재</span><span>읽고, 경험하고, 다시 생각하기</span><a href="https://gwonjae06-droid.github.io/portfolio/">포트폴리오로 돌아가기 ↗</a></div></footer>
 <script>
-(()=>{'use strict';
-const colors={red:{label:'빨강',ink:'#ff91a1'},blue:{label:'파랑',ink:'#94bdff'},green:{label:'초록',ink:'#71e4b7'},yellow:{label:'노랑',ink:'#ffda79'}},keys=Object.keys(colors),$=id=>document.getElementById(id);
-let mode='intro',index=0,trials=[],results=[],ready=false,paused=false,start=0,timer=null;
-function show(name){clearTimeout(timer);mode=name;ready=false;document.querySelectorAll('[data-screen]').forEach(s=>{let a=s.dataset.screen===name;s.hidden=!a;s.classList.toggle('is-active',a)});document.body.dataset.phase=name;document.body.dataset.condition='neutral';$('pauseOverlay').hidden=true;window.scrollTo({top:0,behavior:'instant'});}
-function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a}
-function trialsFor(practice){if(practice)return [
-{condition:'neutral',word:'■■■',ink:'red'},
-{condition:'neutral',word:'■■■',ink:'blue'},
-{condition:'neutral',word:'■■■',ink:'green'},
-{condition:'neutral',word:'■■■',ink:'yellow'},
-{condition:'congruent',word:'빨강',ink:'red'},
-{condition:'incongruent',word:'초록',ink:'blue'},
-{condition:'incongruent',word:'노랑',ink:'red'},
-{condition:'incongruent',word:'파랑',ink:'green'}
-];let t=[];for(const ink of keys){t.push({condition:'congruent',ink,word:colors[ink].label});t.push({condition:'neutral',ink,word:'●●●'});let diff=keys.filter(k=>k!==ink);t.push({condition:'incongruent',ink,word:colors[diff[0]].label},{condition:'congruent',ink,word:colors[ink].label},{condition:'neutral',ink,word:'●●●'},{condition:'incongruent',ink,word:colors[diff[1]].label})}return shuffle(t)}
-function begin(practice){trials=trialsFor(practice);results=[];index=0;paused=false;mode=practice?'practice':'experiment';show('task');mode=practice?'practice':'experiment';draw();}
-function draw(){if(index>=trials.length){if(mode==='practice'){paused=true;$('pauseTitle').textContent='준비 체험을 마쳤어요.';$('pauseDesc').textContent='색 블록만 보는 단계와 뜻·색이 충돌하는 단계를 경험했습니다. 이제 본 실험 24문항을 시작합니다.';$('resumeButton').textContent='본 실험 시작 →';$('pauseOverlay').hidden=false;return;}finish();return}const t=trials[index];ready=false;document.body.dataset.condition=t.condition;document.body.dataset.learningStep=mode==='practice'?(index<4?'color':'conflict'):'test';$('taskMode').textContent=mode==='practice'?(index<4?'01 / 색만 보기':'02 / 읽기 충돌 체험'):'03 / 본 실험';$('taskProgress').textContent=String(index+1).padStart(2,'0')+' / '+String(trials.length).padStart(2,'0');$('taskProgressbar').setAttribute('aria-valuemax',trials.length);$('taskProgressbar').setAttribute('aria-valuenow',index);$('progressFill').style.width=(index/trials.length*100)+'%';$('stimulus').textContent=t.word;$('stimulus').style.color=colors[t.ink].ink;$('taskFeedback').textContent=mode==='practice'?(index<4?'색 블록의 색만 골라보세요.':'이제 글자를 읽는 습관이 방해하는지 느껴보세요.'):'빠르고 정확하게 실제 글자색을 선택하세요.';$('taskFooterMessage').textContent=mode==='practice'?(index<4?'첫 단계는 색만 고르는 워밍업입니다.':'두 번째 단계는 뜻과 색이 충돌하는 체험입니다.'):'정답률과 반응시간을 함께 측정합니다.';requestAnimationFrame(()=>{requestAnimationFrame(()=>{start=performance.now();ready=true;});});}
-function answer(key){if(!ready||paused||(mode!=='experiment'&&mode!=='practice'))return;ready=false;const t=trials[index],ms=performance.now()-start,correct=key===t.ink;if(mode==='experiment')results.push({condition:t.condition,ms,correct});else $('taskFeedback').textContent=correct?'정답이에요.':'정답은 '+colors[t.ink].label+'입니다.';index++;timer=setTimeout(draw,mode==='practice'?550:190);}
-function median(a){if(!a.length)return null;a=[...a].sort((x,y)=>x-y);return(a[Math.floor((a.length-1)/2)]+a[Math.floor(a.length/2)])/2}
-function finish(){show('results');const correct=results.filter(r=>r.correct),percent=Math.round(correct.length/results.length*100),overall=median(correct.map(r=>r.ms));$('accuracyValue').textContent=percent+'%';$('accuracySub').textContent=correct.length+' / '+results.length+' 정답';$('overallTimeValue').textContent=overall===null?'—':Math.round(overall)+' ms';const parts=['congruent','incongruent','neutral'].map(id=>({id,name:{congruent:'일치',incongruent:'불일치',neutral:'중립'}[id],ms:median(correct.filter(x=>x.condition===id).map(x=>x.ms))})),co=parts[0].ms,inc=parts[1].ms,diff=co!==null&&inc!==null?inc-co:null;$('interferenceValue').textContent=diff===null?'자료 부족':(diff>=0?'+':'')+Math.round(diff)+' ms';$('interferenceSub').textContent='불일치 − 일치 / 정답 반응시간';const max=Math.max(350,...parts.map(x=>x.ms||0));$('chartRows').replaceChildren();for(const x of parts){const row=document.createElement('div');row.className='chart-row';const title=document.createElement('span');title.textContent=x.name;const track=document.createElement('div'),bar=document.createElement('i');bar.style.width=(x.ms===null?0:Math.max(4,x.ms/max*100))+'%';track.append(bar);const n=document.createElement('b');n.textContent=x.ms===null?'자료 부족':Math.round(x.ms)+'ms';row.append(title,track,n);$('chartRows').append(row)}$('resultInsight').textContent=diff===null?'조건별 정답이 부족해 차이를 판단하기 어렵습니다.':diff>0?'불일치 문항에서 더 오래 걸렸습니다. 단어의 뜻이 색 판단을 방해했을 가능성이 있습니다.':'이번에는 불일치 문항이 더 느리지 않았습니다. 짧은 교육용 실험에서는 여러 요인 때문에 차이가 달라질 수 있습니다.';}
-function demo(k){const demos={congruent:{word:'초록',color:colors.green.ink,label:'CONGRUENT / 일치',text:'단어의 의미와 색이 같아요. 두 정보가 같은 답을 가리킵니다.'},incongruent:{word:'빨강',color:colors.blue.ink,label:'INCONGRUENT / 불일치',text:'뜻은 빨강인데 글자색은 파랑이에요. 서로 다른 답이 떠올라 방해될 수 있어요.'},neutral:{word:'●●●',color:colors.yellow.ink,label:'NEUTRAL / 중립',text:'색 이름이 아닌 기호예요. 단어의 의미가 색 판단에 개입하지 않는 비교 조건입니다.'}},d=demos[k];$('demoWord').textContent=d.word;$('demoWord').style.color=d.color;$('demoCondition').textContent=d.label;$('demoMeaning').textContent=d.text;document.querySelectorAll('[data-demo]').forEach(b=>{const on=b.dataset.demo===k;b.classList.toggle('is-selected',on);b.setAttribute('aria-pressed',String(on))});document.body.dataset.condition=k;}
-function learn(){show('learn');demo('congruent')}
-$('beginButton').onclick=()=>show('prepare');$('learnDirectButton').onclick=learn;$('prepareSkip').onclick=learn;$('startPractice').onclick=()=>begin(true);$('taskExit').onclick=()=>show('intro');$('resultToLearn').onclick=learn;$('retryButton').onclick=()=>show('prepare');$('learnRetry').onclick=()=>show('prepare');$('backHome').onclick=()=>show('intro');$('brandHome').onclick=e=>{e.preventDefault();show('intro')};$('resumeButton').onclick=()=>{paused=false;$('pauseOverlay').hidden=true;if(mode==='practice'&&index>=trials.length)begin(false);else draw()};$('choiceGrid').onclick=e=>{const b=e.target.closest('[data-color]');if(b)answer(b.dataset.color)};document.addEventListener('keydown',e=>{if(e.altKey||e.metaKey||e.ctrlKey||paused)return;const m={'1':'red','2':'blue','3':'green','4':'yellow'};if(m[e.key]){e.preventDefault();answer(m[e.key]);}});document.querySelectorAll('[data-demo]').forEach(b=>b.onclick=()=>demo(b.dataset.demo));$('motionToggle').onclick=()=>{let yes=document.body.classList.toggle('reduce-motion');$('motionToggle').textContent=yes?'움직임 켜기':'움직임 줄이기';$('motionToggle').setAttribute('aria-pressed',yes)};document.addEventListener('visibilitychange',()=>{if(document.hidden&&(mode==='practice'||mode==='experiment')&&!paused){clearTimeout(timer);ready=false;paused=true;$('pauseTitle').textContent='실험이 잠시 멈췄어요.';$('pauseDesc').textContent='다른 탭으로 이동했습니다. 이 문항의 반응시간을 새로 측정합니다.';$('resumeButton').textContent='다시 시작 →';$('pauseOverlay').hidden=false;}});
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const lessons=[
+{id:'attention',no:'01',cat:'주의 · ATTENTION',short:'스트룹 효과',title:'읽지 않으려 해도, 읽게 되는 이유.',lead:'눈에 보이는 글자색을 고르는데 왜 단어의 뜻이 끼어들까요?',conceptTitle:'주의와 자동화된 읽기',conceptBody:'우리가 익숙해진 읽기는 의도하지 않아도 쉽게 일어납니다. 그래서 글자색을 말하라는 과제에 단어의 의미가 경쟁자로 끼어들 수 있습니다. 이것이 스트룹 과제에서 관찰하는 인지 간섭입니다.',points:['일치 조건: ‘빨강’이 빨간색으로 보입니다.','불일치 조건: ‘빨강’이 파란색으로 보입니다.','일반적으로 불일치 조건에서 반응이 느리거나 오류가 늘 수 있습니다.'],dailyTitle:'알림을 무시하려다 내용을 읽은 순간',dailyBody:'공부하면서 알림을 무시하려 해도 미리보기의 문장을 이미 읽었을 때가 있지 않나요? 중요한 목표와 익숙한 자동 반응이 경쟁한다는 점에서 비슷한 질문을 떠올릴 수 있습니다.',takeaway:'주의는 하나에 집중하려는 목표와 자동으로 처리되는 정보 사이에서 조절됩니다.',demoTitle:'6문항, 글자색만 고르기',demoLead:'단어의 뜻이 아니라 실제 글자색을 선택하세요. 숫자키 1~4로도 답할 수 있습니다.',quiz:'불일치 조건에서 색을 고르기 어려워질 수 있는 이유는?',options:['글자 자체가 흐려지기 때문에','단어의 의미가 색 선택을 방해할 수 있어서','뇌는 색을 볼 수 없어서','손가락이 항상 느리게 움직여서'],correct:1,explain:'익숙한 단어 읽기 과정이 색 판단과 경쟁할 수 있습니다. 다만 6문항의 개인 기록은 현상 확인을 위한 연구 자료로 충분하지 않습니다.',sources:[['APA 심리학 사전 — Stroop effect','https://www.apa.org/science/resources/stroop.aspx'],['University of Queensland — Attention: interference and control','https://qbi.uq.edu.au/node/6060']]},
+{id:'memory',no:'02',cat:'기억 · MEMORY',short:'작업기억',title:'잠깐 붙잡아 둔 정보는 어디로 갈까요?',lead:'우리는 보았던 정보를 잠시 머릿속에 유지하고 필요에 따라 사용할 수 있습니다.',conceptTitle:'작업기억은 정보를 잠시 유지하고 다룹니다',conceptBody:'작업기억은 현재 과제에 필요한 정보를 짧은 시간 동안 유지하거나 갱신하는 인지 기능입니다. 저장할 수 있는 양이 무한하지 않으며, 방해가 들어오면 정보를 유지하기 어려울 수 있습니다.',points:['전화번호를 듣고 잠시 외우는 일에 작업기억이 관여할 수 있습니다.','주의가 다른 일로 옮겨가면 유지하던 정보를 놓칠 수 있습니다.','서로 연관된 항목을 묶거나 의미를 연결하는 전략이 도움이 될 수 있습니다.'],dailyTitle:'코드를 보다가 잠깐 다른 창을 열었을 때',dailyBody:'방금 보았던 숫자나 지시사항을 계속 붙잡아 둬야 할 때 작업기억이 필요합니다. 복잡한 내용을 쪼개고 메모를 남기는 건 이 부담을 관리하는 한 방법입니다.',takeaway:'기억은 단순한 저장소가 아니라, 지금 필요한 정보를 유지하며 처리하는 활동이기도 합니다.',demoTitle:'4초 동안 다섯 자리 기억하기',demoLead:'숫자 다섯 자리를 잠깐 보여드립니다. 사라진 다음 순서대로 입력해 보세요.',quiz:'작업기억을 가장 잘 설명하는 문장은?',options:['평생 모든 경험을 저장하는 기능','필요한 정보를 잠깐 유지하고 활용하는 기능','한 번 본 장면을 절대 잊지 않는 능력','오직 어릴 때만 사용하는 기억'],correct:1,explain:'작업기억은 현재 목표에 필요한 정보를 능동적으로 유지하고 다루는 기능입니다. 숫자 다섯 자리 한 번의 정답 여부로 기억력 수준을 알 수는 없습니다.',sources:[['NIMH — Working Memory','https://www.nimh.nih.gov/research/research-funded-by-nimh/rdoc/constructs/working-memory'],['Noba — Memory: Encoding, Storage, Retrieval','https://nobaproject.com/modules/memory-encoding-storage-retrieval']]},
+{id:'bias',no:'03',cat:'사고 · THINKING',short:'확증편향',title:'왜 내 생각을 뒷받침하는 것만 보일까요?',lead:'이미 갖고 있던 믿음은 어떤 자료를 찾아보고 어떻게 해석할지에도 영향을 줄 수 있습니다.',conceptTitle:'확증편향: 믿음에 유리한 정보만 찾기',conceptBody:'확증편향은 자신의 기대나 기존 생각을 지지하는 정보를 더 쉽게 찾거나, 받아들이거나, 그렇게 해석하려는 경향입니다. 검증할 때는 내 가설과 어긋나는 사례도 적극적으로 살펴보는 것이 중요합니다.',points:['‘맞았던 경험’만 기억하면 다른 사례가 가려질 수 있습니다.','반대되는 증거를 살피는 것은 생각을 다듬는 방법입니다.','한 사람의 경험보다 비교 가능한 여러 자료가 도움이 될 수 있습니다.'],dailyTitle:'“음악을 들으면 공부가 잘된다”는 믿음',dailyBody:'음악을 켜고 공부가 잘된 날만 떠오른다면, 잘되지 않았던 날은 빠진 건 아닐까요? 내 생각을 시험해 보려면 반대 결과나 비교할 만한 자료를 함께 보세요.',takeaway:'좋은 검증은 내가 옳다는 증거뿐 아니라 틀렸을 가능성도 찾습니다.',demoTitle:'어떤 자료를 먼저 확인할까요?',demoLead:'가설을 더 공정하게 검토하는 데 유용한 두 가지 자료를 골라보세요.',quiz:'확증편향을 줄이려는 태도로 가장 적절한 것은?',options:['내 생각과 같은 글만 반복해서 읽는다','반례와 비교 자료도 적극적으로 살핀다','반대 의견은 항상 틀렸다고 본다','친구 한 명의 경험으로 일반화한다'],correct:1,explain:'반대 사례와 비교 가능한 자료를 함께 살피는 태도가 기존 믿음에 치우친 판단을 줄이는 데 도움이 됩니다.',sources:[['NIST — Confirmation Bias','https://www.nist.gov/glossary-term/36676']]},
+{id:'framing',no:'04',cat:'선택 · DECISION',short:'프레이밍 효과',title:'같은 사실도 말하는 방식이 다르다면?',lead:'정보의 내용이 같아도 표현하는 틀에 따라 느낌이나 선택이 달라질 수 있습니다.',conceptTitle:'프레이밍: 내용뿐 아니라 표현의 틀',conceptBody:'프레이밍 효과는 문제나 선택지가 어떤 문맥과 표현으로 제시되는지에 따라 판단이 달라질 수 있음을 가리킵니다. 같은 비율을 성공과 실패로 바꿔 말해도 받아들이는 인상이 달라질 수 있습니다.',points:['성공률 80%와 실패율 20%는 같은 기준 집단에서는 같은 비율을 나타냅니다.','긍정·부정 표현이 각각 다른 점에 주의를 끌 수 있습니다.','결정을 내릴 때 분모, 기간, 비교 조건을 함께 확인하면 좋습니다.'],dailyTitle:'후기를 볼 때의 두 문장',dailyBody:'“구매자 10명 중 8명이 만족했어요”와 “10명 중 2명이 만족하지 않았어요”는 같은 상황을 나타낼 수 있습니다. 어떤 표현이 먼저 보였는지가 제품에 대한 느낌에 영향을 줄 수 있겠지요.',takeaway:'결정 전에는 표현의 분위기와 실제 수치를 분리해서 살펴보세요.',demoTitle:'같은 정보인지 확인하기',demoLead:'다음 두 문장이 같은 모집단을 설명한다고 가정하면 수학적으로 같은 말일까요?',quiz:'프레이밍 효과를 이해한 설명으로 적절한 것은?',options:['사람의 선택은 문장 표현의 영향을 전혀 받지 않는다','정보를 어떻게 제시하느냐가 판단에 영향을 줄 수 있다','숫자는 언제나 거짓이다','긍정적 표현은 언제나 정답이다'],correct:1,explain:'같은 내용도 긍정 또는 부정의 틀로 제시되면 느낌과 선택이 달라질 수 있습니다. 모든 사람에게 항상 나타나는 것은 아닙니다.',sources:[['APA Dictionary — Framing','https://dictionary.apa.org/framing'],['Tversky & Kahneman (1981) — The Framing of Decisions','https://stanford.edu/class/psych205/papers/Tversky-Kahneman-1981.pdf']]}
+];
+const STORAGE_KEY='mindscape.lessons.completed.v1';
+const completed=new Set();
+try{JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]').forEach(x=>{if(lessons.some(l=>l.id===x))completed.add(x);});}catch{}
+let active=null,disposeDemo=()=>{},trialState=null;
+const make=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
+const putText=(id,text)=>{$(id).textContent=text;};
+function completion(){
+ putText('doneCount',completed.size+' / '+lessons.length);
+ $('doneProgress').style.width=(completed.size/lessons.length*100)+'%';
+}
+function saveCompletion(){
+ try{localStorage.setItem(STORAGE_KEY,JSON.stringify([...completed]));}catch{}
+ completion();drawCards();
+}
+function drawCards(){
+ const grid=$('lessonGrid');grid.replaceChildren();
+ lessons.forEach(l=>{
+  const card=make('article','lesson-card');
+  const top=make('div','card-top');top.append(make('span','',l.no+' / '+l.cat),make('span','complete',completed.has(l.id)?'✓ 학습 완료':'짧은 체험'));
+  card.append(top,make('h3','',l.short),make('p','',l.lead));
+  const tail=make('div','card-tail');tail.append(make('span','','읽기 · 체험 · 확인'));
+  const button=make('button','',completed.has(l.id)?'다시 복습하기 →':'학습하기 →');
+  button.type='button';button.addEventListener('click',()=>showLesson(l.id));tail.append(button);card.append(tail);
+  grid.append(card);
+ });
+}
+function setStatus(text){putText('demoStatus',text);}
+function button(label,onClick,primary=false){
+ const b=make('button','button '+(primary?'primary':'ghost'),label);
+ b.type='button';b.addEventListener('click',onClick);return b;
+}
+function setActions(...items){const c=$('demoActions');c.replaceChildren(...items);}
+function renderQuestion(l){
+ putText('quizQuestion',l.quiz);
+ const group=$('quizOptions');group.replaceChildren();putText('quizFeedback','');
+ l.options.forEach((o,i)=>{
+  const choice=make('button','',String(i+1).padStart(2,'0')+'  '+o);
+  choice.type='button';choice.setAttribute('aria-pressed','false');
+  choice.addEventListener('click',()=>{
+   [...group.children].forEach(b=>b.setAttribute('aria-pressed',String(b===choice)));
+   const correct=i===l.correct;
+   putText('quizFeedback',(correct?'정답입니다. ':'다시 생각해볼 수 있어요. ')+l.explain);
+   if(correct){completed.add(l.id);saveCompletion();}
+  });
+  group.append(choice);
+ });
+}
+function resetModule(){
+ disposeDemo();disposeDemo=()=>{};
+ trialState=null;$('demoContent').replaceChildren();$('demoActions').replaceChildren();
+ setStatus('');putText('demoState','시작 전');
+}
+function showHome(){
+ resetModule();active=null;$('lessonView').hidden=true;$('homeView').hidden=false;
+ document.title='MINDSCAPE — 경험으로 배우는 심리학';completion();drawCards();
+ window.scrollTo({top:0,behavior:'instant'});
+}
+function showLesson(id){
+ const l=lessons.find(x=>x.id===id);if(!l)return;
+ resetModule();active=l;
+ $('homeView').hidden=true;$('lessonView').hidden=false;
+ document.title=l.short+' | MINDSCAPE';
+ const setters=[['crumbTitle',l.short],['lessonOverline',l.no+' / '+l.cat],['lessonTitle',l.title],['lessonLead',l.lead],['lessonCounter',l.no+' / 04'],['conceptTitle',l.conceptTitle],['conceptBody',l.conceptBody],['dailyTitle',l.dailyTitle],['dailyBody',l.dailyBody],['takeaway',l.takeaway],['demoTitle',l.demoTitle],['demoLead',l.demoLead]];
+ setters.forEach(([key,val])=>putText(key,val));
+ const list=$('conceptPoints');list.replaceChildren(...l.points.map(x=>make('li','',x)));
+ const sources=$('sourceList');sources.replaceChildren();
+ l.sources.forEach(([name,url])=>{
+  const a=make('a','',name);a.href=url;a.target='_blank';a.rel='noopener noreferrer';
+  const li=make('li');li.append(a);sources.append(li);
+ });
+ renderQuestion(l);
+ const index=lessons.indexOf(l);
+ putText('nextLesson',index===lessons.length-1?'다시 첫 주제 보기 ↻':'다음 주제 배우기 →');
+ $('nextLesson').onclick=()=>showLesson(lessons[(index+1)%lessons.length].id);
+ if(l.id==='attention')initStroop();
+ if(l.id==='memory')initMemory();
+ if(l.id==='bias')initBias();
+ if(l.id==='framing')initFraming();
+ window.scrollTo({top:0,behavior:'instant'});
+}
+function initStroop(){
+ const labels=['빨강','파랑','초록','노랑'],inks=['#ff97a4','#91bfff','#88e6ba','#ffe090'];
+ // Three congruent and three incongruent trials, shuffled with balanced positions.
+ const trials=[
+ {word:0,ink:0,type:'일치'},{word:1,ink:1,type:'일치'},{word:2,ink:2,type:'일치'},
+ {word:0,ink:1,type:'불일치'},{word:2,ink:3,type:'불일치'},{word:3,ink:0,type:'불일치'}
+ ];
+ for(let i=trials.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[trials[i],trials[j]]=[trials[j],trials[i]];}
+ let index=0,correct=0,start=0,answers=[],ready=false;
+ const content=$('demoContent');
+ function startTest(){index=0;correct=0;answers=[];putText('demoState','1 / 6');draw();}
+ function draw(){
+  if(index>=trials.length){
+   ready=false;
+   const good=answers.filter(x=>x.ok);
+   const avg=type=>{const a=good.filter(x=>x.type===type).map(x=>x.ms);return a.length?Math.round(a.reduce((s,v)=>s+v,0)/a.length):null;};
+   const a=avg('일치'),b=avg('불일치');
+   content.replaceChildren(make('div','big-number',correct+' / 6'),make('p','', '정확하게 고른 문항'));
+   putText('demoState','완료');
+   setStatus(a!==null&&b!==null?'일치 정답 평균 '+a+'ms · 불일치 정답 평균 '+b+'ms. 문항이 적어 차이가 없거나 반대로 나타날 수도 있습니다.':'조건별 정답이 충분하지 않아 반응시간 비교는 생략합니다. 짧은 체험으로 개념을 확인하세요.');
+   setActions(button('다시 6문항 해보기 ↻',startTest));
+   return;
+  }
+  content.replaceChildren();
+  const item=trials[index],word=make('div','stimulus',labels[item.word]);
+  word.style.color=inks[item.ink];
+  const caption=make('p','', '보이는 글자색을 고르세요 (1~4)');
+  content.append(word,caption);
+  const choices=make('div','choice-row');
+  labels.forEach((name,i)=>{
+   const b=make('button');
+   b.type='button';const dot=make('span','swatch');dot.style.background=inks[i];
+   b.append(dot,make('span','',(i+1)+' '+name));
+   b.addEventListener('click',()=>answer(i));choices.append(b);
+  });
+  content.append(choices);
+  putText('demoState',(index+1)+' / 6');setStatus('뜻은 무시하고 색만 선택해 보세요.');
+  // Timestamp begins after the word has been painted on screen.
+  ready=false;requestAnimationFrame(()=>{requestAnimationFrame(()=>{if(active?.id==='attention'&&index<trials.length){ready=true;start=performance.now();}});});
+ }
+ function answer(choice){
+  if(!ready||active?.id!=='attention')return;
+  ready=false;const item=trials[index];
+  const ms=Math.max(0,performance.now()-start),ok=choice===item.ink;
+  if(ok)correct++;answers.push({type:item.type,ok,ms});index++;draw();
+ }
+ const key=e=>{if(active?.id==='attention'&&!e.altKey&&!e.ctrlKey&&!e.metaKey&&/^[1-4]$/.test(e.key)){const target=document.activeElement?.tagName;if(target==='INPUT'||target==='TEXTAREA')return;answer(Number(e.key)-1);}};
+ document.addEventListener('keydown',key);
+ disposeDemo=()=>document.removeEventListener('keydown',key);
+ content.append(make('p','','익숙한 읽기 반응이 색 판단에 어떤 영향을 주는지 가볍게 경험해 보세요.'));
+ setActions(button('6문항 시작하기 →',startTest,true));
+}
+function initMemory(){
+ const content=$('demoContent');let handle=null,current='',phase='idle';
+ const digits=()=>Array.from({length:5},()=>Math.floor(Math.random()*10)).join('');
+ const cleanup=()=>{if(handle!==null){clearTimeout(handle);handle=null;}};
+ function idle(){cleanup();phase='idle';content.replaceChildren(make('p','','시작하면 무작위 다섯 자리가 4초 동안 표시됩니다. 사라진 다음 숫자를 순서대로 입력하세요.'));putText('demoState','시작 전');setStatus('편하게 해보세요. 한 번의 성공/실패는 기억력 측정이 아닙니다.');setActions(button('숫자 보기 →',start,true));}
+ function start(){
+  cleanup();current=digits();phase='show';putText('demoState','기억하기');
+  content.replaceChildren(make('div','big-number',current),make('p','','4초 뒤 숫자가 사라집니다.'));
+  setStatus('숫자를 잠깐 머릿속에 붙잡아 보세요.');
+  setActions();
+  handle=setTimeout(()=>{handle=null;if(active?.id==='memory'&&phase==='show')ask();},4000);
+ }
+ function ask(){
+  phase='answer';content.replaceChildren();putText('demoState','입력하기');
+  const input=make('input');input.type='text';input.inputMode='numeric';input.autocomplete='off';input.maxLength=5;input.placeholder='다섯 자리';input.setAttribute('aria-label','방금 본 다섯 자리 숫자');
+  input.addEventListener('input',()=>{input.value=input.value.replace(/\D/g,'').slice(0,5);});
+  input.addEventListener('keydown',e=>{if(e.key==='Enter')submit();});
+  content.append(make('p','','방금 본 숫자를 순서대로 입력하세요.'),make('div','digit-entry'));
+  content.lastChild.append(input);
+  setStatus('숫자를 정확히 기억하지 못해도 괜찮습니다.');
+  setActions(button('답 확인하기 →',submit,true));
+  input.focus();
+  function submit(){
+   const inputValue=input.value.trim();
+   if(!/^\d{5}$/.test(inputValue)){setStatus('다섯 자리 숫자를 입력해 주세요.');return;}
+   phase='done';const ok=inputValue===current;putText('demoState','완료');
+   content.replaceChildren(make('div','big-number',current),make('p','',ok?'입력한 숫자와 일치합니다.':'입력: '+inputValue+' · 원래 숫자: '+current));
+   setStatus((ok?'이번에는 순서를 기억했네요. ':'이번에는 일부를 놓쳤네요. ')+'작업기억은 주의와 방해의 영향을 받을 수 있습니다. 이 체험은 진단이 아닙니다.');
+   setActions(button('새 숫자로 다시 해보기 ↻',start));
+  }
+ }
+ disposeDemo=cleanup;
+ idle();
+}
+function initBias(){
+ const content=$('demoContent'),options=[
+ '음악을 듣고 집중이 잘됐다는 친구 한 명의 경험',
+ '음악을 들었지만 집중이 잘되지 않았던 날의 기록',
+ '음악을 좋아하는 사람이 쓴 긍정적인 후기',
+ '음악을 들은 날과 듣지 않은 날을 같은 기준으로 비교한 기록'
+ ];
+ let selected=new Set();
+ function draw(){
+  content.replaceChildren(make('p','','“음악을 들으면 공부가 잘된다”는 생각을 검증하려 합니다. 어떤 두 자료부터 보는 것이 균형 잡힌 접근일까요?'));
+  const grid=make('div','scenario-grid');
+  options.forEach((label,i)=>{
+   const b=make('button','scenario-choice',label);b.type='button';b.setAttribute('aria-pressed',String(selected.has(i)));
+   b.addEventListener('click',()=>{selected.has(i)?selected.delete(i):selected.size<2&&selected.add(i);draw();});
+   grid.append(b);
+  });
+  content.append(grid);putText('demoState',selected.size+' / 2 선택');
+  setActions(button('선택 확인하기 →',()=>{
+   if(selected.size!==2){setStatus('두 가지를 선택해 주세요.');return;}
+   const good=selected.has(1)&&selected.has(3);
+   putText('demoState','확인 완료');
+   setStatus((good?'균형 잡힌 검증에 가까운 선택입니다. ':'이 선택에서 놓친 정보가 있는지 살펴보세요. ')+'반례(2번째)와 비교 기록(4번째)은 자신의 가설을 검토하는 데 특히 유용합니다. 실제 연구에서는 표본과 측정 방법도 검토해야 합니다.');
+  },true),button('다시 선택하기 ↻',()=>{selected=new Set();setStatus('');draw();}));
+ }
+ draw();setStatus('긍정적인 후기만 보면 다른 결과가 놓칠 수 있습니다.');
+}
+function initFraming(){
+ const content=$('demoContent');
+ const pairs=make('div','example-pair');
+ for(const [head,text] of [['표현 A','10명 중 8명이 만족했어요'],['표현 B','10명 중 2명이 만족하지 않았어요']]){
+  const box=make('div');box.append(make('span','',head),make('strong','',text));pairs.append(box);
+ }
+ content.replaceChildren(pairs);
+ putText('demoState','문장 비교');
+ setActions(button('같은 정보다',()=>conclude(true),true),button('다른 정보다',()=>conclude(false)));
+ function conclude(correct){
+  setStatus((correct?'맞습니다. ':'두 문장을 다시 비교해 보세요. ')+'같은 10명의 응답을 나타낸다면 만족 80%와 불만족 20%는 수학적으로 같은 자료입니다. 다만 표현이 주는 인상은 달라질 수 있습니다.');
+  putText('demoState','확인 완료');
+ }
+}
+$('navLessons').addEventListener('click',()=>{showHome();$('library').scrollIntoView({behavior:'instant',block:'start'});});
+$('navGuide').addEventListener('click',()=>{if(active)showHome();});
+$('heroStart').addEventListener('click',()=>showLesson('attention'));
+$('backLessons').addEventListener('click',showHome);
+$('footerBack').addEventListener('click',showHome);
+$('brandHome').addEventListener('click',e=>{e.preventDefault();showHome();});
+window.addEventListener('visibilitychange',()=>{if(document.hidden&&active?.id==='memory'){disposeDemo();if($('demoState').textContent==='기억하기'){putText('demoState','일시중지');setStatus('탭을 떠나 숫자를 보는 시간이 중단됐습니다. 다시 시작해 주세요.');setActions(button('다시 시작 →',()=>{if(active?.id==='memory')initMemory();},true));$('demoContent').replaceChildren(make('p','','시간이 중단되어 숫자를 다시 보여드립니다.'));}}});
+completion();drawCards();
 })();
 </script>
 </body>
