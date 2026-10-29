@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f7f6f2">
-<meta name="description" content="MINDSCAPE는 인간관계, 사회, 집단, 윤리, 인지의 14개 심리학 주제를 선택형 이야기와 연구 기반 해설로 배우는 학습 공간입니다.">
+<meta name="description" content="MINDSCAPE에서 18개 심리학 주제를 만나보세요. 상황별 추천 코스, 선택형 이야기, 핵심 요약과 복습으로 일상 속 마음의 원리를 배웁니다.">
 <title>MINDSCAPE — 이야기로 이해하는 심리학</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,6 +112,7 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./arcana-theme.css">
+<link rel="stylesheet" href="./learning-ui.css">
 </head>
 <body>
 
@@ -120,11 +121,11 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 <header><div class="wrap topbar">
 <a class="brand" href="#home" id="brandHome">MINDSCAPE<em>ARCANA OF PSYCHOLOGY</em></a>
 <nav class="nav" aria-label="주요 메뉴">
-<button type="button" id="navLessons">아르카나 덱</button>
+<button type="button" id="navLessons">주제 둘러보기</button>
 <a href="#study-guide" id="navGuide">학습 방법</a>
 <a href="https://gwonjae06-droid.github.io/portfolio/" rel="noopener noreferrer">포트폴리오 ↗</a>
 </nav>
-<div class="top-progress"><span id="doneCount">0 / 14</span><div class="progress-track"><b id="doneProgress"></b></div></div>
+<div class="top-progress" aria-label="학습 완료 현황"><span id="doneCount">0 / 18</span><div class="progress-track"><b id="doneProgress"></b></div></div>
 </div></header>
 <main id="main">
 <div id="homeView">
@@ -135,7 +136,7 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
   <h1>이야기로 이해하는<br><em>사람의 마음.</em></h1>
   <p class="intro">답장이 늦은 친구를 오해하고, 다수의 의견에 흔들리는 순간. 익숙한 일상 속에 숨어 있는 심리학을 직접 선택하고, 이유까지 배워보세요.</p>
   <div class="hero-actions">
-   <button class="button primary" id="heroStart" type="button">인간관계부터 시작하기 →</button>
+   <button class="button primary" id="heroStart" type="button">나에게 맞는 코스 찾기 →</button>
    <button class="button ghost" id="arcanaRandom" type="button">랜덤 주제 선택</button>
   </div>
  </div>
@@ -143,40 +144,57 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
   <div class="editorial-feature">
    <span class="editorial-feature__index">01 — 05 / PSYCHOLOGY</span>
    <p class="editorial-feature__headline">읽고,<br>선택하고,<br><em>이해하기.</em></p>
-   <p>5개 분야 · 14개 이야기 · 연구 기반 해설</p>
+   <p>5개 분야 · 18개 이야기 · 연구 기반 해설</p>
    <div class="editorial-feature__rule"></div>
    <span>감정이나 성격을 점치는 검사가 아닌, 심리학을 배우는 작은 읽을거리입니다.</span>
   </div>
  </aside>
 </section>
+<section id="learningPaths" class="path-section" aria-labelledby="pathTitle">
+ <div class="section-head"><div><span class="overline">YOUR FIRST STEP</span><h2 id="pathTitle">오늘, 무엇이 궁금한가요?</h2></div><p>세 가지 주제를 순서대로. 이야기 한 편은 약 5분이면 읽을 수 있어요.</p></div>
+ <div id="pathCards" class="path-grid"></div>
+ <div id="continueStudy" class="continue-study" hidden></div>
+</section>
 <section id="library">
-<div class="section-head"><div><span class="overline">EXPLORE BY SUBJECT</span><h2>관심 있는 분야부터.</h2></div><p>분야를 고르면 관련 이야기를 바로 볼 수 있습니다. 설명은 스토리 뒤에 정리되어 있습니다.</p></div>
+<div class="section-head"><div><span class="overline">EXPLORE BY SUBJECT</span><h2>관심 있는 분야부터.</h2></div><p>분야와 학습 상태로 좁혀 보세요. 이야기부터 읽거나 핵심 정리로 바로 이동할 수 있습니다.</p></div>
 <div id="arcanaDeck" class="arcana-deck" aria-label="다섯 가지 아르카나 세계의 카드"></div>
-<div class="hero-actions" style="margin:0 0 27px"><button type="button" id="arcanaAll" class="button ghost">전체 14개 주제 보기</button></div>
+<div class="hero-actions" style="margin:0 0 27px"><button type="button" id="arcanaAll" class="button ghost">전체 18개 주제 보기</button></div>
 <div id="arcanaStudy">
 <div id="arcanaWorld" class="arcana-world-intro" aria-live="polite"></div>
 <div class="explore-toolbar" aria-label="심리학 주제 찾아보기">
  <div id="categoryTabs" class="category-tabs" role="group" aria-label="카테고리 필터"></div>
  <div class="topic-search-line"><label for="topicSearch">주제 검색</label><input id="topicSearch" type="search" maxlength="70" placeholder="예: 후광효과, 친구, 동조" autocomplete="off"><span id="listSummary" role="status" aria-live="polite"></span></div>
 </div>
+<div class="study-filters" role="group" aria-label="학습 상태 필터">
+ <button type="button" data-study-filter="all" aria-pressed="true">모든 주제</button>
+ <button type="button" data-study-filter="new" aria-pressed="false">아직 안 배운 주제</button>
+ <button type="button" data-study-filter="saved" aria-pressed="false">저장한 주제</button>
+ <button type="button" data-study-filter="done" aria-pressed="false">완료한 주제 복습</button>
+ <button type="button" id="clearFilters">필터 초기화</button>
+</div>
 <div id="lessonGrid" class="category-directory"></div>
 </div>
 </section>
 <div class="about-band" id="study-guide">
 <div><h3>이렇게 공부해 보세요</h3><p>이야기 속 선택 → 심리학적 해설 → 핵심 정리 → 이해도 확인. 궁금한 분야부터 자유롭게 읽어보세요.</p></div>
-<div><h3>학습 기록과 개인정보</h3><p>완료 표시는 현재 브라우저에만 저장됩니다. 이야기 선택은 심리검사나 능력 진단이 아니며, 서버로 전송하지 않습니다.</p></div>
+<div><h3>학습 기록과 개인정보</h3><p>완료·저장·최근 주제는 현재 브라우저에만 기록됩니다. 기록을 저장할 수 없어도 학습할 수 있습니다. 이야기 선택은 심리검사나 능력 진단이 아니며, 서버로 전송하지 않습니다.</p><p id="storageStatus" role="status"></p></div>
 </div>
 </div>
 </div>
 <div id="lessonView" hidden>
 <div class="wrap learning-pane">
- <div class="crumbs"><button type="button" id="backLessons">← 아르카나 카드</button><span>/</span><span id="crumbTitle"></span></div>
+ <div class="crumbs"><button type="button" id="backLessons">← 주제 목록</button><span>/</span><span id="crumbTitle"></span></div>
  <div class="vn-chapter-heading">
   <span class="overline" id="lessonOverline"></span>
   <h1 class="page-title" id="lessonTitle"></h1>
   <p class="vn-chapter-deck" id="lessonLead"></p>
   <span class="lesson-counter" id="lessonCounter"></span>
  </div>
+ <div id="courseProgress" class="course-progress" hidden></div>
+ <section class="lesson-brief" aria-labelledby="briefTitle">
+  <div><span class="overline">약 5분 · 개념 → 이야기 → 확인</span><h2 id="briefTitle">이번에 배울 한 가지</h2><p id="briefText"></p></div>
+  <div class="brief-actions"><button class="button ghost" type="button" id="saveLesson" aria-pressed="false">☆ 나중에 복습</button><button class="button primary" type="button" id="readSummary">핵심 정리 바로 읽기 ↓</button></div>
+ </section>
  <section class="vn-stage" id="vnStage" data-world="relations" aria-label="선택형 심리학 이야기">
   <div class="vn-stage__sky" aria-hidden="true">
    <div class="vn-stage__orb"></div>
@@ -223,6 +241,11 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
   <div class="quiz"><h3 id="quizQuestion"></h3><div id="quizOptions" class="quiz-options"></div><p id="quizFeedback" class="feedback" role="status" aria-live="polite"></p></div>
   <p class="vn-small-note">한 번의 선택은 개인의 성격이나 능력을 평가하지 않습니다. 질문은 개념을 이해하기 위한 것입니다.</p>
  </section>
+ <section id="recallPanel" class="recall-panel" hidden aria-labelledby="recallTitle">
+  <span class="overline">ONE MORE THOUGHT</span><h2 id="recallTitle">내 말로 설명해 보기</h2>
+  <p id="reflectionPrompt"></p><p>잠시 화면에서 눈을 떼고, 핵심 개념과 나만의 예시 하나를 떠올려 보세요.</p>
+  <details><summary>한 문장 정리 확인하기</summary><p id="recallAnswer"></p></details>
+ </section>
  <div class="vn-extras">
   <details class="vn-detail" id="vnConcept">
    <summary>원래 개념 설명과 일상 사례 더 읽기 <span aria-hidden="true">＋</span></summary>
@@ -252,13 +275,14 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
    </div>
   </details>
  </div>
- <div class="study-footer"><button class="button ghost" type="button" id="footerBack">← 카드 덱으로 돌아가기</button><button class="button primary" type="button" id="nextLesson">다음 이야기 열기 →</button></div>
+ <div class="study-footer"><button class="button ghost" type="button" id="footerBack">← 주제 목록으로 돌아가기</button><button class="button primary" type="button" id="nextLesson">다음 이야기 열기 →</button></div>
 </div>
 </div>
 </main>
 <footer><div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px"><span>© 2026 MINDSCAPE · 이권재</span><span>읽고, 경험하고, 다시 생각하기</span><a href="https://gwonjae06-droid.github.io/portfolio/">포트폴리오로 돌아가기 ↗</a></div></footer>
 <script src="./arcana-stories.js"></script>
 <script src="./psychology-notes.js"></script>
+<script src="./learning-content.js"></script>
 <script>
 (()=>{
 'use strict';
@@ -276,6 +300,7 @@ const socialEnrichment={"attribution":["답장을 못 받은 단체 채팅","수
 socialLessons.forEach(l=>{const [dailyTitle,dailyBody,points]=socialEnrichment[l.id];l.dailyTitle=dailyTitle;l.dailyBody=dailyBody;l.points=points;});
 lessons.push(...socialLessons);
 const categories=[{"id":"relations","title":"인간관계","english":"RELATIONSHIPS","desc":"상대방의 행동을 해석하고, 친밀감을 쌓으며 오해를 줄이는 심리학"},{"id":"society","title":"사회","english":"SOCIETY","desc":"문화, 사회적 규범, 주변 사람의 존재가 행동에 미치는 영향"},{"id":"groups","title":"집단","english":"GROUPS","desc":"다수의 의견과 팀의 분위기가 우리의 판단을 바꾸는 방식"},{"id":"ethics","title":"윤리","english":"ETHICAL JUDGMENT","desc":"책임과 공정성에 대한 판단을 비판적으로 되돌아보기"},{"id":"cognition","title":"인지","english":"COGNITION","desc":"주의, 기억, 사고, 선택의 기본 원리를 실험으로 배우기"}];
+lessons.push(...window.MindscapeExtraLessons);
 const categoryById=Object.fromEntries(categories.map(c=>[c.id,c]));
 const CATEGORY_ALL='all';
 const STORAGE_KEY='mindscape.lessons.completed.v1';
@@ -284,13 +309,61 @@ try{JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]').forEach(x=>{if(lessons.s
 let active=null,disposeDemo=()=>{},trialState=null,activeCategory='all',searchTerm='';
 const make=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
 const putText=(id,text)=>{$(id).textContent=text;};
+const PREFERENCES_KEY='mindscape.study.v1';
+let saved=new Set(),lastLesson=null,studyFilter='all',activePath=null,summaryMode=false;
+let browseState={category:'all',query:''};
+const paths=[
+ {id:'relationships',title:'관계의 오해 줄이기',desc:'늦은 답장부터 첫인상까지, 상대를 이해하는 연습.',ids:['attribution','halo','reciprocity'],icon:'01'},
+ {id:'decisions',title:'내 판단 점검하기',desc:'후기와 광고에 흔들릴 때, 판단의 기준을 세우기.',ids:['bias','availability','anchoring'],icon:'02'},
+ {id:'learning',title:'배운 것을 오래 기억하기',desc:'읽고 끝내지 않도록, 기억의 원리와 학습법 익히기.',ids:['memory','retrieval','spacing'],icon:'03'}
+];
+try{
+ const p=JSON.parse(localStorage.getItem(PREFERENCES_KEY)||'{}');
+ if(Array.isArray(p.saved))saved=new Set(p.saved.filter(id=>lessons.some(l=>l.id===id)));
+ if(lessons.some(l=>l.id===p.lastLesson))lastLesson=p.lastLesson;
+}catch{}
+function persistStudy(){
+ try{localStorage.setItem(PREFERENCES_KEY,JSON.stringify({saved:[...saved],lastLesson}));}
+ catch{putText('storageStatus','브라우저 저장이 제한되어 이번 방문에서만 기록이 유지됩니다.');}
+}
+function updateSaveButton(){
+ if(!active)return;
+ $('saveLesson').setAttribute('aria-pressed',String(saved.has(active.id)));
+ putText('saveLesson',saved.has(active.id)?'★ 저장됨 · 해제하기':'☆ 나중에 복습');
+}
+function renderPaths(){
+ const root=$('pathCards');root.replaceChildren();
+ paths.forEach(path=>{
+  const card=make('article','path-card');
+  card.append(make('span','path-index',path.icon+' / 추천 코스'),make('h3','',path.title),make('p','',path.desc));
+  const list=make('ol');path.ids.forEach(id=>list.append(make('li','',lessons.find(l=>l.id===id).short)));
+  const done=path.ids.filter(id=>completed.has(id)).length;
+  card.append(list,make('p','path-meta','약 15분 · '+done+' / 3 완료'));
+  card.append(button(done===3?'코스 다시 읽기 →':done?'코스 이어 배우기 →':'이 코스로 시작하기 →',()=>{
+   activePath=path;showLesson(path.ids.find(id=>!completed.has(id))||path.ids[0]);
+  },true));root.append(card);
+ });
+ const resume=$('continueStudy');resume.replaceChildren();resume.hidden=!lastLesson;
+ if(lastLesson){const l=lessons.find(l=>l.id===lastLesson);
+  resume.append(make('p','','최근 읽은 주제 · '+l.short),button('다시 열기 →',()=>{activePath=null;showLesson(l.id);}));
+ }
+}
+function renderCourse(){
+ const box=$('courseProgress');box.replaceChildren();box.hidden=!activePath;
+ if(!activePath)return;
+ box.append(make('strong','',activePath.title));
+ activePath.ids.forEach((id,i)=>{
+  const l=lessons.find(l=>l.id===id),b=button((i+1)+'. '+l.short+(completed.has(id)?' ✓':''),()=>showLesson(id));
+  if(active.id===id)b.setAttribute('aria-current','step');box.append(b);
+ });
+}
 function completion(){
  putText('doneCount',completed.size+' / '+lessons.length);
  $('doneProgress').style.width=(completed.size/lessons.length*100)+'%';
 }
 function saveCompletion(){
- try{localStorage.setItem(STORAGE_KEY,JSON.stringify([...completed]));}catch{}
- completion();drawCards();renderArcanaDeck();
+ try{localStorage.setItem(STORAGE_KEY,JSON.stringify([...completed]));}catch{putText('storageStatus','브라우저 저장이 제한되어 이번 방문에서만 기록이 유지됩니다.');}
+ completion();drawCards();renderArcanaDeck();renderPaths();renderCourse();
 }
 
 function orderedLessons(){return categories.flatMap(cat=>lessons.filter(l=>l.group===cat.id));}
@@ -301,7 +374,7 @@ function openPortal(label,callback){callback();}
 function makeArcana(data,onClick){
  const b=make('button','arcana-card');
  b.type='button';b.dataset.category=data.group;
- b.setAttribute('aria-label',data.title+' — '+data.question+' 카드 뽑기');
+ b.setAttribute('aria-label',data.title+' — '+data.question+' · '+data.footer);
  const inside=make('span','arcana-card__inside'),number=make('span','arcana-card__number');
  number.append(make('span','',data.no),make('span','',data.tag));
  inside.append(number,make('span','arcana-card__glyph',data.glyph),
@@ -317,7 +390,7 @@ function renderArcanaDeck(){
   const a=arcanaArt[cat.id],all=lessons.filter(l=>l.group===cat.id);
   const done=all.filter(l=>completed.has(l.id)).length;
   const c=makeArcana({group:cat.id,no:a[0],glyph:a[1],tag:a[2],title:cat.title,
-   subtitle:cat.english,question:a[3],footer:done+' / '+all.length+' LEARNED · ENTER'},()=>openPortal(cat.title+' WORLD',()=>enterArcana(cat.id)));
+   subtitle:cat.english,question:a[3],footer:done+' / '+all.length+'개 완료 · 둘러보기 →'},()=>openPortal(cat.title+' WORLD',()=>enterArcana(cat.id)));
   c.style.animationDelay=-(i*1.3)+'s';deck.append(c);
  });
 }
@@ -325,7 +398,7 @@ function drawWorldIntro(){
  const box=$('arcanaWorld');box.replaceChildren();
  if(activeCategory==='all'){
   box.append(make('small','','THE COMPLETE ARCANA'),make('h3','','마음의 모든 세계'),
-   make('p','','다섯 세계의 열네 가지 심리학 질문을 펼쳤습니다. 궁금한 카드를 선택해 더 깊이 들어가 보세요.'));
+   make('p','','5개 분야의 '+lessons.length+'개 주제. 지금 궁금한 상황을 검색하거나, 저장한 주제를 다시 읽어보세요.'));
   return;
  }
  const cat=categories.find(x=>x.id===activeCategory);
@@ -336,14 +409,14 @@ function drawWorldIntro(){
 }
 function enterArcana(id){
  if(active)showHome();
- activeCategory=id;searchTerm='';$('topicSearch').value='';
+ activeCategory=id;
  $('arcanaStudy').hidden=false;
  drawWorldIntro();drawCategoryTabs();drawCards();
  $('arcanaWorld').scrollIntoView({behavior:'instant',block:'start'});
 }
 function returnToArcana(){
- const id=active?.group||activeCategory;
- showHome();enterArcana(id);
+ showHome();$('arcanaWorld').scrollIntoView({behavior:'instant',block:'start'});
+ $('topicSearch').focus({preventScroll:true});
 }
 
 function drawCategoryTabs(){
@@ -367,7 +440,7 @@ function drawCards(){
  for(const cat of categories){
   if(activeCategory!=='all'&&activeCategory!==cat.id)continue;
   const all=lessons.filter(l=>l.group===cat.id);
-  const visible=all.filter(l=>!q||[l.short,l.title,l.lead,l.cat,l.conceptBody,l.dailyBody,...l.points]
+  const visible=all.filter(l=>(studyFilter==='all'||studyFilter==='new'&&!completed.has(l.id)||studyFilter==='saved'&&saved.has(l.id)||studyFilter==='done'&&completed.has(l.id))).filter(l=>!q||[l.short,l.title,l.lead,l.cat,l.conceptBody,l.dailyBody,...l.points]
     .some(s=>s.normalize('NFKC').toLocaleLowerCase('ko-KR').includes(q)));
   if(!visible.length)continue;
   shown+=visible.length;
@@ -378,14 +451,20 @@ function drawCards(){
   const grid=make('div','arcana-lesson-grid'),a=arcanaArt[cat.id];
   visible.forEach((l,i)=>{
    const c=makeArcana({group:cat.id,no:l.no,tag:a[2],glyph:a[1],
-    title:l.short,subtitle:'PSYCHOLOGY LESSON',question:l.lead,
-    footer:completed.has(l.id)?'✓ LEARNED · REVISIT':'DRAW CARD · ENTER'},()=>openPortal(l.short,()=>showLesson(l.id)));
-   c.style.animationDelay=-(i*.9)+'s';grid.append(c);
+    title:l.short,subtitle:'약 5분 · 입문'+(Number(l.no)>14?' · NEW':''),question:l.lead,
+    footer:completed.has(l.id)?'✓ 학습 완료 · 다시 읽기':'이야기 시작하기 →'},()=>{activePath=null;openPortal(l.short,()=>showLesson(l.id));});
+   const item=make('div','lesson-item');
+   const save=button(saved.has(l.id)?'★ 저장됨':'☆ 저장',()=>{
+    saved.has(l.id)?saved.delete(l.id):saved.add(l.id);persistStudy();drawCards();
+    (document.querySelector('[data-save-id="'+l.id+'"]')||document.querySelector('[data-study-filter="saved"]')).focus();
+   });
+   save.dataset.saveId=l.id;save.setAttribute('aria-label',l.short+' 복습용 저장');save.setAttribute('aria-pressed',String(saved.has(l.id)));
+   item.append(c,save);grid.append(item);
   });
   section.append(grid);root.append(section);
  }
- putText('listSummary',shown+'개 아르카나 카드 · 총 '+lessons.length+'개 주제');
- if(!shown)root.append(make('p','empty-result','일치하는 카드가 없습니다. 다른 단어를 검색해 보세요.'));
+ putText('listSummary',shown+'개 표시 · 총 '+lessons.length+'개 주제');
+ if(!shown){root.append(make('p','empty-result',studyFilter==='saved'?'저장한 주제가 없습니다. 카드의 ☆ 저장을 눌러 복습 목록을 만들어 보세요.':'조건에 맞는 주제가 없습니다. 검색어나 필터를 바꿔 보세요.'));root.append(button('모든 주제 다시 보기',clearFilters));}
 }
 function setStatus(text){putText('demoStatus',text);}
 function button(label,onClick,primary=false){
@@ -414,7 +493,8 @@ function resetModule(){
  setStatus('');putText('demoState','시작 전');
 }
 function showHome(){
- resetModule();active=null;$('lessonView').hidden=true;$('homeView').hidden=false;$('arcanaStudy').hidden=false;activeCategory='all';drawWorldIntro();drawCategoryTabs();
+ if(active){activeCategory=browseState.category;searchTerm=browseState.query;}
+ resetModule();active=null;activePath=null;$('lessonView').hidden=true;$('homeView').hidden=false;$('arcanaStudy').hidden=false;$('topicSearch').value=searchTerm;drawWorldIntro();drawCategoryTabs();renderPaths();
  document.title='MINDSCAPE — 경험으로 배우는 심리학';completion();drawCards();
  window.scrollTo({top:0,behavior:'instant'});
 }
@@ -446,8 +526,9 @@ function renderVN(){
  $('vnMeter').style.width=String((vnStep+1)/9*100)+'%';
  choices.replaceChildren();choices.hidden=true;
  prompt.hidden=true;next.hidden=false;
- quiz.hidden=vnStep!==8;
- notes.hidden=vnStep!==8;
+ quiz.hidden=vnStep!==8&&!summaryMode;
+ notes.hidden=vnStep!==8&&!summaryMode;
+ $('recallPanel').hidden=vnStep!==8&&!summaryMode;
  let who='',text='';
  if(vnStep<=2){[who,text]=story.dialogue[vnStep];next.textContent=vnStep===2?'선택하기 →':'다음 장면 →';}
  else if(vnStep===3){
@@ -460,7 +541,7 @@ function renderVN(){
    const number=make('span','vn-choice__number',String(i+1).padStart(2,'0'));
    const description=make('span','vn-choice__text',choice);
    b.append(number,description);
-   b.addEventListener('click',()=>{vnSelected=i;vnStep=4;renderVN();});
+   b.addEventListener('click',()=>{vnSelected=i;vnStep=4;renderVN();next.focus({preventScroll:true});});
    choices.append(b);
   });
  }
@@ -479,13 +560,18 @@ function renderVN(){
  if(vnStep===8)requestAnimationFrame(()=>notes.scrollIntoView({behavior:'smooth',block:'start'}));
 }
 function resetVN(){
- vnStep=0;vnSelected=null;
+ vnStep=0;vnSelected=null;summaryMode=false;
  if(active)renderQuestion(active);
  renderVN();
 }
 function showLesson(id){
  const l=lessons.find(x=>x.id===id);if(!l)return;
+ if(!active)browseState={category:activeCategory,query:searchTerm};
  resetModule();active=l;activeCategory=l.group;
+ lastLesson=l.id;persistStudy();updateSaveButton();renderCourse();
+ putText('briefText',l.conceptBody);
+ putText('reflectionPrompt',l.reflection||'이 개념이 나타날 수 있는 나만의 일상 장면을 하나 떠올려 보세요. 다른 설명도 가능할까요?');
+ putText('recallAnswer',l.takeaway);$('recallPanel').querySelector('details').open=false;
  $('homeView').hidden=true;$('lessonView').hidden=false;
  document.title=l.short+' | MINDSCAPE';
  const setters=[
@@ -512,15 +598,17 @@ function showLesson(id){
  $('vnConcept').open=false;$('vnSources').open=false;$('vnLab').open=false;
  const hasLab=['attention','memory','bias','framing'].includes(l.id);
  $('vnLab').hidden=!hasLab;
- const ordered=orderedLessons(),index=ordered.findIndex(x=>x.id===l.id);
- putText('nextLesson',index===ordered.length-1?'첫 번째 이야기로 ↻':'다음 이야기 열기 →');
- $('nextLesson').onclick=()=>openPortal('다음 이야기',()=>showLesson(ordered[(index+1)%ordered.length].id));
+ const ordered=activePath?activePath.ids.map(id=>lessons.find(l=>l.id===id)):orderedLessons(),index=ordered.findIndex(x=>x.id===l.id);
+ const atCourseEnd=activePath&&index===ordered.length-1;
+ putText('nextLesson',atCourseEnd?'코스 목록으로 돌아가기 →':'다음: '+ordered[(index+1)%ordered.length].short+' →');
+ $('nextLesson').onclick=()=>{if(atCourseEnd){showHome();$('learningPaths').scrollIntoView();}else showLesson(ordered[(index+1)%ordered.length].id);};
  if(l.id==='attention')initStroop();
  if(l.id==='memory')initMemory();
  if(l.id==='bias')initBias();
  if(l.id==='framing')initFraming();
  resetVN();
  window.scrollTo({top:0,behavior:'instant'});
+ $('lessonTitle').tabIndex=-1;$('lessonTitle').focus({preventScroll:true});
 }
 $('vnNext').addEventListener('click',()=>{if(!active||vnStep>=8||vnStep===3)return;vnStep++;renderVN();});
 $('vnReplay').addEventListener('click',resetVN);
@@ -677,16 +765,22 @@ function initFraming(){
 }
 $('navLessons').addEventListener('click',()=>{showHome();$('library').scrollIntoView({behavior:'instant',block:'start'});});
 $('navGuide').addEventListener('click',()=>{if(active)showHome();});
-$('heroStart').addEventListener('click',()=>openPortal('인간관계 WORLD',()=>enterArcana('relations')));
-$('arcanaRandom').addEventListener('click',()=>{const cat=categories[Math.floor(Math.random()*categories.length)];openPortal(cat.title+' WORLD',()=>enterArcana(cat.id));});
-$('arcanaAll').addEventListener('click',()=>enterArcana('all'));
+$('heroStart').addEventListener('click',()=>$('learningPaths').scrollIntoView({behavior:'smooth'}));
+$('arcanaRandom').addEventListener('click',()=>{const unread=lessons.filter(l=>!completed.has(l.id));const pool=unread.length?unread:lessons;activePath=null;showLesson(pool[Math.floor(Math.random()*pool.length)].id);});
+$('arcanaAll').addEventListener('click',clearFilters);
 $('backLessons').addEventListener('click',returnToArcana);
 $('footerBack').addEventListener('click',returnToArcana);
 $('brandHome').addEventListener('click',e=>{e.preventDefault();showHome();});
 window.addEventListener('visibilitychange',()=>{if(document.hidden&&active?.id==='memory'){disposeDemo();if($('demoState').textContent==='기억하기'){putText('demoState','일시중지');setStatus('탭을 떠나 숫자를 보는 시간이 중단됐습니다. 다시 시작해 주세요.');setActions(button('다시 시작 →',()=>{if(active?.id==='memory')initMemory();},true));$('demoContent').replaceChildren(make('p','','시간이 중단되어 숫자를 다시 보여드립니다.'));}}});
 $('topicSearch').addEventListener('input',e=>{searchTerm=e.target.value;drawCards();});
+function syncStudyFilters(){document.querySelectorAll('[data-study-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.studyFilter===studyFilter)));}
+function clearFilters(){studyFilter='all';searchTerm='';$('topicSearch').value='';syncStudyFilters();enterArcana('all');}
+document.querySelectorAll('[data-study-filter]').forEach(b=>b.addEventListener('click',()=>{studyFilter=b.dataset.studyFilter;syncStudyFilters();drawCards();}));
+$('clearFilters').addEventListener('click',clearFilters);
+$('saveLesson').addEventListener('click',()=>{if(!active)return;saved.has(active.id)?saved.delete(active.id):saved.add(active.id);persistStudy();updateSaveButton();});
+$('readSummary').addEventListener('click',()=>{summaryMode=true;renderVN();$('vnLearning').scrollIntoView({behavior:'smooth'});$('vnLearning').tabIndex=-1;$('vnLearning').focus({preventScroll:true});});
 drawCategoryTabs();
-completion();renderArcanaDeck();drawWorldIntro();drawCards();
+completion();renderArcanaDeck();drawWorldIntro();drawCards();renderPaths();
 })();
 </script>
 
