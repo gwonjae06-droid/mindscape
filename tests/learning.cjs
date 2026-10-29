@@ -24,6 +24,10 @@ const server = http.createServer((req, res) => {
     await page.goto(url);
     assert.equal(await page.locator('.lesson-item').count(),18);
     assert.equal(await page.locator('.path-card').count(),3);
+    assert.equal(await page.locator('.arcana-ritual-card').count(),3);
+    assert.equal(await page.locator('#arcanaStars').isVisible(),true);
+    assert.equal(await page.locator('.arcana-deck .arcana-card__glyph').first().isVisible(),true);
+    assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(11, 7, 19)');
     // Save, persist, filter, remove; no lesson opens as a side effect.
     await page.locator('[data-save-id="retrieval"]').click();
     await page.reload();

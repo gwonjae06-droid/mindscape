@@ -115,13 +115,14 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 <link rel="stylesheet" href="./learning-ui.css">
 </head>
 <body>
+<canvas id="arcanaStars" aria-hidden="true"></canvas>
 
 <div id="arcanaPortal" class="arcana-portal" aria-hidden="true"><div class="arcana-portal__ring"></div><div class="arcana-portal__label" id="arcanaPortalLabel">THE ARCANA OPENS</div></div>
 <a href="#main" class="skip">본문으로 이동</a>
 <header><div class="wrap topbar">
 <a class="brand" href="#home" id="brandHome">MINDSCAPE<em>ARCANA OF PSYCHOLOGY</em></a>
 <nav class="nav" aria-label="주요 메뉴">
-<button type="button" id="navLessons">주제 둘러보기</button>
+<button type="button" id="navLessons">아르카나 덱</button>
 <a href="#study-guide" id="navGuide">학습 방법</a>
 <a href="https://gwonjae06-droid.github.io/portfolio/" rel="noopener noreferrer">포트폴리오 ↗</a>
 </nav>
@@ -132,31 +133,31 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 <div class="wrap">
 <section class="hero" id="home">
  <div class="hero-copy">
-  <span class="overline">MINDSCAPE / PSYCHOLOGY LIBRARY</span>
-  <h1>이야기로 이해하는<br><em>사람의 마음.</em></h1>
-  <p class="intro">답장이 늦은 친구를 오해하고, 다수의 의견에 흔들리는 순간. 익숙한 일상 속에 숨어 있는 심리학을 직접 선택하고, 이유까지 배워보세요.</p>
+  <span class="overline">MINDSCAPE / ARCANA OF PSYCHOLOGY</span>
+  <h1>마음의 카드를 펼쳐,<br><em>당신의 세계를 읽다.</em></h1>
+  <p class="intro">어서 오세요, 마음의 여행자님. 저는 이곳의 점술가이자 이야기의 안내자입니다. 답장이 늦은 친구, 흔들리는 선택, 잊혀지는 기억. 당신이 고른 카드 속에서 일상의 심리학을 함께 읽어볼까요?</p>
   <div class="hero-actions">
-   <button class="button primary" id="heroStart" type="button">나에게 맞는 코스 찾기 →</button>
-   <button class="button ghost" id="arcanaRandom" type="button">랜덤 주제 선택</button>
+   <button class="button primary" id="heroStart" type="button">점술가의 안내 따라가기 →</button>
+   <button class="button ghost" id="arcanaRandom" type="button">오늘의 카드 한 장 뽑기 ✧</button>
   </div>
  </div>
- <aside class="hero-visual" aria-label="학습 이용 안내">
-  <div class="editorial-feature">
-   <span class="editorial-feature__index">01 — 05 / PSYCHOLOGY</span>
-   <p class="editorial-feature__headline">읽고,<br>선택하고,<br><em>이해하기.</em></p>
-   <p>5개 분야 · 18개 이야기 · 연구 기반 해설</p>
-   <div class="editorial-feature__rule"></div>
-   <span>감정이나 성격을 점치는 검사가 아닌, 심리학을 배우는 작은 읽을거리입니다.</span>
+ <aside class="hero-visual" aria-label="수정구와 세 장의 아르카나 카드">
+  <div class="arcana-sanctum" aria-hidden="true">
+   <div class="arcana-orb"></div>
+   <div class="arcana-ritual-card"><span class="top">I · THE BOND</span><span class="symbol">☾</span><span class="bottom">인연의 달</span></div>
+   <div class="arcana-ritual-card"><span class="top">V · THE MIND</span><span class="symbol">◇</span><span class="bottom">마음의 거울</span></div>
+   <div class="arcana-ritual-card"><span class="top">MINDSCAPE</span><span class="symbol">✧</span><span class="bottom">당신의 아르카나</span></div>
   </div>
+  <p class="sanctum-caption">5개의 세계 · 18장의 이야기<br><span>카드는 탐험의 문입니다. 해설은 심리학 연구를 바탕으로 합니다.</span></p>
  </aside>
 </section>
 <section id="learningPaths" class="path-section" aria-labelledby="pathTitle">
- <div class="section-head"><div><span class="overline">YOUR FIRST STEP</span><h2 id="pathTitle">오늘, 무엇이 궁금한가요?</h2></div><p>세 가지 주제를 순서대로. 이야기 한 편은 약 5분이면 읽을 수 있어요.</p></div>
+ <div class="section-head"><div><span class="overline">THE FORTUNE TELLER'S GUIDE</span><h2 id="pathTitle">점술가가 건네는 세 갈래 길.</h2></div><p>“어떤 마음이 궁금한가요?” 세 장의 카드를 차례로 펼쳐보세요. 한 장에 약 5분, 당신의 속도로.</p></div>
  <div id="pathCards" class="path-grid"></div>
  <div id="continueStudy" class="continue-study" hidden></div>
 </section>
 <section id="library">
-<div class="section-head"><div><span class="overline">EXPLORE BY SUBJECT</span><h2>관심 있는 분야부터.</h2></div><p>분야와 학습 상태로 좁혀 보세요. 이야기부터 읽거나 핵심 정리로 바로 이동할 수 있습니다.</p></div>
+<div class="section-head"><div><span class="overline">CHOOSE YOUR ARCANA</span><h2>당신을 부르는 카드는?</h2></div><p>다섯 세계 중 하나를 골라 카드를 펼쳐보세요. 분야·학습 상태·검색으로 원하는 이야기를 찾을 수 있습니다.</p></div>
 <div id="arcanaDeck" class="arcana-deck" aria-label="다섯 가지 아르카나 세계의 카드"></div>
 <div class="hero-actions" style="margin:0 0 27px"><button type="button" id="arcanaAll" class="button ghost">전체 18개 주제 보기</button></div>
 <div id="arcanaStudy">
@@ -223,7 +224,7 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
  <section id="vnLearning" class="knowledge-sheet" hidden aria-label="심리학 개념 정리">
   <div class="knowledge-sheet__head">
    <span class="mini-title">PSYCHOLOGY NOTES</span>
-   <h2>이야기 뒤의 심리학</h2>
+   <h2>점술가의 해설 · 이야기 뒤의 심리학</h2>
    <p id="noteCore"></p>
   </div>
   <div class="knowledge-sheet__grid">
@@ -283,6 +284,7 @@ footer{border-top:1px solid var(--line);padding:27px 0 40px;color:var(--dim);dis
 <script src="./arcana-stories.js"></script>
 <script src="./psychology-notes.js"></script>
 <script src="./learning-content.js"></script>
+<script src="./arcana-effects.js"></script>
 <script>
 (()=>{
 'use strict';
@@ -335,11 +337,11 @@ function renderPaths(){
  const root=$('pathCards');root.replaceChildren();
  paths.forEach(path=>{
   const card=make('article','path-card');
-  card.append(make('span','path-index',path.icon+' / 추천 코스'),make('h3','',path.title),make('p','',path.desc));
+  card.append(make('span','path-index',path.icon+' / 점술가의 추천 코스'),make('h3','',path.title),make('p','',path.desc));
   const list=make('ol');path.ids.forEach(id=>list.append(make('li','',lessons.find(l=>l.id===id).short)));
   const done=path.ids.filter(id=>completed.has(id)).length;
   card.append(list,make('p','path-meta','약 15분 · '+done+' / 3 완료'));
-  card.append(button(done===3?'코스 다시 읽기 →':done?'코스 이어 배우기 →':'이 코스로 시작하기 →',()=>{
+  card.append(button(done===3?'세 장의 카드 다시 읽기 →':done?'다음 카드 이어 읽기 →':'첫 번째 카드 펼치기 →',()=>{
    activePath=path;showLesson(path.ids.find(id=>!completed.has(id))||path.ids[0]);
   },true));root.append(card);
  });
@@ -370,7 +372,13 @@ function orderedLessons(){return categories.flatMap(cat=>lessons.filter(l=>l.gro
 
 const arcanaArt={"relations":["I","☾","THE BOND","그 사람의 행동을, 나는 얼마나 이해하고 있을까?"],"society":["II","✧","THE CROWD","많은 사람 속에서, 나는 왜 다르게 행동할까?"],"groups":["III","✶","THE CHORUS","모두가 같은 말을 할 때, 나는 무엇을 믿을까?"],"ethics":["IV","⚖","THE SCALE","옳고 그름을 판단하는 나의 기준은 무엇일까?"],"cognition":["V","◇","THE MIND","내 생각은 어디까지 내 마음대로 움직일까?"]};
 let arcanaPortalTimer=null;
-function openPortal(label,callback){callback();}
+function openPortal(label,callback){
+ callback();
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ clearTimeout(arcanaPortalTimer);putText('arcanaPortalLabel',label);
+ $('arcanaPortal').classList.add('active');
+ arcanaPortalTimer=setTimeout(()=>$('arcanaPortal').classList.remove('active'),420);
+}
 function makeArcana(data,onClick){
  const b=make('button','arcana-card');
  b.type='button';b.dataset.category=data.group;
@@ -452,7 +460,7 @@ function drawCards(){
   visible.forEach((l,i)=>{
    const c=makeArcana({group:cat.id,no:l.no,tag:a[2],glyph:a[1],
     title:l.short,subtitle:'약 5분 · 입문'+(Number(l.no)>14?' · NEW':''),question:l.lead,
-    footer:completed.has(l.id)?'✓ 학습 완료 · 다시 읽기':'이야기 시작하기 →'},()=>{activePath=null;openPortal(l.short,()=>showLesson(l.id));});
+    footer:completed.has(l.id)?'✓ 학습 완료 · 다시 펼치기':'카드 펼쳐 이야기 읽기 →'},()=>{activePath=null;openPortal(l.short,()=>showLesson(l.id));});
    const item=make('div','lesson-item');
    const save=button(saved.has(l.id)?'★ 저장됨':'☆ 저장',()=>{
     saved.has(l.id)?saved.delete(l.id):saved.add(l.id);persistStudy();drawCards();
@@ -546,11 +554,11 @@ function renderVN(){
   });
  }
  else if(vnStep===4){who='그 이후';text=story.outcomes[vnSelected??0];next.textContent='왜 이런 생각이 들었을까? →';}
- else if(vnStep===5){who='아르카나의 기록자';text=story.teacher[0];next.textContent='이야기 더 듣기 →';}
- else if(vnStep===6){who='아르카나의 기록자';text=story.teacher[1];next.textContent='마지막 장면 →';}
+ else if(vnStep===5){who='점술가 · 아르카나의 안내자';text=story.teacher[0];next.textContent='이야기 더 듣기 →';}
+ else if(vnStep===6){who='점술가 · 아르카나의 안내자';text=story.teacher[1];next.textContent='마지막 장면 →';}
  else if(vnStep===7){who='나레이션';text=story.ending;next.textContent='기억해 둘 질문 →';}
  else{
-  who='아르카나의 기록자';text='이제 이 장면을 돌아볼 시간입니다. 아래의 짧은 질문으로 오늘의 이야기를 마무리해 보세요.';next.hidden=true;
+  who='점술가 · 아르카나의 안내자';text='카드가 보여 준 장면을 함께 돌아볼까요? 아래의 해설과 짧은 질문으로 오늘 발견한 마음의 원리를 정리해 보세요.';next.hidden=true;
  }
  putText('vnSpeaker',who);richStoryText(line,text);
  stage.classList.remove('vn-turn');
